@@ -15,7 +15,7 @@ public class Ciudad implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Integer codigo;
+    private Integer codigo_ciudad;
 
     @NotNull
     @Column(length = 50)
@@ -23,5 +23,6 @@ public class Ciudad implements Serializable {
 
     @NotNull
     @ManyToOne
+    @JoinColumn(name = "codigo_departmento")
     private Departamento departamento;
 }
