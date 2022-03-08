@@ -1,11 +1,9 @@
 package co.edu.uniquindio.proyecto.entidades;
 
 import lombok.*;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -13,16 +11,17 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Departamento implements Serializable {
+public class Ciudad implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Integer codigo_departamento;
+    private Integer codigo;
 
     @NotNull
     @Column(length = 50)
     private String nombre;
 
-    @OneToMany(mappedBy = "departamento")
-    private List<Ciudad> ciudades;
+    @NotNull
+    @ManyToOne
+    private Departamento departamento;
 }
