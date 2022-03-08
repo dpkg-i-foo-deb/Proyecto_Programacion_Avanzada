@@ -23,6 +23,6 @@ public class Ciudad implements Serializable {
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "codigo_departmento")
+    @JoinColumn(name = "codigo_departamento")
     private Departamento departamento;
 }
