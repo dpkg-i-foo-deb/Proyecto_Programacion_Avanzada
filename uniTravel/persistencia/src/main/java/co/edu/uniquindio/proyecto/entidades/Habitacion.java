@@ -24,4 +24,7 @@ public class Habitacion
 
     @OneToMany(mappedBy = "habitacion")
     private List<Foto_Habitacion> fotos;
+
+    @OneToMany(mappedBy = "habitacion")
+    private List<Cama> camas;
 }
