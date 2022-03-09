@@ -12,22 +12,14 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Hotel
+public class Foto_Hotel
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Integer codigo_hotel;
+    private Integer codigo_foto_hotel;
 
     @NotNull
     @Column(unique = true)
-    private String direccion;
-
-    private int numero_estrellas;
-
-    @ManyToOne
-    @NotNull
-    @JoinColumn(name="codigo_ciudad")
-    private Ciudad ciudad;
-
+    private String ruta;
 }
