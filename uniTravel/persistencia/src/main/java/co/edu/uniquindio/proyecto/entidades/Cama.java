@@ -13,6 +13,8 @@ import javax.persistence.*;
 @ToString
 public class Cama
 {
+    //Me fui a mimir uwu
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
