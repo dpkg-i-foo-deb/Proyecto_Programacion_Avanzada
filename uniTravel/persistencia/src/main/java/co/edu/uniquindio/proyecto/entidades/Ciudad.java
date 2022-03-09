@@ -29,4 +29,7 @@ public class Ciudad implements Serializable {
 
     //@OneToMany(mappedBy = "ciudad")
     //private List<Persona> personas;
+
+    @OneToMany(mappedBy = "ciudad")
+    private List<Hotel> hoteles;
 }

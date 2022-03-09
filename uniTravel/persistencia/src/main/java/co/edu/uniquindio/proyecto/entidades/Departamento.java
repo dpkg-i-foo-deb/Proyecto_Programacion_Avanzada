@@ -25,4 +25,5 @@ public class Departamento implements Serializable {
 
     @OneToMany(mappedBy = "departamento")
     private List<Ciudad> ciudades;
+
 }

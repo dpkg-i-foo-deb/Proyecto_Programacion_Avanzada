@@ -24,4 +24,9 @@ public class Hotel
     private String direccion;
 
     private int numero_estrellas;
+
+    @ManyToOne
+    @NotNull
+    @JoinColumn(name="codigo_ciudad")
+    private Ciudad ciudad;
 }
