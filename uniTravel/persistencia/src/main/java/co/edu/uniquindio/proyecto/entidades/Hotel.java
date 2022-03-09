@@ -34,4 +34,7 @@ public class Hotel
     @OneToMany(mappedBy = "hotel")
     private List<Foto_Hotel> fotos;
 
+    @OneToMany(mappedBy = "hotel")
+    private List<Habitacion> habitaciones;
+
 }

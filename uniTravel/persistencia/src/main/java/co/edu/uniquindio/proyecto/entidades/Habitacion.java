@@ -3,6 +3,7 @@ package co.edu.uniquindio.proyecto.entidades;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -27,4 +28,9 @@ public class Habitacion
 
     @OneToMany(mappedBy = "habitacion")
     private List<Cama> camas;
+
+    @ManyToOne
+    @NotNull
+    @JoinColumn(name = "codigo_hotel")
+    private Hotel hotel;
 }
