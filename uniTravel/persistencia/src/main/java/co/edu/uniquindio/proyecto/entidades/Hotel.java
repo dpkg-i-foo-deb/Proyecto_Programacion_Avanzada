@@ -37,4 +37,9 @@ public class Hotel
     @OneToMany(mappedBy = "hotel")
     private List<Habitacion> habitaciones;
 
+    @ManyToOne
+    @NotNull
+    @JoinColumn(name = "cedula")
+    private Persona_Administrador administrador;
+
 }

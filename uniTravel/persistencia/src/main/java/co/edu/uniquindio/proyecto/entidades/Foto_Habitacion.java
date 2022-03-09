@@ -18,7 +18,7 @@ public class Foto_Habitacion
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Integer codigo_foto_habitacion;
-    
+
     @Column(unique = true)
     private String ruta;
 
