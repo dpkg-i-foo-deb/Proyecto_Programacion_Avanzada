@@ -31,9 +31,6 @@ public class  Persona implements Serializable
     @ElementCollection
     private List<String> telefonos;
 
-    //@ManyToOne
-    //@NotNull
-    //@JoinColumn(name="codigo_ciudad")
-    //private Ciudad ciudad;
+
 
 }

@@ -27,8 +27,8 @@ public class Ciudad implements Serializable {
     @JoinColumn(name = "codigo_departamento")
     private Departamento departamento;
 
-    //@OneToMany(mappedBy = "ciudad")
-    //private List<Persona> personas;
+    @OneToMany(mappedBy = "ciudad")
+    private List<Persona_Administrador> administradores;
 
     @OneToMany(mappedBy = "ciudad")
     private List<Hotel> hoteles;
