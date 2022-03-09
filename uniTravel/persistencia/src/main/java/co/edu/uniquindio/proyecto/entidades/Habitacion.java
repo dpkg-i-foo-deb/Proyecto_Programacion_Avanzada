@@ -2,10 +2,8 @@ package co.edu.uniquindio.proyecto.entidades;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -23,4 +21,7 @@ public class Habitacion
 
     //TODO colocarle a esto un tipo de dato que sea válido
     private String precio;
+
+    @OneToMany(mappedBy = "habitacion")
+    private List<Foto_Habitacion> fotos;
 }

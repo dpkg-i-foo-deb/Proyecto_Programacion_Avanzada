@@ -22,4 +22,10 @@ public class Foto_Habitacion
     @NotNull
     @Column(unique = true)
     private String ruta;
+
+    @ManyToOne
+    @NotNull
+    @JoinColumn(name = "codigo_habitacion")
+    private Habitacion habitacion;
+
 }
