@@ -19,7 +19,6 @@ public class Foto_Hotel
     @EqualsAndHashCode.Include
     private Integer codigo_foto_hotel;
 
-    @NotNull
     @Column(unique = true)
     private String ruta;
 
