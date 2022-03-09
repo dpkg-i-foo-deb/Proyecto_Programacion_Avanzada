@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Getter
@@ -29,5 +30,8 @@ public class Hotel
     @NotNull
     @JoinColumn(name="codigo_ciudad")
     private Ciudad ciudad;
+
+    @OneToMany(mappedBy = "hotel")
+    private List<Foto_Hotel> fotos;
 
 }
