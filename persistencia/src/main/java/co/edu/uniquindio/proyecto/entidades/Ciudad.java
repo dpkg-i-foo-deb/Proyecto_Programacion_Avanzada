@@ -31,5 +31,8 @@ public class Ciudad implements Serializable {
     private List<Persona_Administrador> administradores;
 
     @OneToMany(mappedBy = "ciudad")
+    private List<Persona_Usuario> usuarios;
+
+    @OneToMany(mappedBy = "ciudad")
     private List<Hotel> hoteles;
 }

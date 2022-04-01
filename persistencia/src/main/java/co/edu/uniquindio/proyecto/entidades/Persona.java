@@ -13,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@ToString
 @MappedSuperclass
 public class  Persona implements Serializable
 {
@@ -20,6 +21,9 @@ public class  Persona implements Serializable
     @EqualsAndHashCode.Include
     @Column(length = 10)
     private String cedula;
+
+    @NotNull
+    private String nombre;
 
     @NotNull
     @Column(length = 20, unique = true)
