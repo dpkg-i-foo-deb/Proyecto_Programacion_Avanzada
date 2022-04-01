@@ -23,6 +23,4 @@ public class Persona_Administrador extends Persona
     @JoinColumn (name = "codigo_ciudad")
     private Ciudad ciudad;
 
-    @OneToMany(mappedBy = "administrador")
-    private List<Hotel> hoteles;
 }

@@ -40,6 +40,6 @@ public class Hotel
     @ManyToOne
     @NotNull
     @JoinColumn(name = "cedula")
-    private Persona_Administrador administrador;
+    private Persona_Administrador_Hotel administrador;
 
 }
