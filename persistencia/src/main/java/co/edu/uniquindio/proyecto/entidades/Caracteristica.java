@@ -5,26 +5,23 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 @Entity
 @Getter
 @Setter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
-public class Cama
-{
+public class Caracteristica implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Integer codigo_cama;
+    private Integer codigo;
 
     @NotBlank
     @Size(max = 50)
-    private String tipo;
-
-    @ManyToOne
-    @JoinColumn(name = "codigo_habitacion")
-    private Habitacion habitacion;
+    @Column(unique = true)
+    private String descripcion;
 }

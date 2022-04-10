@@ -3,38 +3,56 @@ package co.edu.uniquindio.proyecto.entidades;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
 
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo")
 @ToString
-@MappedSuperclass
 public class  Persona implements Serializable
 {
     @Id
     @EqualsAndHashCode.Include
-    @Column(length = 10)
+    @Size(max = 10)
+    @NotBlank
     private String cedula;
 
-    @NotNull
-    private String nombre;
+    @NotBlank
+    @Size(max = 40)
+    private String nombreCompleto;
 
-    @NotNull
-    @Column(length = 20, unique = true)
+    @NotBlank
+    @Column(unique = true)
+    @Size(max = 20)
+    @Email
     private String email;
-
-    @NotNull
-    private String contrasena;
 
     @ElementCollection
     private List<String> telefonos;
 
+    @NotBlank
+    @Size(max = 100)
+    private String contrasena;
 
+    @ManyToOne
+    @NotNull
+    @JoinColumn(name = "codigo_ciudad")
+    private Ciudad ciudad;
 
+    public Persona(String cedula, String nombreCompleto, String email, String contrasena, Ciudad ciudad) {
+        this.cedula = cedula;
+        this.nombreCompleto = nombreCompleto;
+        this.email = email;
+        this.contrasena = contrasena;
+        this.ciudad = ciudad;
+    }
 }

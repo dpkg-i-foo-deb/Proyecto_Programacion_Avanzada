@@ -1,20 +1,28 @@
 package co.edu.uniquindio.proyecto.entidades;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString(callSuper = true)
+@DiscriminatorValue("admin_hotel")
 public class Persona_Administrador_Hotel extends Persona
 {
     @OneToMany(mappedBy = "administrador")
-    private List<Hotel> hoteles;
+    @ToString.Exclude
+    private List<Hotel> listaHoteles;
 
-    @ManyToOne
-    @NotNull
-    @JoinColumn(name = "codigo_ciudad")
-    private Ciudad ciudad;
+    public Persona_Administrador_Hotel(String cedula, String nombreCompleto, String email, String contrasena,
+                                       Ciudad ciudad) {
+        super(cedula, nombreCompleto, email, contrasena, ciudad);
+    }
 }

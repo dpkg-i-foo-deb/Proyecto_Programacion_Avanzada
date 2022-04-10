@@ -1,9 +1,13 @@
 package co.edu.uniquindio.proyecto.entidades;
 
+import co.edu.uniquindio.proyecto.entidades.intermediate.Reserva_Habitacion;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import java.util.List;
 
 @Entity
@@ -11,7 +15,6 @@ import java.util.List;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
 public class Habitacion
 {
@@ -20,17 +23,39 @@ public class Habitacion
     @EqualsAndHashCode.Include
     private Integer codigo_habitacion;
 
-    //TODO colocarle a esto un tipo de dato que sea válido
-    private String precio;
+    @NotNull
+    @PositiveOrZero
+    private Double precio;
 
-    @OneToMany(mappedBy = "habitacion")
-    private List<Foto_Habitacion> fotos;
-
-    @OneToMany(mappedBy = "habitacion")
-    private List<Cama> camas;
+    @NotNull
+    @Positive //Mayor a 0.
+    private int capacidad;
 
     @ManyToOne
     @NotNull
     @JoinColumn(name = "codigo_hotel")
     private Hotel hotel;
+
+    @ElementCollection
+    private List<String> listaFotos;
+
+    @OneToMany(mappedBy = "habitacion")
+    @ToString.Exclude
+    private List<Cama> listaCamas;
+
+    /*
+    @ManyToMany
+    @ToString.Exclude
+    private List<Reserva> listaReservas;
+     */
+
+    @OneToMany(mappedBy = "codigoHabitacion")
+    private List<Reserva_Habitacion> listaReservas;
+
+    public Habitacion(Integer codigo_habitacion, Double precio, int capacidad, Hotel hotel) {
+        this.codigo_habitacion = codigo_habitacion;
+        this.precio = precio;
+        this.capacidad = capacidad;
+        this.hotel = hotel;
+    }
 }

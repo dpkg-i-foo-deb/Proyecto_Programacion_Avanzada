@@ -3,7 +3,9 @@ package co.edu.uniquindio.proyecto.entidades;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -11,7 +13,6 @@ import java.util.List;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
 public class Hotel
 {
@@ -20,26 +21,44 @@ public class Hotel
     @EqualsAndHashCode.Include
     private Integer codigo_hotel;
 
-    @NotNull
+    @NotBlank
     @Column(unique = true)
+    @Size(max = 255)
     private String direccion;
-
-    private int numero_estrellas;
 
     @ManyToOne
     @NotNull
     @JoinColumn(name="codigo_ciudad")
     private Ciudad ciudad;
 
-    @OneToMany(mappedBy = "hotel")
-    private List<Foto_Hotel> fotos;
-
-    @OneToMany(mappedBy = "hotel")
-    private List<Habitacion> habitaciones;
-
     @ManyToOne
     @NotNull
     @JoinColumn(name = "cedula")
     private Persona_Administrador_Hotel administrador;
 
+    @OneToMany(mappedBy = "codigoHotel")
+    @ToString.Exclude
+    private List<Comentario> listaComentarios;
+
+    @ManyToMany
+    @ToString.Exclude
+    private List<Caracteristica> listaCaracteristicas;
+
+    @OneToMany(mappedBy = "hotel")
+    @ToString.Exclude
+    private List<Habitacion> habitaciones;
+
+    @ElementCollection
+    private List<String> listaFotos;
+
+    @ManyToMany
+    @ToString.Exclude
+    private List<Persona_Usuario> listaFavoritosUsuarios;
+
+    public Hotel(Integer codigo_hotel, String direccion, Ciudad ciudad, Persona_Administrador_Hotel administrador) {
+        this.codigo_hotel = codigo_hotel;
+        this.direccion = direccion;
+        this.ciudad = ciudad;
+        this.administrador = administrador;
+    }
 }
