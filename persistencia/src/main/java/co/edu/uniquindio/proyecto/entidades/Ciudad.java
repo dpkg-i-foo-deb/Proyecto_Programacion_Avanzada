@@ -2,6 +2,7 @@ package co.edu.uniquindio.proyecto.entidades;
 
 import lombok.*;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
@@ -10,7 +11,6 @@ import java.util.List;
 @Getter @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
 public class Ciudad implements Serializable {
     @Id
@@ -18,7 +18,7 @@ public class Ciudad implements Serializable {
     @EqualsAndHashCode.Include
     private Integer codigo_ciudad;
 
-    @NotNull
+    @NotBlank
     @Column(length = 50)
     private String nombre;
 
@@ -28,14 +28,24 @@ public class Ciudad implements Serializable {
     private Departamento departamento;
 
     @OneToMany(mappedBy = "ciudad")
-    private List<Persona_Administrador> administradores;
+    @ToString.Exclude
+    private List<Persona> listaPersonas;
 
     @OneToMany(mappedBy = "ciudad")
-    private List<Persona_Usuario> usuarios;
+    @ToString.Exclude
+    private List<Hotel> listaHoteles;
 
-    @OneToMany(mappedBy = "ciudad")
-    private List<Persona_Administrador_Hotel> admnistradores_hotel;
+    @OneToMany(mappedBy = "ciudadOrigen")
+    @ToString.Exclude
+    private List<Vuelo> ciudadesOrigen;
 
-    @OneToMany(mappedBy = "ciudad")
-    private List<Hotel> hoteles;
+    @OneToMany(mappedBy = "ciudadDestino")
+    @ToString.Exclude
+    private List<Vuelo> ciudadesDestino;
+
+    public Ciudad(Integer codigo_ciudad, String nombre, Departamento departamento) {
+        this.codigo_ciudad = codigo_ciudad;
+        this.nombre = nombre;
+        this.departamento = departamento;
+    }
 }

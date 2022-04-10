@@ -2,10 +2,10 @@ package co.edu.uniquindio.proyecto.entidades;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Getter
@@ -17,9 +17,21 @@ import javax.validation.constraints.NotNull;
 public class Vuelo
 {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private int codigo;
+    private Integer codigo;
+
+    @NotBlank
+    @Size(max = 150)
+    private String aerolinea;
 
     @NotNull
-    private String aerolinea;
+    @ManyToOne
+    @JoinColumn(name = "ciudad_origen")
+    private Ciudad ciudadOrigen;
+
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "ciudad_destino")
+    private Ciudad ciudadDestino;
 }
