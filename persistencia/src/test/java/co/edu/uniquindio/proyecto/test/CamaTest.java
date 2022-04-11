@@ -69,6 +69,8 @@ public class CamaTest
         Cama cama3 = new Cama();
         Cama cama4 = new Cama();
 
+        List<Cama> listaCamas;
+
         cama1.setTipo("simple");
         cama2.setTipo("doble");
         cama3.setTipo("simple");
@@ -79,7 +81,7 @@ public class CamaTest
         camaRepo.save(cama3);
         camaRepo.save(cama4);
 
-        List<Cama> listaCamas = camaRepo.findAll();
+        listaCamas = camaRepo.findAll();
 
         System.out.print(listaCamas);
     }
