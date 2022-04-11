@@ -18,9 +18,10 @@ import java.util.List;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 public class Silla implements Serializable {
+
     @EmbeddedId
     @EqualsAndHashCode.Include
-    private Silla_ID id;
+    private Silla_ID idSilla;
 
     @NotNull
     @PositiveOrZero
