@@ -133,15 +133,15 @@ public class AdministradorHotelTest
         List<Persona_Administrador_Hotel> admins_hotel;
 
         admin_hotel1.setNombreCompleto("Stiven Herrera Sierra");
-        admin_hotel1.setCedula("12345");
+        admin_hotel1.setCedula("123456");
         admin_hotel1.setEmail("stiven.herreras@uqvirtual.edu.co");
         admin_hotel1.setContrasena("54321");
 
         admin_hotel1.setCiudad(ciudad);
 
-        admin_hotel2.setNombreCompleto("Stiven Herrera Sierra");
-        admin_hotel2.setCedula("12345");
-        admin_hotel2.setEmail("stiven.herreras@uqvirtual.edu.co");
+        admin_hotel2.setNombreCompleto("Mateo Estrada Ramirez");
+        admin_hotel2.setCedula("1234567");
+        admin_hotel2.setEmail("mateo.estradar@uqvirtual.edu.co");
         admin_hotel2.setContrasena("54321");
 
         admin_hotel2.setCiudad(ciudad);
@@ -152,5 +152,7 @@ public class AdministradorHotelTest
         admins_hotel = administradorHotelRepo.findAll();
 
         System.out.print(admins_hotel);
+
+        Assertions.assertEquals(2, admins_hotel.size());
     }
 }

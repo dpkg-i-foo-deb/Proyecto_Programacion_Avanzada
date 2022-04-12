@@ -138,9 +138,9 @@ public class AdministradorTest
 
         administradorRepo.save(administrador1);
 
-        administrador2.setNombreCompleto("Chukimamberto Pipicano");
-        administrador2.setEmail("chukimamberto@example.com");
-        administrador2.setCedula("12345");
+        administrador2.setNombreCompleto("Maricarmen Chamizo");
+        administrador2.setEmail("maricarmen@example.com");
+        administrador2.setCedula("1234567");
         administrador2.setContrasena("54321");
 
         administrador2.setCiudad(ciudad);
@@ -150,5 +150,7 @@ public class AdministradorTest
         administradores = administradorRepo.findAll();
 
         System.out.print(administradores);
+
+        Assertions.assertEquals(2, administradores.size());
     }
 }
