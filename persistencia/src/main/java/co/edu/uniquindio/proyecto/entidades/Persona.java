@@ -32,7 +32,7 @@ public class  Persona implements Serializable
 
     @NotBlank
     @Column(unique = true)
-    @Size(max = 20)
+    @Size(max = 200)
     @Email
     private String email;
 
