@@ -1,6 +1,5 @@
 package co.edu.uniquindio.proyecto.entidades;
 
-import co.edu.uniquindio.proyecto.entidades.embedded.Silla_ID;
 import co.edu.uniquindio.proyecto.entidades.intermediate.Reserva_silla;
 import lombok.*;
 
@@ -19,9 +18,10 @@ import java.util.List;
 @ToString
 public class Silla implements Serializable {
 
-    @EmbeddedId
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Silla_ID idSilla;
+    private Integer codigo_silla;
 
     @NotNull
     @PositiveOrZero
@@ -29,4 +29,10 @@ public class Silla implements Serializable {
 
     @OneToMany(mappedBy = "codigoSilla")
     private List<Reserva_silla> listaReservas;
+
+    @ManyToOne
+    @NotNull
+    @JoinColumn(name="codigo_vuelo")
+    private Vuelo vuelo;
+
 }

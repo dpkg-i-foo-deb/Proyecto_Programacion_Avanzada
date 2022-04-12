@@ -15,5 +15,5 @@ import java.io.Serializable;
 public class Reserva_silla_ID implements Serializable {
     private Integer codigoReserva;
 
-    private Silla_ID codigoSilla;
+    private Integer codigoSilla;
 }

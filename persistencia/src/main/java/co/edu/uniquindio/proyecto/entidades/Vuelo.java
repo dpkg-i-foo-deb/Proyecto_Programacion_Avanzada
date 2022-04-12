@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Getter
@@ -19,7 +20,7 @@ public class Vuelo
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Integer codigo;
+    private Integer codigo_vuelo;
 
     @NotBlank
     @Size(max = 150)
@@ -34,4 +35,8 @@ public class Vuelo
     @ManyToOne
     @JoinColumn(name = "ciudad_destino")
     private Ciudad ciudadDestino;
+
+    @OneToMany (mappedBy = "vuelo")
+    private List<Silla> sillas;
+
 }
