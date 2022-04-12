@@ -3,7 +3,6 @@ package co.edu.uniquindio.proyecto.entidades;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -24,8 +23,8 @@ public class Persona_Usuario extends Persona
     @ToString.Exclude
     private List<Comentario> listaComentarios;
 
-    @OneToMany(mappedBy = "")
-    private List<Reserva> listaReservas;
+    @OneToMany(mappedBy = "usuario")
+    private List<Reserva> reservas;
 
     public Persona_Usuario(String cedula, String nombreCompleto, String email, String contrasena, Ciudad ciudad) {
         super(cedula, nombreCompleto, email, contrasena, ciudad);

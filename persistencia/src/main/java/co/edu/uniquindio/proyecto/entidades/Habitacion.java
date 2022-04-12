@@ -4,7 +4,6 @@ import co.edu.uniquindio.proyecto.entidades.intermediate.Reserva_Habitacion;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
@@ -42,12 +41,6 @@ public class Habitacion
     @OneToMany(mappedBy = "habitacion")
     @ToString.Exclude
     private List<Cama> listaCamas;
-
-    /*
-    @ManyToMany
-    @ToString.Exclude
-    private List<Reserva> listaReservas;
-     */
 
     @OneToMany(mappedBy = "codigoHabitacion")
     private List<Reserva_Habitacion> listaReservas;

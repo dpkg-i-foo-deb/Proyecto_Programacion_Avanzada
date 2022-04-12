@@ -58,6 +58,7 @@ public class CamaTest
 
         Cama camaBuscada = camaRepo.findById(codigo).orElse(null);
 
+        assert camaBuscada != null;
         Assertions.assertEquals("doble",camaBuscada.getTipo());
     }
 

@@ -33,7 +33,7 @@ public class DepartamentoTest
       public void eliminarDepartamentoTest()
       {
           Departamento departamento = new Departamento();
-          int codigo=0;
+          int codigo;
 
           departamento.setNombre("Quindío");
 
@@ -52,7 +52,7 @@ public class DepartamentoTest
       public void editarDepartamentoTest()
       {
           Departamento departamento = new Departamento();
-          int codigo=0;
+          int codigo;
 
           departamento.setNombre("Quindío");
 
@@ -66,6 +66,7 @@ public class DepartamentoTest
 
           departamento = departamentoRepo.findById(codigo).orElse(null);
 
+          assert departamento != null;
           Assertions.assertEquals("Risaralda", departamento.getNombre());
       }
 

@@ -70,7 +70,7 @@ public class UsuarioTest
     {
         crearDepartamento();
         crearCiudad();
-        String cedula = "";
+        String cedula;
 
         Persona_Usuario usuario = new Persona_Usuario();
         usuario.setNombreCompleto("Chukimamberto Pipicano");

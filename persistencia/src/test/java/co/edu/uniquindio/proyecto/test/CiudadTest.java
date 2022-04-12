@@ -76,7 +76,7 @@ public class CiudadTest
     public void editarCiudadTest()
     {
         Ciudad ciudad = new Ciudad();
-        int codigo = 0;
+        int codigo;
 
         ciudad.setNombre("Armenia");
 
@@ -94,6 +94,7 @@ public class CiudadTest
 
         ciudad = ciudadRepo.findById(codigo).orElse(null);
 
+        assert ciudad != null;
         Assertions.assertEquals("Calarca", ciudad.getNombre());
     }
 

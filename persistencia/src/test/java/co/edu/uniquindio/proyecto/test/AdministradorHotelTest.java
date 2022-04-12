@@ -73,7 +73,7 @@ public class AdministradorHotelTest
         crearCiudad();
 
         Persona_Administrador_Hotel admin_hotel = new Persona_Administrador_Hotel();
-        String codigo="";
+        String codigo;
 
         admin_hotel.setNombreCompleto("Stiven Herrera Sierra");
         admin_hotel.setCedula("12345");
@@ -100,7 +100,7 @@ public class AdministradorHotelTest
         crearCiudad();
 
         Persona_Administrador_Hotel admin_hotel = new Persona_Administrador_Hotel();
-        String codigo="";
+        String codigo;
 
         admin_hotel.setNombreCompleto("Stiven Herrera Sierra");
         admin_hotel.setCedula("12345");

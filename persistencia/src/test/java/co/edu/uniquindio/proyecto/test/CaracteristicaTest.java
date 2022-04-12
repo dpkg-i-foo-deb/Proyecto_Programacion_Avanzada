@@ -63,6 +63,7 @@ public class CaracteristicaTest {
 
         Caracteristica caracteristicaBuscada = caracteristicaRepo.findById(codigo).orElse(null);
 
+        assert caracteristicaBuscada != null;
         Assertions.assertEquals(caracteristicaBuscada.getDescripcion(),"gimnasio");
     }
 

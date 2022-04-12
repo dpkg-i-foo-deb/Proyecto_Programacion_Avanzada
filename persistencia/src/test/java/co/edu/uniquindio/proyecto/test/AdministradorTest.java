@@ -72,7 +72,7 @@ public class AdministradorTest
         crearDepartamento();
         crearCiudad();
 
-        String cedula = "";
+        String cedula;
 
         Persona_Administrador administrador = new Persona_Administrador();
 

@@ -2,7 +2,6 @@ package co.edu.uniquindio.proyecto.entidades.embedded;
 
 import lombok.*;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

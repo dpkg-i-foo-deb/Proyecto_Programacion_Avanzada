@@ -48,21 +48,9 @@ public class Reserva implements Serializable {
     @NotNull
     private EstadoReserva estadoReserva;
 
-    /*
-    @ManyToMany
-    @ToString.Exclude
-    private List<Habitacion> listaHabitaciones;
-     */
-
     @ManyToOne
-    @JoinColumn(updatable = false)
-    private Persona_Usuario codigoUsuario;
-
-    /*
-    @ManyToMany
-    @ToString.Exclude
-    private List<Silla> listaSillas;
-     */
+    @JoinColumn(updatable = false, name= "codigo_usuario")
+    private Persona_Usuario usuario;
 
     @OneToMany(mappedBy = "codigoReserva")
     @ToString.Exclude
