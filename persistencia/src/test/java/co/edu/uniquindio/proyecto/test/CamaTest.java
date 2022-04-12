@@ -35,6 +35,8 @@ public class CamaTest
         cama.setTipo("simple");
         cama.setCodigo_cama(1234);
 
+        camaRepo.save(cama);
+
         camaRepo.delete(cama);
 
         Cama camaBuscada = camaRepo.findById(1234).orElse(null);
