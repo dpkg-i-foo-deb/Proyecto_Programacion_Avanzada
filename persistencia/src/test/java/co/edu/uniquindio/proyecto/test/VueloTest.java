@@ -84,7 +84,7 @@ public class VueloTest
 
         vuelo = vueloRepo.save(vuelo);
 
-        codigo = vuelo.getCodigo();
+        codigo = vuelo.getCodigo_vuelo();
 
         vueloRepo.delete(vuelo);
 

@@ -1,8 +1,13 @@
 package co.edu.uniquindio.proyecto.test;
 
+import co.edu.uniquindio.proyecto.entidades.Ciudad;
+import co.edu.uniquindio.proyecto.entidades.Departamento;
 import co.edu.uniquindio.proyecto.entidades.Silla;
-import co.edu.uniquindio.proyecto.entidades.embedded.Silla_ID;
+import co.edu.uniquindio.proyecto.entidades.Vuelo;
+import co.edu.uniquindio.proyecto.repositorios.CiudadRepo;
+import co.edu.uniquindio.proyecto.repositorios.DepartamentoRepo;
 import co.edu.uniquindio.proyecto.repositorios.SillaRepo;
+import co.edu.uniquindio.proyecto.repositorios.VueloRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +20,52 @@ import java.util.List;
 @AutoConfigureTestDatabase(replace=AutoConfigureTestDatabase.Replace.NONE)
 public class SillaTest
 {
+    @Autowired
+    private CiudadRepo ciudadRepo;
+    @Autowired
+    private DepartamentoRepo departamentoRepo;
+    @Autowired
+    private VueloRepo vueloRepo;
+
+    private Ciudad ciudadOrigen;
+    private Ciudad ciudadDestino;
+    private Departamento departamento;
+    private Vuelo vuelo;
+
+    private void crearDepartamento()
+    {
+        departamento = new Departamento();
+        departamento.setNombre("Quindio");
+
+        departamentoRepo.save(departamento);
+    }
+
+    private void crearCiudades()
+    {
+        ciudadOrigen = new Ciudad();
+        ciudadOrigen.setNombre("Armenia");
+
+        ciudadOrigen.setDepartamento(departamento);
+
+        ciudadRepo.save(ciudadOrigen);
+
+        ciudadDestino = new Ciudad();
+        ciudadDestino.setNombre("Montenegro");
+
+        ciudadDestino.setDepartamento(departamento);
+
+        ciudadRepo.save(ciudadDestino);
+    }
+
+    private void crearVuelo()
+    {
+        vuelo = new Vuelo();
+        vuelo.setAerolinea("Avianca");
+        vuelo.setCiudadOrigen(ciudadOrigen);
+        vuelo.setCiudadDestino(ciudadDestino);
+
+        vuelo = vueloRepo.save(vuelo);
+    }
 
     @Autowired
     private SillaRepo sillaRepo;
@@ -22,14 +73,16 @@ public class SillaTest
     @Test
     public void crearSillaTest()
     {
-        Silla silla = new Silla();
-        Silla_ID id= new Silla_ID();
+        crearDepartamento();
+        crearCiudades();
+        crearVuelo();
 
-        id.setCodigoVuelo(1);
+        Silla silla = new Silla();
+        silla.setVuelo(vuelo);
+
         Silla sillaGuardada;
 
         silla.setPrecio(100000.00);
-        silla.setIdSilla(id);
 
         sillaGuardada = sillaRepo.save(silla);
 
@@ -40,22 +93,24 @@ public class SillaTest
     @Test
     public void eliminarSillaTest()
     {
-        Silla silla = new Silla();
-        Silla_ID id= new Silla_ID();
+        crearDepartamento();
+        crearCiudades();
+        crearVuelo();
 
-        id.setCodigoVuelo(1);
+        Silla silla = new Silla();
+        int codigo;
+
         Silla sillaGuardada;
 
         silla.setPrecio(100000.00);
-        silla.setIdSilla(id);
-
+        silla.setVuelo(vuelo);
         sillaGuardada = sillaRepo.save(silla);
 
-        id=sillaGuardada.getIdSilla();
+        codigo = sillaGuardada.getCodigo_silla();
 
         sillaRepo.delete(sillaGuardada);
 
-        sillaGuardada= sillaRepo.findByIdSilla(id);
+        sillaGuardada= sillaRepo.findById(codigo).orElse(null);
 
         Assertions.assertNull(sillaGuardada);
     }
@@ -63,14 +118,16 @@ public class SillaTest
     @Test
     public void editarSillaTest()
     {
-        Silla silla = new Silla();
-        Silla_ID id= new Silla_ID();
+        crearDepartamento();
+        crearCiudades();
+        crearVuelo();
 
-        id.setCodigoVuelo(1);
+        Silla silla = new Silla();
+
         Silla sillaGuardada;
 
         silla.setPrecio(100000.00);
-        silla.setIdSilla(id);
+        silla.setVuelo(vuelo);
 
         sillaGuardada = sillaRepo.save(silla);
 
@@ -82,16 +139,17 @@ public class SillaTest
     }
 
     @Test
-    public void obtenerSillasTest() {
+    public void obtenerSillasTest()
+    {
+        crearDepartamento();
+        crearCiudades();
+        crearVuelo();
+
         Silla silla1 = new Silla();
         Silla silla2 = new Silla();
         Silla silla3 = new Silla();
         Silla silla4 = new Silla();
 
-        Silla_ID id1= new Silla_ID();
-        Silla_ID id2= new Silla_ID();
-        Silla_ID id3= new Silla_ID();
-        Silla_ID id4= new Silla_ID();
 
         List<Silla> sillas;
 
@@ -100,10 +158,11 @@ public class SillaTest
         silla3.setPrecio(30.00);
         silla4.setPrecio(40.00);
 
-        silla1.setIdSilla(id1);
-        silla2.setIdSilla(id2);
-        silla3.setIdSilla(id3);
-        silla4.setIdSilla(id4);
+        silla1.setVuelo(vuelo);
+        silla2.setVuelo(vuelo);
+        silla3.setVuelo(vuelo);
+        silla4.setVuelo(vuelo);
+
 
         sillaRepo.save(silla1);
         sillaRepo.save(silla2);
