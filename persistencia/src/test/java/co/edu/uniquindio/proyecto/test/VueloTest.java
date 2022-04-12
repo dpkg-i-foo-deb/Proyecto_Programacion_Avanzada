@@ -100,7 +100,6 @@ public class VueloTest
         crearCiudades();
 
         Vuelo vuelo = new Vuelo();
-        int codigo;
 
         vuelo.setAerolinea("Avianca");
         vuelo.setCiudadOrigen(ciudadOrigen);
