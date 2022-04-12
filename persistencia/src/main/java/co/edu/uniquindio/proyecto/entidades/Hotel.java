@@ -22,6 +22,10 @@ public class Hotel
     private Integer codigo_hotel;
 
     @NotBlank
+    @Column(name="nombre")
+    private String nombre;
+
+    @NotBlank
     @Column(unique = true)
     @Size(max = 255)
     private String direccion;
