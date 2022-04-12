@@ -146,6 +146,8 @@ public class UsuarioTest
         usuarios = usuarioRepo.findAll();
 
         System.out.print(usuarios);
+
+        Assertions.assertEquals(2, usuarios.size());
     }
 
 }

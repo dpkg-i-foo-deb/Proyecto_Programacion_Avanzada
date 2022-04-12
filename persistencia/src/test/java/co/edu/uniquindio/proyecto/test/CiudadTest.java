@@ -128,6 +128,8 @@ public class CiudadTest
         ciudades = ciudadRepo.findAll();
 
         System.out.print(ciudades);
+
+        Assertions.assertEquals(4, ciudades.size());
     }
 
 }

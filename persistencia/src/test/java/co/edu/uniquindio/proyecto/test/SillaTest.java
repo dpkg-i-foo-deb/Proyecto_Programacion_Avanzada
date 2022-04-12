@@ -113,5 +113,7 @@ public class SillaTest
         sillas = sillaRepo.findAll();
 
         System.out.print(sillas);
+
+        Assertions.assertEquals(4, sillas.size());
     }
 }

@@ -169,5 +169,7 @@ public class HabitacionTest
         habitaciones = habitacionRepo.findAll();
 
         System.out.print(habitaciones);
+
+        Assertions.assertEquals(2,habitaciones.size());
     }
 }

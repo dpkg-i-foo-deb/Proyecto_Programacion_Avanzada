@@ -93,5 +93,7 @@ public class DepartamentoTest
           departamentos = departamentoRepo.findAll();
 
           System.out.print(departamentos);
+
+          Assertions.assertEquals(4, departamentos.size());
       }
 }

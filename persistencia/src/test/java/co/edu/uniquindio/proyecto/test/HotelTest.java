@@ -168,5 +168,7 @@ public class HotelTest
         hoteles = hotelRepo.findAll();
 
         System.out.print(hoteles);
+
+        Assertions.assertEquals(2,hoteles.size());
     }
 }

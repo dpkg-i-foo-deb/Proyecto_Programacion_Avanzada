@@ -90,5 +90,7 @@ public class CaracteristicaTest {
         caracteristicas = caracteristicaRepo.findAll();
 
         System.out.print(caracteristicas);
+
+        Assertions.assertEquals(4, caracteristicas.size());
     }
 }

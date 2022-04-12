@@ -140,5 +140,7 @@ public class VueloTest
         vuelos = vueloRepo.findAll();
 
         System.out.print(vuelos);
+
+        Assertions.assertEquals(2, vuelos.size());
     }
 }

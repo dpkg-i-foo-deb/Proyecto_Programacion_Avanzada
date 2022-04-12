@@ -87,5 +87,7 @@ public class CamaTest
         listaCamas = camaRepo.findAll();
 
         System.out.print(listaCamas);
+
+        Assertions.assertEquals(4, listaCamas.size());
     }
 }
