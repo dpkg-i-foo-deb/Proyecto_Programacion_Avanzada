@@ -17,7 +17,7 @@ public class SillaTest
 {
 
     @Autowired
-    SillaRepo sillaRepo;
+    private SillaRepo sillaRepo;
 
     @Test
     public void crearSillaTest()
