@@ -96,4 +96,5 @@ public class DepartamentoTest
 
           Assertions.assertEquals(4, departamentos.size());
       }
+
 }

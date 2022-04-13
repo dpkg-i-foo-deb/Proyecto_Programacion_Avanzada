@@ -175,4 +175,5 @@ public class SillaTest
 
         Assertions.assertEquals(4, sillas.size());
     }
+
 }

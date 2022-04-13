@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface DepartamentoRepo extends JpaRepository<Departamento, Integer>
 {
 
+
 }

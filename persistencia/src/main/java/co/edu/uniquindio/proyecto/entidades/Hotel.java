@@ -66,4 +66,5 @@ public class Hotel
         this.ciudad = ciudad;
         this.administrador = administrador;
     }
+
 }

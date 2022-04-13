@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface UsuarioRepo extends JpaRepository <Persona_Usuario, String>
 {
     Persona_Usuario getPersona_UsuarioByCedula(String cedula);
+
 }

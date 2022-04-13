@@ -38,4 +38,5 @@ public class Silla implements Serializable {
         this.precio = precio;
         this.vuelo = vuelo;
     }
+
 }

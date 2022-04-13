@@ -43,4 +43,5 @@ public class Vuelo
         this.ciudadOrigen = ciudadOrigen;
         this.ciudadDestino = ciudadDestino;
     }
+
 }

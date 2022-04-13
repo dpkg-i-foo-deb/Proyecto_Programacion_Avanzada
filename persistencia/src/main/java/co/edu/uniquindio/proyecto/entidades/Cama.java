@@ -27,4 +27,5 @@ public class Cama
     @ManyToOne
     @JoinColumn(name = "codigo_habitacion")
     private Habitacion habitacion;
+
 }
