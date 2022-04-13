@@ -109,7 +109,7 @@ public class HabitacionTest
         habitacion.setCapacidad(1);
 
         habitacion = habitacionRepo.save(habitacion);
-        codigo= habitacion.getCodigo_habitacion();
+        codigo= habitacion.getCodigoHabitacion();
 
         habitacionRepo.delete(habitacion);
 

@@ -2,14 +2,11 @@ package co.edu.uniquindio.proyecto.entidades.intermediate;
 
 import co.edu.uniquindio.proyecto.entidades.Habitacion;
 import co.edu.uniquindio.proyecto.entidades.Reserva;
-import co.edu.uniquindio.proyecto.entidades.embedded.Reserva_Habitacion_ID;
 import lombok.*;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import java.io.Serializable;
 
@@ -18,20 +15,29 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
-public class Reserva_Habitacion implements Serializable {
-    @EmbeddedId
-    private Reserva_Habitacion_ID id;
+public class Detalle_Reserva_Habitacion implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    private Integer codigo;
 
     @ManyToOne
-    @MapsId("codigoReserva") //Nombre del atributo de reserva en Reserva_Habitacion_ID.
+    @NotNull
+    @JoinColumn(name = "codigo_reserva")
     private Reserva codigoReserva;
 
     @ManyToOne
-    @MapsId("codigoHabitacion") //Nombre del atributo de habitación en Reserva_Habitacion_ID.
+    @NotNull
+    @JoinColumn(name = "codigo_habitacion")
     private Habitacion codigoHabitacion;
 
     @NotNull
     @PositiveOrZero
     private Double precio;
+
+    @NotNull
+    @Positive // Mayor a 0.
+    private short cantidadHabitaciones;
 }

@@ -1,7 +1,7 @@
 package co.edu.uniquindio.proyecto.entidades;
 
-import co.edu.uniquindio.proyecto.entidades.intermediate.Reserva_Habitacion;
-import co.edu.uniquindio.proyecto.entidades.intermediate.Reserva_silla;
+import co.edu.uniquindio.proyecto.entidades.intermediate.Detalle_Reserva_Habitacion;
+import co.edu.uniquindio.proyecto.entidades.intermediate.Detalle_Reserva_silla;
 import lombok.*;
 
 import javax.persistence.*;
@@ -54,9 +54,9 @@ public class Reserva implements Serializable {
 
     @OneToMany(mappedBy = "codigoReserva")
     @ToString.Exclude
-    private List<Reserva_Habitacion> listaHabitaciones;
+    private List<Detalle_Reserva_Habitacion> listaHabitaciones;
 
     @OneToMany(mappedBy = "codigoReserva")
     @ToString.Exclude
-    private List<Reserva_silla> listaSillas;
+    private List<Detalle_Reserva_silla> listaSillas;
 }

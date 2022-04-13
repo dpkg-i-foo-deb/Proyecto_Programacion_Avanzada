@@ -1,6 +1,6 @@
 package co.edu.uniquindio.proyecto.entidades;
 
-import co.edu.uniquindio.proyecto.entidades.intermediate.Reserva_Habitacion;
+import co.edu.uniquindio.proyecto.entidades.intermediate.Detalle_Reserva_Habitacion;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,7 +20,7 @@ public class Habitacion
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Integer codigo_habitacion;
+    private Integer codigoHabitacion;
 
     @NotNull
     @PositiveOrZero
@@ -43,10 +43,10 @@ public class Habitacion
     private List<Cama> listaCamas;
 
     @OneToMany(mappedBy = "codigoHabitacion")
-    private List<Reserva_Habitacion> listaReservas;
+    private List<Detalle_Reserva_Habitacion> listaReservas;
 
-    public Habitacion(Integer codigo_habitacion, Double precio, int capacidad, Hotel hotel) {
-        this.codigo_habitacion = codigo_habitacion;
+    public Habitacion(Integer codigoHabitacion, Double precio, int capacidad, Hotel hotel) {
+        this.codigoHabitacion = codigoHabitacion;
         this.precio = precio;
         this.capacidad = capacidad;
         this.hotel = hotel;

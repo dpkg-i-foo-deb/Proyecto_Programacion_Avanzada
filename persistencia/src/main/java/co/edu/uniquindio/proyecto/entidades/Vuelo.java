@@ -20,7 +20,7 @@ public class Vuelo
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Integer codigo_vuelo;
+    private Integer codigoVuelo;
 
     @NotBlank
     @Size(max = 150)

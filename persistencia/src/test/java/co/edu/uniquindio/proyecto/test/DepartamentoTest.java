@@ -39,7 +39,7 @@ public class DepartamentoTest
 
           departamento = departamentoRepo.save(departamento);
 
-          codigo = departamento.getCodigo_departamento();
+          codigo = departamento.getCodigoDepartamento();
 
           departamentoRepo.delete(departamento);
 
@@ -58,7 +58,7 @@ public class DepartamentoTest
 
           departamento = departamentoRepo.save(departamento);
 
-          codigo = departamento.getCodigo_departamento();
+          codigo = departamento.getCodigoDepartamento();
 
           departamento.setNombre("Risaralda");
 

@@ -106,7 +106,7 @@ public class SillaTest
         silla.setVuelo(vuelo);
         sillaGuardada = sillaRepo.save(silla);
 
-        codigo = sillaGuardada.getCodigo_silla();
+        codigo = sillaGuardada.getCodigoSilla();
 
         sillaRepo.delete(sillaGuardada);
 

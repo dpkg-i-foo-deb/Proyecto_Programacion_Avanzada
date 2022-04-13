@@ -18,7 +18,7 @@ public class Cama
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Integer codigo_cama;
+    private Integer codigoCama;
 
     @NotBlank
     @Size(max = 50)

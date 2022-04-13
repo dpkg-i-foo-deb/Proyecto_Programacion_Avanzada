@@ -19,9 +19,10 @@ public class Hotel
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Integer codigo_hotel;
+    private Integer codigoHotel;
 
     @NotBlank
+    @Size(max = 255)
     @Column(name="nombre")
     private String nombre;
 
@@ -59,8 +60,8 @@ public class Hotel
     @ToString.Exclude
     private List<Persona_Usuario> listaFavoritosUsuarios;
 
-    public Hotel(Integer codigo_hotel, String direccion, Ciudad ciudad, Persona_Administrador_Hotel administrador) {
-        this.codigo_hotel = codigo_hotel;
+    public Hotel(Integer codigoHotel, String direccion, Ciudad ciudad, Persona_Administrador_Hotel administrador) {
+        this.codigoHotel = codigoHotel;
         this.direccion = direccion;
         this.ciudad = ciudad;
         this.administrador = administrador;

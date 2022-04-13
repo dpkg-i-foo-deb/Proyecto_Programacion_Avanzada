@@ -17,7 +17,7 @@ public class Departamento implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Integer codigo_departamento;
+    private Integer codigoDepartamento;
 
     @NotNull
     @Column(length = 50)
