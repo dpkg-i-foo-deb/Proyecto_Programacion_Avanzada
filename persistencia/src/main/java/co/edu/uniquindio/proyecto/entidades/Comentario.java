@@ -10,7 +10,6 @@ import java.io.Serializable;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 public class Comentario implements Serializable {
@@ -37,4 +36,11 @@ public class Comentario implements Serializable {
     @NotNull
     @JoinColumn(updatable = false)
     private Hotel codigoHotel;
+
+    public Comentario(String observacion, short calificacion, Persona_Usuario cedulaUsuario, Hotel codigoHotel) {
+        this.observacion = observacion;
+        this.calificacion = calificacion;
+        this.cedulaUsuario = cedulaUsuario;
+        this.codigoHotel = codigoHotel;
+    }
 }
