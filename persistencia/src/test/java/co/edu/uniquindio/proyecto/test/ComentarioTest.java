@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.List;
 import java.util.Optional;
 
 @DataJpaTest
@@ -119,9 +120,32 @@ public class ComentarioTest {
         comentario = comentarioRepo.save(comentario);
 
         comentario.setCalificacion( (short) 3);
-        come
 
-        Assertions.assertNotNull(comentarioRecuperado);
-        Assertions.assertEquals(comentario.getCodigo(), comentarioRecuperado.getCodigo());
+        comentario = comentarioRepo.save(comentario);
+
+        Assertions.assertNotNull(comentario);
+        Assertions.assertEquals(comentario.getCalificacion(), 3);
+    }
+
+    @Test
+    public void obtenerComentariosTest() {
+        crearDepartamento();
+        crearCiudad();
+        crearAdminHotel();
+        crearUsuario();
+        crearHotel();
+
+        Comentario comentario1 = new Comentario("Muy buena atención", (short) 5, usuario, hotel);
+        comentarioRepo.save(comentario1);
+
+        Comentario comentario2 = new Comentario("La comida estaba maluca", (short) 1, usuario, hotel);
+        comentarioRepo.save(comentario2);
+
+        Comentario comentario3 = new Comentario("Empleados groseros", (short) 2, usuario, hotel);
+        comentarioRepo.save(comentario3);
+
+        List<Comentario> comentarios = comentarioRepo.findAll();
+
+        Assertions.assertEquals(3, comentarios.size());
     }
 }
