@@ -51,4 +51,5 @@ public class Habitacion
         this.capacidad = capacidad;
         this.hotel = hotel;
     }
+
 }

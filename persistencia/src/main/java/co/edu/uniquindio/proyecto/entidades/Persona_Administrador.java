@@ -16,4 +16,5 @@ public class Persona_Administrador extends Persona
     public Persona_Administrador(String cedula, String nombreCompleto, String email, String contrasena, Ciudad ciudad) {
         super(cedula, nombreCompleto, email, contrasena, ciudad);
     }
+
 }

@@ -33,6 +33,5 @@ INSERT INTO detalle_reserva_habitacion (cantidad_habitaciones, precio, codigo_ha
 INSERT INTO detalle_reserva_silla (cantidad_sillas, precio, codigo_reserva, codigo_silla)
     VALUES (1, 3.00, 1, 1);
 
-
 INSERT INTO reserva (estado_reserva, fecha_llegada, fecha_reserva, fecha_salida, codigo_usuario)
     VALUES ("CONFIRMADA", '2022-05-05', '2022-05-01', '2022-05-30', "1015553192");

@@ -176,4 +176,5 @@ public class DetalleReservaSillaTest {
 
         Assertions.assertEquals(3, detalles.size());
     }
+
 }

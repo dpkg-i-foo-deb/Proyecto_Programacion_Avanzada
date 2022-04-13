@@ -37,4 +37,5 @@ public class Comentario implements Serializable {
     @NotNull
     @JoinColumn(updatable = false)
     private Hotel codigoHotel;
+
 }

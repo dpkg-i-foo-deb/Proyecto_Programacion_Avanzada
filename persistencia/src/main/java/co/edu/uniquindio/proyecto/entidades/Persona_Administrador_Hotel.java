@@ -24,4 +24,5 @@ public class Persona_Administrador_Hotel extends Persona
                                        Ciudad ciudad) {
         super(cedula, nombreCompleto, email, contrasena, ciudad);
     }
+
 }

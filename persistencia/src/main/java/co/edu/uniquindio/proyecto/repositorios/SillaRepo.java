@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface SillaRepo extends JpaRepository <Silla, Integer>
 {
 
+
 }

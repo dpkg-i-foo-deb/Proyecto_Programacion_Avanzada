@@ -93,4 +93,5 @@ public class CaracteristicaTest {
 
         Assertions.assertEquals(4, caracteristicas.size());
     }
+
 }

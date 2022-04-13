@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DetalleReservaSillaRepo extends JpaRepository<Detalle_Reserva_Silla, Integer> {
 
+
 }

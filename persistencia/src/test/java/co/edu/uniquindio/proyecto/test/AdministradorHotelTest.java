@@ -155,4 +155,5 @@ public class AdministradorHotelTest
 
         Assertions.assertEquals(2, admins_hotel.size());
     }
+
 }

@@ -24,4 +24,5 @@ public class Caracteristica implements Serializable {
     @Size(max = 50)
     @Column(unique = true)
     private String descripcion;
+
 }

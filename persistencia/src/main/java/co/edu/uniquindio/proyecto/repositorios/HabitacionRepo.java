@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface HabitacionRepo extends JpaRepository<Habitacion, Integer>
 {
 
+    
 }

@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface AdministradorHotelRepo extends JpaRepository <Persona_Administrador_Hotel, String>
 {
     Persona_Administrador_Hotel findByCedula(String cedula);
+
 }

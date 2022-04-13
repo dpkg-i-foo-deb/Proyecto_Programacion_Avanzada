@@ -66,4 +66,5 @@ public class Reserva implements Serializable {
         this.estadoReserva = estadoReserva;
         this.usuario = usuario;
     }
+
 }

@@ -55,4 +55,5 @@ public class  Persona implements Serializable
         this.contrasena = contrasena;
         this.ciudad = ciudad;
     }
+
 }
