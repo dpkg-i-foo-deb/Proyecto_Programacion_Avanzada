@@ -86,7 +86,7 @@ public class CiudadTest
 
         ciudad = ciudadRepo.save(ciudad);
 
-        codigo = ciudad.getCodigo_ciudad();
+        codigo = ciudad.getCodigoCiudad();
 
         ciudad.setNombre("Calarca");
 

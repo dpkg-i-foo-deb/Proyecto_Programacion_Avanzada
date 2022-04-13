@@ -16,7 +16,7 @@ public class Ciudad implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Integer codigo_ciudad;
+    private Integer codigoCiudad;
 
     @NotBlank
     @Column(length = 50)
@@ -43,8 +43,7 @@ public class Ciudad implements Serializable {
     @ToString.Exclude
     private List<Vuelo> ciudadesDestino;
 
-    public Ciudad(Integer codigo_ciudad, String nombre, Departamento departamento) {
-        this.codigo_ciudad = codigo_ciudad;
+    public Ciudad(String nombre, Departamento departamento) {
         this.nombre = nombre;
         this.departamento = departamento;
     }

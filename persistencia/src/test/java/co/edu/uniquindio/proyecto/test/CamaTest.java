@@ -33,7 +33,7 @@ public class CamaTest
     {
         Cama cama = new Cama();
         cama.setTipo("simple");
-        cama.setCodigo_cama(1234);
+        cama.setCodigoCama(1234);
 
         camaRepo.save(cama);
 
@@ -52,7 +52,7 @@ public class CamaTest
 
         Cama camaGuardada = camaRepo.save(cama);
 
-        int codigo = camaGuardada.getCodigo_cama();
+        int codigo = camaGuardada.getCodigoCama();
 
         camaGuardada.setTipo("doble");
 

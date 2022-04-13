@@ -100,7 +100,7 @@ public class HotelTest
         hotel.setAdministrador(administrador_hotel);
 
         hotel = hotelRepo.save(hotel);
-        codigo = hotel.getCodigo_hotel();
+        codigo = hotel.getCodigoHotel();
 
         hotelRepo.delete(hotel);
 

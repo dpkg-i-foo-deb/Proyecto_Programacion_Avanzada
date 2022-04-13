@@ -13,14 +13,13 @@ import java.util.List;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
 public class Vuelo
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Integer codigo_vuelo;
+    private Integer codigoVuelo;
 
     @NotBlank
     @Size(max = 150)
@@ -39,4 +38,9 @@ public class Vuelo
     @OneToMany (mappedBy = "vuelo")
     private List<Silla> sillas;
 
+    public Vuelo(String aerolinea, Ciudad ciudadOrigen, Ciudad ciudadDestino) {
+        this.aerolinea = aerolinea;
+        this.ciudadOrigen = ciudadOrigen;
+        this.ciudadDestino = ciudadDestino;
+    }
 }
