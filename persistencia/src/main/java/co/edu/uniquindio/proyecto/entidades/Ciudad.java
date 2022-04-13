@@ -43,8 +43,7 @@ public class Ciudad implements Serializable {
     @ToString.Exclude
     private List<Vuelo> ciudadesDestino;
 
-    public Ciudad(Integer codigoCiudad, String nombre, Departamento departamento) {
-        this.codigoCiudad = codigoCiudad;
+    public Ciudad(String nombre, Departamento departamento) {
         this.nombre = nombre;
         this.departamento = departamento;
     }

@@ -13,7 +13,6 @@ import java.util.List;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
 public class Vuelo
 {
@@ -39,4 +38,9 @@ public class Vuelo
     @OneToMany (mappedBy = "vuelo")
     private List<Silla> sillas;
 
+    public Vuelo(String aerolinea, Ciudad ciudadOrigen, Ciudad ciudadDestino) {
+        this.aerolinea = aerolinea;
+        this.ciudadOrigen = ciudadOrigen;
+        this.ciudadDestino = ciudadDestino;
+    }
 }

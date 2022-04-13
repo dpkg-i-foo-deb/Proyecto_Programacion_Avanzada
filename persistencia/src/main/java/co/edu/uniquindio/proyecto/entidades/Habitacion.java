@@ -43,10 +43,10 @@ public class Habitacion
     private List<Cama> listaCamas;
 
     @OneToMany(mappedBy = "codigoHabitacion")
+    @ToString.Exclude
     private List<Detalle_Reserva_Habitacion> listaReservas;
 
-    public Habitacion(Integer codigoHabitacion, Double precio, int capacidad, Hotel hotel) {
-        this.codigoHabitacion = codigoHabitacion;
+    public Habitacion(Double precio, int capacidad, Hotel hotel) {
         this.precio = precio;
         this.capacidad = capacidad;
         this.hotel = hotel;

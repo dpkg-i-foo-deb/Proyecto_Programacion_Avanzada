@@ -14,7 +14,6 @@ import java.io.Serializable;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 public class Detalle_Reserva_Habitacion implements Serializable {
@@ -40,4 +39,11 @@ public class Detalle_Reserva_Habitacion implements Serializable {
     @NotNull
     @Positive // Mayor a 0.
     private short cantidadHabitaciones;
+
+    public Detalle_Reserva_Habitacion(Reserva codigoReserva, Habitacion codigoHabitacion, Double precio, short cantidadHabitaciones) {
+        this.codigoReserva = codigoReserva;
+        this.codigoHabitacion = codigoHabitacion;
+        this.precio = precio;
+        this.cantidadHabitaciones = cantidadHabitaciones;
+    }
 }

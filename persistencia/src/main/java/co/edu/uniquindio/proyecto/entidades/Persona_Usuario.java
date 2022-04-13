@@ -9,7 +9,6 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = true)
 @ToString(callSuper = true)
 @DiscriminatorValue("usuario")
@@ -24,6 +23,7 @@ public class Persona_Usuario extends Persona
     private List<Comentario> listaComentarios;
 
     @OneToMany(mappedBy = "usuario")
+    @ToString.Exclude
     private List<Reserva> reservas;
 
     public Persona_Usuario(String cedula, String nombreCompleto, String email, String contrasena, Ciudad ciudad) {

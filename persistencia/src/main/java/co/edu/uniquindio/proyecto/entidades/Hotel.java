@@ -38,7 +38,7 @@ public class Hotel
 
     @ManyToOne
     @NotNull
-    @JoinColumn(name = "cedula")
+    @JoinColumn(name = "administrador")
     private Persona_Administrador_Hotel administrador;
 
     @OneToMany(mappedBy = "codigoHotel")
@@ -60,8 +60,8 @@ public class Hotel
     @ToString.Exclude
     private List<Persona_Usuario> listaFavoritosUsuarios;
 
-    public Hotel(Integer codigoHotel, String direccion, Ciudad ciudad, Persona_Administrador_Hotel administrador) {
-        this.codigoHotel = codigoHotel;
+    public Hotel(String nombre, String direccion, Ciudad ciudad, Persona_Administrador_Hotel administrador) {
+        this.nombre = nombre;
         this.direccion = direccion;
         this.ciudad = ciudad;
         this.administrador = administrador;

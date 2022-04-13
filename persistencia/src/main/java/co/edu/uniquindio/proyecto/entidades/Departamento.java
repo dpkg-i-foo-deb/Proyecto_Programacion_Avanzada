@@ -24,5 +24,10 @@ public class Departamento implements Serializable {
     private String nombre;
 
     @OneToMany(mappedBy = "departamento")
+    @ToString.Exclude
     private List<Ciudad> ciudades;
+
+    public Departamento(String nombre) {
+        this.nombre = nombre;
+    }
 }

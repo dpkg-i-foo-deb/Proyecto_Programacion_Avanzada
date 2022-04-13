@@ -1,7 +1,7 @@
 package co.edu.uniquindio.proyecto.entidades;
 
 import co.edu.uniquindio.proyecto.entidades.intermediate.Detalle_Reserva_Habitacion;
-import co.edu.uniquindio.proyecto.entidades.intermediate.Detalle_Reserva_silla;
+import co.edu.uniquindio.proyecto.entidades.intermediate.Detalle_Reserva_Silla;
 import lombok.*;
 
 import javax.persistence.*;
@@ -17,7 +17,6 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 public class Reserva implements Serializable {
@@ -58,5 +57,13 @@ public class Reserva implements Serializable {
 
     @OneToMany(mappedBy = "codigoReserva")
     @ToString.Exclude
-    private List<Detalle_Reserva_silla> listaSillas;
+    private List<Detalle_Reserva_Silla> listaSillas;
+
+    public Reserva(Date fechaLlegada, Date fechaSalida, Date fechaReserva, EstadoReserva estadoReserva, Persona_Usuario usuario) {
+        this.fechaLlegada = fechaLlegada;
+        this.fechaSalida = fechaSalida;
+        this.fechaReserva = fechaReserva;
+        this.estadoReserva = estadoReserva;
+        this.usuario = usuario;
+    }
 }
