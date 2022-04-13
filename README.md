@@ -21,24 +21,24 @@ En la página inicial se debe mostrar un buscador y los hoteles por Ubicación, 
 En uniTravel se desea contar con una aplicación que maneje tres tipos de persona.
 
 Administrador:
-*Loguearse
-*Gestionar Destinos
-*Gestionar Vuelos
-*Gestionar administradores de hoteles.
+Loguearse
+Gestionar Destinos
+Gestionar Vuelos
+Gestionar administradores de hoteles.
 
 Administrador del Hotel:
-*Loguearse
-*Gestionar Hoteles
+Loguearse
+Gestionar Hoteles
 
 Usuario:
-*Registrarse y loguearse.
-*Buscar destinos y/o hoteles.
-*Crear una reserva (seleccionando el destino, las habitaciones, vuelo).
-*Gestionar sus propias reservas.
-*Listar todos los hoteles por cada destino.
-*Comentar y calificar Hoteles.
-*Recuperar contraseñas usando correo electrónico.
-*Listar sus propias reservas.
+Registrarse y loguearse.
+Buscar destinos y/o hoteles.
+Crear una reserva (seleccionando el destino, las habitaciones, vuelo).
+Gestionar sus propias reservas.
+Listar todos los hoteles por cada destino.
+Comentar y calificar Hoteles.
+Recuperar contraseñas usando correo electrónico.
+Listar sus propias reservas.
 
 Para tener en cuenta: 
 
