@@ -28,13 +28,6 @@ public class HotelServicioImpl implements IHotelServicio
 
     }
 
-    private void hotelAsociado(Hotel hotel, Persona_Administrador_Hotel administrador_hotel) throws HotelException
-    {
-        if(!hotel.getAdministrador().equals(administrador_hotel))
-            throw new HotelException("El administrador no tiene permisos sobre este hotel");
-
-    }
-
     @Override
     public Hotel registrarHotel(Hotel hotel)
     {
@@ -79,10 +72,6 @@ public class HotelServicioImpl implements IHotelServicio
         hotelBuscado=hotelRepo.getById(hotel.getCodigoHotel());
 
         existeHotel(hotelBuscado);
-
-        hotelAsociado(hotel, administrador_hotel);
-
-        administrador_hotel.getListaHoteles().remove(hotel);
 
         hotelRepo.delete(hotel);
 
