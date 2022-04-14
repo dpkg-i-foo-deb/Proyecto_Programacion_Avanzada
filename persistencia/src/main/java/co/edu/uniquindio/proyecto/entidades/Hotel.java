@@ -41,6 +41,10 @@ public class Hotel
     @JoinColumn(name = "administrador")
     private Persona_Administrador_Hotel administrador;
 
+    @Enumerated(value = EnumType.STRING)
+    @NotNull
+    private EstadoHotel estadoHotel;
+
     @OneToMany(mappedBy = "codigoHotel")
     @ToString.Exclude
     private List<Comentario> listaComentarios;
@@ -60,11 +64,12 @@ public class Hotel
     @ToString.Exclude
     private List<Persona_Usuario> listaFavoritosUsuarios;
 
-    public Hotel(String nombre, String direccion, Ciudad ciudad, Persona_Administrador_Hotel administrador) {
+    public Hotel(String nombre, String direccion, Ciudad ciudad, Persona_Administrador_Hotel administrador, EstadoHotel estadoHotel) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.ciudad = ciudad;
         this.administrador = administrador;
+        this.estadoHotel = estadoHotel;
     }
 
 }
