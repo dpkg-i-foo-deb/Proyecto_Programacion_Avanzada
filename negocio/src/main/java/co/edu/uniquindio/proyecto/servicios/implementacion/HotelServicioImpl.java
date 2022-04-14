@@ -36,15 +36,8 @@ public class HotelServicioImpl implements IHotelServicio
     }
 
     @Override
-    public Hotel registrarHotel(Hotel hotel, Persona_Administrador_Hotel administrador_hotel) throws HotelException
+    public Hotel registrarHotel(Hotel hotel)
     {
-        if(hotelRepo.existsByDireccion(hotel.getDireccion()))
-            throw new HotelException("Ya existe un hotel con la misma dirección");
-
-        administrador_hotel.getListaHoteles().add(hotel);
-
-        hotel.setAdministrador(administrador_hotel);
-
         return hotelRepo.save(hotel);
     }
 

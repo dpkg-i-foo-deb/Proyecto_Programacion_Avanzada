@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface IHotelServicio
 {
-    Hotel registrarHotel(Hotel hotel, Persona_Administrador_Hotel administrador_hotel) throws HotelException;
+    Hotel registrarHotel(Hotel hotel);
 
     List<Hotel> obtenerHoteles();
 
