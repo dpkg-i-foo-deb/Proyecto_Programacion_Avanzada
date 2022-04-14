@@ -19,6 +19,22 @@ public class HotelServicioImpl implements IHotelServicio
         this.hotelRepo = hotelRepo;
     }
 
+    private void existeHotel(Hotel hotel) throws HotelException
+    {
+        if(hotel==null)
+        {
+            throw new HotelException("El hotel no Existe");
+        }
+
+    }
+
+    private void hotelAsociado(Hotel hotel, Persona_Administrador_Hotel administrador_hotel) throws HotelException
+    {
+        if(!hotel.getAdministrador().equals(administrador_hotel))
+            throw new HotelException("El administrador no tiene permisos sobre este hotel");
+
+    }
+
     @Override
     public Hotel registrarHotel(Hotel hotel, Persona_Administrador_Hotel administrador_hotel) throws HotelException
     {
@@ -50,4 +66,34 @@ public class HotelServicioImpl implements IHotelServicio
 
         return hotel;
     }
+
+    @Override
+    public Hotel editarHotel(Hotel hotel) throws HotelException
+    {
+        Hotel hotelBuscado;
+
+        hotelBuscado = hotelRepo.findById(hotel.getCodigoHotel()).orElse(null);
+
+        existeHotel(hotelBuscado);
+
+        return hotelRepo.save(hotel);
+    }
+
+    public boolean eliminarHotel(Hotel hotel, Persona_Administrador_Hotel administrador_hotel) throws HotelException
+    {
+        Hotel hotelBuscado;
+
+        hotelBuscado=hotelRepo.getById(hotel.getCodigoHotel());
+
+        existeHotel(hotelBuscado);
+
+        hotelAsociado(hotel, administrador_hotel);
+
+        administrador_hotel.getListaHoteles().remove(hotel);
+
+        hotelRepo.delete(hotel);
+
+        return true;
+    }
+
 }

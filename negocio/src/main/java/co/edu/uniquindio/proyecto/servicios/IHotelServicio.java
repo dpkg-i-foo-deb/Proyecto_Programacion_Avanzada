@@ -14,4 +14,8 @@ public interface IHotelServicio
     List<Hotel> obtenerHoteles();
 
     Hotel obtenerHotel(Integer codigo) throws HotelException;
+
+    Hotel editarHotel(Hotel hotel) throws HotelException;
+
+    boolean eliminarHotel(Hotel hotel, Persona_Administrador_Hotel administrador_hotel) throws HotelException;
 }
