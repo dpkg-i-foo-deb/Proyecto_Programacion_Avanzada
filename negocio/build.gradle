@@ -1,0 +1,7 @@
+dependencies {
+    implementation(project(':persistencia'))
+}
+
+test {
+    useJUnitPlatform()
+}
