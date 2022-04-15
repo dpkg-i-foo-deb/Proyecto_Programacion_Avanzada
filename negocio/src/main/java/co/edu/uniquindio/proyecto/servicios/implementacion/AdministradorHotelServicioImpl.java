@@ -18,7 +18,7 @@ public class AdministradorHotelServicioImpl implements IAdministradorHotelServic
     }
 
     @Override
-    public void registrarAdministradorHotel(Persona_Administrador_Hotel administradorHotel) throws AdministradorHotelException {
+    public Persona_Administrador_Hotel registrarAdministradorHotel(Persona_Administrador_Hotel administradorHotel) throws AdministradorHotelException {
         boolean enUso = administradorHotelRepo.existsByCedulaOrEmail(
                 administradorHotel.getCedula(), administradorHotel.getEmail()
         );
@@ -27,7 +27,7 @@ public class AdministradorHotelServicioImpl implements IAdministradorHotelServic
             throw new AdministradorHotelException("La cédula o email ya se encuentran en uso");
         }
 
-        administradorHotelRepo.save(administradorHotel);
+        return administradorHotelRepo.save(administradorHotel);
     }
 
     @Override
