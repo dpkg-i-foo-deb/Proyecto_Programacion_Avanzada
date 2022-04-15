@@ -71,12 +71,6 @@ public class AdministradorHotelTest {
 
             Assertions.assertNotNull(administradorHotel);
             Assertions.assertEquals(ciudad, administradorHotel.getCiudad());
-
-            Persona_Administrador_Hotel administradorHotel2 = administradorHotel;
-            administradorHotel2.setEmail("nueva.hotel@email.com");
-
-            Assertions.assertThrows(AdministradorHotelException.class,
-                    () -> administradorHotelServicio.actualizarAdministradorHotel(administradorHotel2));
         } catch (AdministradorHotelException e) {
             Assertions.fail(e.getMessage());
         }
