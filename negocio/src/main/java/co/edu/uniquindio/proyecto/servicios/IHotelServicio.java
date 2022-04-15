@@ -18,4 +18,6 @@ public interface IHotelServicio
     Hotel editarHotel(Hotel hotel) throws HotelException;
 
     boolean eliminarHotel(Hotel hotel, Persona_Administrador_Hotel administrador_hotel) throws HotelException;
+
+    List<Hotel> obtenerHotelesPorCiudad(Ciudad ciudad);
 }

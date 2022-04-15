@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.servicios.implementacion;
 
+import co.edu.uniquindio.proyecto.entidades.Ciudad;
 import co.edu.uniquindio.proyecto.entidades.Hotel;
 import co.edu.uniquindio.proyecto.entidades.Persona_Administrador_Hotel;
 import co.edu.uniquindio.proyecto.repositorios.HotelRepo;
@@ -78,4 +79,7 @@ public class HotelServicioImpl implements IHotelServicio
         return true;
     }
 
+    public List<Hotel> obtenerHotelesPorCiudad(Ciudad ciudad) {
+        return hotelRepo.findAllByCiudad(ciudad);
+    }
 }
