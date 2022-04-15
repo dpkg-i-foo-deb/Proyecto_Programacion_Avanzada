@@ -2,10 +2,8 @@ package co.edu.uniquindio.proyecto.test;
 
 import co.edu.uniquindio.proyecto.NegocioApplication;
 import co.edu.uniquindio.proyecto.entidades.Ciudad;
-import co.edu.uniquindio.proyecto.entidades.Departamento;
 import co.edu.uniquindio.proyecto.entidades.Persona_Usuario;
 import co.edu.uniquindio.proyecto.repositorios.CiudadRepo;
-import co.edu.uniquindio.proyecto.repositorios.DepartamentoRepo;
 import co.edu.uniquindio.proyecto.servicios.excepciones.UsuarioException;
 import co.edu.uniquindio.proyecto.servicios.implementacion.UsuarioServicioImpl;
 import org.junit.jupiter.api.Test;
@@ -25,28 +23,11 @@ public class UsuarioServicioTest {
     private UsuarioServicioImpl usuarioServicio;
 
     @Autowired
-    private DepartamentoRepo departamentoRepo;
-
-    @Autowired
     private CiudadRepo ciudadRepo;
-
-    private Departamento departamento;
-    private Ciudad ciudad;
-
-    private void crearDepartamento() {
-        departamento = new Departamento("Quindío");
-        departamentoRepo.save(departamento);
-    }
-
-    private void crearCiudad() {
-        ciudad = new Ciudad("Armenia", departamento);
-        ciudadRepo.save(ciudad);
-    }
 
     @Test
     public void registrarUsuarioTest() {
-        crearDepartamento();
-        crearCiudad();
+        Ciudad ciudad = ciudadRepo.getById(1);
 
         Persona_Usuario usuario1 = new Persona_Usuario(
                 "12345",

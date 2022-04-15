@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = NegocioApplication.class)
@@ -44,5 +45,54 @@ public class AdministradorHotelTest {
         } catch (AdministradorHotelException e) {
             Assertions.fail(e.getMessage());
         }
+    }
+
+    @Test
+    public void eliminarAdministradoHotelTest() {
+        try {
+            administradorHotelServicio.eliminarAdministradorHotel("24680");
+
+            Assertions.assertTrue(true);
+        } catch (AdministradorHotelException e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void actualizarAdministradorHotelTest() {
+        Ciudad ciudad = ciudadRepo.getById(3);
+        try {
+            Persona_Administrador_Hotel administradorHotel = administradorHotelServicio
+                    .obtenerAdministradorHotel("24680");
+
+            administradorHotel.setCiudad(ciudad);
+
+            administradorHotel = administradorHotelServicio.actualizarAdministradorHotel(administradorHotel);
+
+            Assertions.assertNotNull(administradorHotel);
+        } catch (AdministradorHotelException e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void obtenerAdministradorHotelTest() {
+        try {
+            Persona_Administrador_Hotel administradorHotel = administradorHotelServicio
+                    .obtenerAdministradorHotel("24680");
+
+            Assertions.assertNotNull(administradorHotel);
+        } catch (AdministradorHotelException e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void listarAdministradoresHotelTest() {
+        List<Persona_Administrador_Hotel> administradoresHotel =
+                administradorHotelServicio.listarAdministradoresHotel();
+
+        Assertions.assertNotNull(administradoresHotel);
+        Assertions.assertEquals(2, administradoresHotel.size());
     }
 }

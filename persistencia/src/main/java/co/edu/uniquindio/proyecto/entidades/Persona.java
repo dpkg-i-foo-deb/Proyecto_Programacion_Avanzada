@@ -31,7 +31,7 @@ public class  Persona implements Serializable
     private String nombreCompleto;
 
     @NotBlank
-    @Column(unique = true)
+    @Column(unique = true, updatable = false)
     @Size(max = 200)
     @Email
     private String email;

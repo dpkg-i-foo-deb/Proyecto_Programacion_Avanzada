@@ -34,7 +34,7 @@ public class AdministradorHotelServicioImpl implements IAdministradorHotelServic
     public void eliminarAdministradorHotel(String cedula) throws AdministradorHotelException {
         boolean existe = administradorHotelRepo.existsByCedula(cedula);
 
-        if ( existe ) {
+        if ( !existe ) {
             throw new AdministradorHotelException("No hay registro que coincida con la cédula especificada");
         }
 
@@ -47,15 +47,11 @@ public class AdministradorHotelServicioImpl implements IAdministradorHotelServic
         boolean existe = administradorHotelRepo.existsByCedula(administradorHotel.getCedula());
 
         if ( !existe ) {
-            throw new AdministradorHotelException("No hay registro que coincida con la cédula especificada");
+            throw new AdministradorHotelException("El administrador especificado no está registrado");
         }
 
         Optional<Persona_Administrador_Hotel> adminRecuperado = administradorHotelRepo
                 .findByEmail(administradorHotel.getEmail());
-
-        if ( adminRecuperado.isPresent() && !administradorHotel.equals(adminRecuperado.get()) ) {
-            throw new AdministradorHotelException("El email ya fue tomado por otro usuario");
-        }
 
         return administradorHotelRepo.save(administradorHotel);
     }
