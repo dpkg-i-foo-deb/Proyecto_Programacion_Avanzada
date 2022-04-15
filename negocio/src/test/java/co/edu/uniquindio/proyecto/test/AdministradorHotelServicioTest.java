@@ -19,7 +19,7 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = NegocioApplication.class)
 @Transactional
-public class AdministradorHotelTest {
+public class AdministradorHotelServicioTest {
     @Autowired
     private AdministradorHotelServicioImpl administradorHotelServicio;
 

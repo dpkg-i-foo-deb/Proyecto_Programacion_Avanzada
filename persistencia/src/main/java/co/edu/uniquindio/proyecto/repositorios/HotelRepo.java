@@ -15,7 +15,4 @@ public interface HotelRepo extends JpaRepository <Hotel, Integer>
     boolean existsByDireccionAndCiudad(String direccion, Ciudad ciudad);
 
     List<Hotel> findAllByCiudad(Ciudad ciudad);
-
-    @Query("SELECT CASE WHEN (h IS NULL) THEN true ELSE false END FROM Hotel h WHERE h.direccion = :direccion AND h.ciudad = :ciudad AND h.codigoHotel <> :codigoHotel")
-    Boolean existsAnotherHotelWithSameAddress(String direccion, Ciudad ciudad, Integer codigoHotel);
 }

@@ -17,7 +17,4 @@ public interface AdministradorHotelRepo extends JpaRepository <Persona_Administr
     Boolean existsByCedulaOrEmail(String cedula, String email);
 
     Boolean existsByCedula(String cedula);
-
-    @Query("SELECT a FROM Persona_Administrador_Hotel a WHERE a.email = :email AND a.cedula <> :cedulaAdmin")
-    Optional<Persona_Administrador_Hotel> findAnotherAdminWithSameEmail(String email, String cedulaAdmin);
 }
