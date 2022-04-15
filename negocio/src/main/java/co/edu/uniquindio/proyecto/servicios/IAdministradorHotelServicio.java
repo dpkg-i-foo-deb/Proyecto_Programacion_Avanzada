@@ -6,7 +6,7 @@ import co.edu.uniquindio.proyecto.servicios.excepciones.AdministradorHotelExcept
 import java.util.List;
 
 public interface IAdministradorHotelServicio {
-    void registrarAdministradorHotel(Persona_Administrador_Hotel administradorHotel) throws AdministradorHotelException;
+    Persona_Administrador_Hotel registrarAdministradorHotel(Persona_Administrador_Hotel administradorHotel) throws AdministradorHotelException;
 
     void eliminarAdministradorHotel(String cedula) throws AdministradorHotelException;
 

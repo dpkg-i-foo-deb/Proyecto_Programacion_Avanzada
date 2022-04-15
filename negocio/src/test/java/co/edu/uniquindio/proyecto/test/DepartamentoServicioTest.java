@@ -2,7 +2,6 @@ package co.edu.uniquindio.proyecto.test;
 
 import co.edu.uniquindio.proyecto.NegocioApplication;
 import co.edu.uniquindio.proyecto.entidades.Departamento;
-import co.edu.uniquindio.proyecto.servicios.IDepartamentoServicio;
 import co.edu.uniquindio.proyecto.servicios.excepciones.DepartamentoException;
 import co.edu.uniquindio.proyecto.servicios.implementacion.DepartamentoServicioImpl;
 import org.junit.jupiter.api.Test;
@@ -57,7 +56,6 @@ public class DepartamentoServicioTest
     public void editarDepartamentoTest()
     {
         Departamento departamento = new Departamento();
-        int codigo;
 
         departamento.setNombre("Quindío");
 
