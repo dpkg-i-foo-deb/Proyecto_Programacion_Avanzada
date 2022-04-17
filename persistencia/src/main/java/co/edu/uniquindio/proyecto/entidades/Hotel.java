@@ -27,7 +27,6 @@ public class Hotel
     private String nombre;
 
     @NotBlank
-    @Column(unique = true, updatable = false)
     @Size(max = 255)
     private String direccion;
 
