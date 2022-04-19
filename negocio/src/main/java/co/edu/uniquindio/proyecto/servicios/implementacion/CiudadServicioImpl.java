@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CiudadImpl implements ICiudadServicio
+public class CiudadServicioImpl implements ICiudadServicio
 {
     private final CiudadRepo ciudadRepo;
 
-    public CiudadImpl(CiudadRepo ciudadRepo) { this.ciudadRepo = ciudadRepo; }
+    public CiudadServicioImpl(CiudadRepo ciudadRepo) { this.ciudadRepo = ciudadRepo; }
 
     @Override
     public Ciudad registrarCiudad(Ciudad ciudad)
