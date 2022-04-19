@@ -69,6 +69,7 @@ public class HabitacionTest
         hotel.setDireccion("CLL # CRA #");
         hotel.setCiudad(ciudad);
         hotel.setAdministrador(administrador_hotel);
+        hotel.setEstadoHotel(EstadoHotel.DISPONIBLE);
 
         hotel = hotelRepo.save(hotel);
     }

@@ -70,7 +70,7 @@ public class ComentarioTest {
     }
 
     private void crearHotel() {
-        hotel = new Hotel("Hotelito", "Calle 45-25", ciudad, adminHotel);
+        hotel = new Hotel("Hotelito", "Calle 45-25", ciudad, adminHotel, EstadoHotel.DISPONIBLE);
         hotelRepo.save(hotel);
     }
 

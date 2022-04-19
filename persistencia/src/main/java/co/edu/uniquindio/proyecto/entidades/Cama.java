@@ -28,4 +28,8 @@ public class Cama
     @JoinColumn(name = "codigo_habitacion")
     private Habitacion habitacion;
 
+    public Cama(String tipo, Habitacion habitacion) {
+        this.tipo = tipo;
+        this.habitacion = habitacion;
+    }
 }
