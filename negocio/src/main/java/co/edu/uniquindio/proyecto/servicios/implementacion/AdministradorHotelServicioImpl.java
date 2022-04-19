@@ -50,9 +50,6 @@ public class AdministradorHotelServicioImpl implements IAdministradorHotelServic
             throw new AdministradorHotelException("El administrador especificado no está registrado");
         }
 
-        Optional<Persona_Administrador_Hotel> adminRecuperado = administradorHotelRepo
-                .findByEmail(administradorHotel.getEmail());
-
         return administradorHotelRepo.save(administradorHotel);
     }
 

@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface IHotelServicio
 {
-    Hotel registrarHotel(Hotel hotel);
+    Hotel registrarHotel(Hotel hotel) throws HotelException;
 
     List<Hotel> obtenerHoteles();
 
@@ -17,5 +17,7 @@ public interface IHotelServicio
 
     Hotel editarHotel(Hotel hotel) throws HotelException;
 
-    boolean eliminarHotel(Hotel hotel, Persona_Administrador_Hotel administrador_hotel) throws HotelException;
+    boolean eliminarHotel(Hotel hotel) throws HotelException;
+
+    List<Hotel> obtenerHotelesPorCiudad(Ciudad ciudad);
 }

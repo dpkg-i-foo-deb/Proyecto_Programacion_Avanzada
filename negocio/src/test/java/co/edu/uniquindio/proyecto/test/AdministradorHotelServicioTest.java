@@ -19,7 +19,7 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = NegocioApplication.class)
 @Transactional
-public class AdministradorHotelTest {
+public class AdministradorHotelServicioTest {
     @Autowired
     private AdministradorHotelServicioImpl administradorHotelServicio;
 
@@ -70,6 +70,7 @@ public class AdministradorHotelTest {
             administradorHotel = administradorHotelServicio.actualizarAdministradorHotel(administradorHotel);
 
             Assertions.assertNotNull(administradorHotel);
+            Assertions.assertEquals(ciudad, administradorHotel.getCiudad());
         } catch (AdministradorHotelException e) {
             Assertions.fail(e.getMessage());
         }

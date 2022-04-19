@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:remove="all">Mail Template</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    </head>
+
+    <body>
+        <header>
+            <img src="images/EmailLogo.jpg" th:src="| cid:logo.jpg |" alt="⚠ Logo UniTravel" />
+            <h1>Recuperación de contraseña</h1>
+        </header>
+
+        <section>
+            <div>
+                <p th:text="'Señor(a): ' + ${#strings.toUpperCase(nombreCompleto)}">Usuario</p>
+                <br/>
+                <p th:text="'El día ' + ${#dates.format(fechaSolicitud, 'dd MMM yyyy')} + ', hemos recibido la solicitud de recuperar contraseña para su usuario en UniTravel. '">Información de la solicitud</p>
+                <br/>
+            </div>
+            <div>
+                <p th:text="'Email: ' + ${email}">Email</p>
+                <p th:text="'Contraseña: ' + ${contrasena}">Contraseña</p>
+            </div>
+        </section>
+
+        <footer>
+            <br/>
+            <p>Si usted no realizó la solicitud haga caso omiso al correo.</p>
+            <p>No responda a este correo.</p>
+        </footer>
+    </body>
+</html>
