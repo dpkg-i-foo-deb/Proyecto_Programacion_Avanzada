@@ -88,7 +88,7 @@ public class AdministradorHotelTest
 
         administradorHotelRepo.delete(admin_hotel);
 
-        admin_hotel = administradorHotelRepo.findByCedula(codigo);
+        admin_hotel = administradorHotelRepo.findByCedula(codigo).orElse(null);
 
         Assertions.assertNull(admin_hotel);
     }
@@ -116,7 +116,7 @@ public class AdministradorHotelTest
 
         administradorHotelRepo.save(admin_hotel);
 
-        admin_hotel = administradorHotelRepo.findByCedula(codigo);
+        admin_hotel = administradorHotelRepo.findByCedula(codigo).orElse(null);
 
         Assertions.assertEquals("Mateo Estrada Ramirez",admin_hotel.getNombreCompleto());
     }

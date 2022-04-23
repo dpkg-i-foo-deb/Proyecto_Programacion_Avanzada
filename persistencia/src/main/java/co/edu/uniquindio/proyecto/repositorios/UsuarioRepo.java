@@ -12,7 +12,7 @@ public interface UsuarioRepo extends JpaRepository <Persona_Usuario, String>
 {
     Persona_Usuario getPersona_UsuarioByCedula(String cedula);
 
-    Persona_Usuario findByEmail(String email);
+    Optional<Persona_Usuario> findByEmail(String email);
 
     boolean existsByCedulaOrEmail(String cedula, String email);
 

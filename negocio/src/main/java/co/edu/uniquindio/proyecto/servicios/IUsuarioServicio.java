@@ -1,6 +1,9 @@
 package co.edu.uniquindio.proyecto.servicios;
 
 import co.edu.uniquindio.proyecto.entidades.Persona_Usuario;
+import co.edu.uniquindio.proyecto.servicios.excepciones.UsuarioException;
+
+import javax.mail.MessagingException;
 
 import java.util.List;
 

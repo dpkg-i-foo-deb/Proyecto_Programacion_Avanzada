@@ -1,9 +1,6 @@
 package co.edu.uniquindio.proyecto.test;
 
-import co.edu.uniquindio.proyecto.entidades.Ciudad;
-import co.edu.uniquindio.proyecto.entidades.Departamento;
-import co.edu.uniquindio.proyecto.entidades.Hotel;
-import co.edu.uniquindio.proyecto.entidades.Persona_Administrador_Hotel;
+import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.repositorios.AdministradorHotelRepo;
 import co.edu.uniquindio.proyecto.repositorios.CiudadRepo;
 import co.edu.uniquindio.proyecto.repositorios.DepartamentoRepo;
@@ -78,6 +75,7 @@ public class HotelTest
         hotel.setDireccion("CLL # CRA #");
         hotel.setCiudad(ciudad);
         hotel.setAdministrador(administrador_hotel);
+        hotel.setEstadoHotel(EstadoHotel.DISPONIBLE);
 
         hotel = hotelRepo.save(hotel);
 
@@ -98,6 +96,7 @@ public class HotelTest
         hotel.setDireccion("CLL # CRA #");
         hotel.setCiudad(ciudad);
         hotel.setAdministrador(administrador_hotel);
+        hotel.setEstadoHotel(EstadoHotel.DISPONIBLE);
 
         hotel = hotelRepo.save(hotel);
         codigo = hotel.getCodigoHotel();
@@ -122,6 +121,7 @@ public class HotelTest
         hotel.setDireccion("CLL # CRA #");
         hotel.setCiudad(ciudad);
         hotel.setAdministrador(administrador_hotel);
+        hotel.setEstadoHotel(EstadoHotel.DISPONIBLE);
 
         hotel = hotelRepo.save(hotel);
 
@@ -147,6 +147,7 @@ public class HotelTest
         hotel1.setDireccion("CLL # CRA #");
         hotel1.setCiudad(ciudad);
         hotel1.setAdministrador(administrador_hotel);
+        hotel1.setEstadoHotel(EstadoHotel.DISPONIBLE);
 
         hotel1 = hotelRepo.save(hotel1);
 
@@ -158,6 +159,7 @@ public class HotelTest
         hotel2.setDireccion("CLL # CRA 1");
         hotel2.setCiudad(ciudad);
         hotel2.setAdministrador(administrador_hotel);
+        hotel2.setEstadoHotel(EstadoHotel.DISPONIBLE);
 
         hotel2 = hotelRepo.save(hotel2);
 
