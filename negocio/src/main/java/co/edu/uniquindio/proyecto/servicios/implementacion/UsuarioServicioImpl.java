@@ -29,7 +29,7 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
     }
 
     @Override
-    public Persona_Usuario actualizarUsuario(Persona_Usuario usuario) throws Exception {
+    public Persona_Usuario actualizarUsuario(Persona_Usuario usuario) throws UsuarioException {
         Persona_Usuario buscado = obtenerUsuario(usuario.getCedula());
         if(buscado == null){
             throw new UsuarioException("El usuario no existe");
@@ -38,8 +38,12 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
     }
 
     @Override
-    public Persona_Usuario obtenerUsuario(String cedula) {
-        return usuarioRepo.findById(cedula).orElse(null);
+    public Persona_Usuario obtenerUsuario(String cedula) throws UsuarioException {
+        Optional<Persona_Usuario> usuario = usuarioRepo.findById(cedula);
+        if ( usuario.isEmpty() ) {
+            throw new UsuarioException("No hay registro que coincida con la cédula especificada");
+        }
+        return usuario.get();
     }
 
     @Override

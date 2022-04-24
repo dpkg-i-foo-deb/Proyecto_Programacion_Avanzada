@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @Service
 public class AdministradorHotelServicioImpl implements IAdministradorHotelServicio {
+
     private final AdministradorHotelRepo administradorHotelRepo;
 
     public AdministradorHotelServicioImpl(AdministradorHotelRepo administradorHotelRepo) {
@@ -19,14 +20,10 @@ public class AdministradorHotelServicioImpl implements IAdministradorHotelServic
 
     @Override
     public Persona_Administrador_Hotel registrarAdministradorHotel(Persona_Administrador_Hotel administradorHotel) throws AdministradorHotelException {
-        boolean enUso = administradorHotelRepo.existsByCedulaOrEmail(
-                administradorHotel.getCedula(), administradorHotel.getEmail()
-        );
-
+        boolean enUso = administradorHotelRepo.existsByCedulaOrEmail(administradorHotel.getCedula(), administradorHotel.getEmail());
         if ( enUso ) {
             throw new AdministradorHotelException("La cédula o email ya se encuentran en uso");
         }
-
         return administradorHotelRepo.save(administradorHotel);
     }
 
@@ -55,13 +52,11 @@ public class AdministradorHotelServicioImpl implements IAdministradorHotelServic
 
     @Override
     public Persona_Administrador_Hotel obtenerAdministradorHotel(String cedula) throws AdministradorHotelException {
-        Optional<Persona_Administrador_Hotel> adminRecuperado = administradorHotelRepo.findByCedula(cedula);
-
-        if ( adminRecuperado.isEmpty() ) {
+        Optional<Persona_Administrador_Hotel> administrador_hotel = administradorHotelRepo.findById(cedula);
+        if ( administrador_hotel.isEmpty() ) {
             throw new AdministradorHotelException("No hay registro que coincida con la cédula especificada");
         }
-
-        return adminRecuperado.get();
+        return administrador_hotel.get();
     }
 
     @Override

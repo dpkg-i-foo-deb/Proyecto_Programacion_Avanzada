@@ -10,4 +10,8 @@ public interface AdministradorRepo extends JpaRepository <Persona_Administrador,
     Persona_Administrador findByCedula(String cedula);
 
     Persona_Administrador findByEmail(String email);
+
+    Boolean existsByCedulaOrEmail(String cedula, String email);
+
+    Boolean existsByCedula(String cedula);
 }

@@ -12,7 +12,7 @@ public interface IUsuarioServicio {
 
     Persona_Usuario actualizarUsuario(Persona_Usuario usuario) throws Exception;
 
-    Persona_Usuario obtenerUsuario(String codigo);
+    Persona_Usuario obtenerUsuario(String codigo) throws Exception;
 
     void eliminarUsuario(String cedula) throws Exception;
 
