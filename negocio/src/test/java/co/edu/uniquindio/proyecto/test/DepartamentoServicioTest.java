@@ -68,6 +68,19 @@ public class DepartamentoServicioTest
     }
 
     @Test
+    public void obtenerDepartamentoTest()
+    {
+        Departamento departamento = new Departamento();
+
+        departamento.setNombre("Quindío");
+
+        departamento = departamentoServicio.registrarDepartamento(departamento);
+
+        Departamento finalDepartamento = departamento;
+        Assertions.assertDoesNotThrow(()->departamentoServicio.obtenerDepartamento(finalDepartamento.getCodigoDepartamento()));
+    }
+
+    @Test
     public void obtenerDepartamentosTest()
     {
         List<Departamento> departamentos = departamentoServicio.obtenerDepartamentos();
@@ -76,6 +89,5 @@ public class DepartamentoServicioTest
 
         Assertions.assertNotNull(departamentos);
         Assertions.assertEquals(3, departamentos.size());
-
     }
 }
