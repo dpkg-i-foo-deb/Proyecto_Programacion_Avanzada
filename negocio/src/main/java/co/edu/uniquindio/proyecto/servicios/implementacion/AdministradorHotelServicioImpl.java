@@ -63,4 +63,9 @@ public class AdministradorHotelServicioImpl implements IAdministradorHotelServic
     public List<Persona_Administrador_Hotel> listarAdministradoresHotel() {
         return administradorHotelRepo.findAll();
     }
+
+    @Override
+    public Persona_Administrador_Hotel validarLogin(String correo, String password) throws Exception {
+        return null;
+    }
 }

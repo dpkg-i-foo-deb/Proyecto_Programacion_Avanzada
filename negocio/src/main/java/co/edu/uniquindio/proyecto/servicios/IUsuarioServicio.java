@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.servicios;
 
+import co.edu.uniquindio.proyecto.entidades.Comentario;
 import co.edu.uniquindio.proyecto.entidades.Persona_Usuario;
 import co.edu.uniquindio.proyecto.servicios.excepciones.UsuarioException;
 
@@ -19,5 +20,11 @@ public interface IUsuarioServicio {
     List<Persona_Usuario> listarUsuarios();
 
     Persona_Usuario validarLogin(String correo, String password) throws Exception;
+
+    Comentario crearComentario (Comentario comentario, String cedula, Integer codigo) throws Exception;
+
+    Comentario editarComentario (Comentario comentario, String cedula, Integer codigo) throws Exception;
+
+    void eliminarComentario (Comentario comentario, String cedula, Integer codigo) throws Exception;
 
 }

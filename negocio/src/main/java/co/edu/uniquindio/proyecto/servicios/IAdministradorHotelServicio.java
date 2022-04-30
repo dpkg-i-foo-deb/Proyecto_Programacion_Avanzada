@@ -1,9 +1,7 @@
 package co.edu.uniquindio.proyecto.servicios;
 
 import co.edu.uniquindio.proyecto.entidades.Persona_Administrador_Hotel;
-import co.edu.uniquindio.proyecto.entidades.Vuelo;
 import co.edu.uniquindio.proyecto.servicios.excepciones.AdministradorHotelException;
-import co.edu.uniquindio.proyecto.servicios.excepciones.VueloException;
 
 import java.util.List;
 
@@ -18,4 +16,6 @@ public interface IAdministradorHotelServicio {
     Persona_Administrador_Hotel obtenerAdministradorHotel(String cedula) throws AdministradorHotelException;
 
     List<Persona_Administrador_Hotel> listarAdministradoresHotel();
+
+    Persona_Administrador_Hotel validarLogin(String correo, String password) throws Exception;
 }

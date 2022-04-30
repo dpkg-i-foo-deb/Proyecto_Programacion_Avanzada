@@ -1,6 +1,10 @@
 package co.edu.uniquindio.proyecto.servicios.implementacion;
 
+import co.edu.uniquindio.proyecto.entidades.Comentario;
+import co.edu.uniquindio.proyecto.entidades.Hotel;
 import co.edu.uniquindio.proyecto.entidades.Persona_Usuario;
+import co.edu.uniquindio.proyecto.repositorios.ComentarioRepo;
+import co.edu.uniquindio.proyecto.repositorios.HotelRepo;
 import co.edu.uniquindio.proyecto.repositorios.UsuarioRepo;
 import co.edu.uniquindio.proyecto.servicios.IUsuarioServicio;
 import co.edu.uniquindio.proyecto.servicios.excepciones.UsuarioException;
@@ -12,9 +16,13 @@ import java.util.Optional;
 @Service
 public class UsuarioServicioImpl implements IUsuarioServicio {
     private final UsuarioRepo usuarioRepo;
+    private final ComentarioRepo comentarioRepo;
+    private final HotelRepo hotelRepo;
 
-    public UsuarioServicioImpl(UsuarioRepo usuarioRepo) {
+    public UsuarioServicioImpl(UsuarioRepo usuarioRepo, ComentarioRepo comentarioRepo, HotelRepo hotelRepo) {
         this.usuarioRepo = usuarioRepo;
+        this.comentarioRepo = comentarioRepo;
+        this.hotelRepo = hotelRepo;
     }
 
     @Override
@@ -68,4 +76,46 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
         }
         return usuario.get();
     }
+
+    @Override
+    public Comentario crearComentario(Comentario comentario, String cedula, Integer codigo) throws Exception {
+        Optional<Persona_Usuario> usuario = usuarioRepo.findById(cedula);
+        Optional<Hotel> hotel = hotelRepo.findById(codigo);
+        if(usuario.isEmpty() && hotel.isEmpty()){
+            throw new UsuarioException("El usuario no existe");
+        }
+        return comentarioRepo.save(comentario);
+    }
+
+    @Override
+    public Comentario editarComentario(Comentario comentario, String cedula, Integer codigo) throws Exception {
+        Optional<Persona_Usuario> usuario = usuarioRepo.findById(cedula);
+        Optional<Hotel> hotel = hotelRepo.findById(codigo);
+        if(usuario.isEmpty() && hotel.isEmpty()){
+            throw new UsuarioException("El usuario no existe");
+        }
+
+        boolean existe = comentarioRepo.existsById(comentario.getCodigo());
+        if ( !existe ) {
+            throw new UsuarioException("El comentario no existe");
+        }
+        return comentarioRepo.save(comentario);
+    }
+
+
+    public void eliminarComentario(Comentario comentario, String cedula, Integer codigo) throws Exception {
+        Optional<Persona_Usuario> usuario = usuarioRepo.findById(cedula);
+        Optional<Hotel> hotel = hotelRepo.findById(codigo);
+        if(usuario.isEmpty() && hotel.isEmpty()){
+            throw new UsuarioException("El usuario no existe");
+        }
+
+        boolean existe = comentarioRepo.existsById(comentario.getCodigo());
+        if ( !existe ) {
+            throw new UsuarioException("El comentario no existe");
+        }
+        comentarioRepo.deleteById(comentario.getCodigo());
+    }
+
+
 }
