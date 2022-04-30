@@ -1,7 +1,6 @@
 package co.edu.uniquindio.proyecto.test;
 
 import co.edu.uniquindio.proyecto.NegocioApplication;
-import co.edu.uniquindio.proyecto.repositorios.UsuarioRepo;
 import co.edu.uniquindio.proyecto.servicios.email.EmailServicioImpl;
 import co.edu.uniquindio.proyecto.servicios.excepciones.UsuarioException;
 import org.junit.jupiter.api.Test;

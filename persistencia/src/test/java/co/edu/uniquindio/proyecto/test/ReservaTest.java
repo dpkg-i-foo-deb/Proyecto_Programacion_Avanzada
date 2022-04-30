@@ -1,6 +1,7 @@
 package co.edu.uniquindio.proyecto.test;
 
 import co.edu.uniquindio.proyecto.entidades.*;
+import co.edu.uniquindio.proyecto.entidades.intermediate.Detalle_Reserva_Habitacion;
 import co.edu.uniquindio.proyecto.repositorios.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -34,11 +35,18 @@ public class ReservaTest {
     @Autowired
     private ReservaRepo reservaRepo;
 
+    @Autowired
+    private HabitacionRepo habitacionRepo;
+
+    @Autowired
+    private DetalleReservaHabitacionRepo detalleReservaHabitacionRepo;
+
     private Departamento depto;
     private Ciudad ciudad;
     private Persona_Administrador_Hotel adminHotel;
     private Persona_Usuario usuario;
     private Hotel hotel;
+    private Habitacion habitacion;
 
     private void crearDepartamento() {
         depto = new Departamento("Quindío");
@@ -72,8 +80,13 @@ public class ReservaTest {
     }
 
     private void crearHotel() {
-        hotel = new Hotel("Hotelito", "Calle 45-25", ciudad, adminHotel, EstadoHotel.DISPONIBLE);
+        hotel = new Hotel("Hotelito", (short) 5, "Calle 45-25", ciudad, adminHotel, EstadoHotel.DISPONIBLE);
         hotelRepo.save(hotel);
+    }
+
+    private void crearHabitacion() {
+        habitacion = new Habitacion(27.00, 5, hotel);
+        habitacionRepo.save(habitacion);
     }
 
     @Test
@@ -174,5 +187,44 @@ public class ReservaTest {
 
         Assertions.assertNotNull(reservas);
         Assertions.assertEquals(2, reservas.size());
+    }
+
+    @Test
+    public void listarReservasHotel() {
+        crearDepartamento();
+        crearCiudad();
+        crearAdminHotel();
+        crearUsuario();
+        crearHotel();
+        crearHabitacion();
+
+        Reserva reserva1 = new Reserva(
+                Date.valueOf(LocalDate.of(2023, 1, 10)),
+                Date.valueOf(LocalDate.of(2023, 5, 1)),
+                Date.valueOf(LocalDate.of(2022, 2, 15)),
+                EstadoReserva.CONFIRMADA, usuario
+        );
+        reservaRepo.save(reserva1);
+
+        Reserva reserva2 = new Reserva(
+                Date.valueOf(LocalDate.of(2022, 11, 3)),
+                Date.valueOf(LocalDate.of(2023, 1, 1)),
+                Date.valueOf(LocalDate.of(2022, 4, 30)),
+                EstadoReserva.FINALIZADA, usuario
+        );
+        reservaRepo.save(reserva2);
+
+        Detalle_Reserva_Habitacion detalle = new Detalle_Reserva_Habitacion(reserva1, habitacion, 12.00, (short) 2);
+        detalleReservaHabitacionRepo.save(detalle);
+
+        detalle = new Detalle_Reserva_Habitacion(reserva2, habitacion, 12.00, (short) 2);
+        detalleReservaHabitacionRepo.save(detalle);
+
+        List<Object[]> reservas = reservaRepo.obtenerReservasHotel(hotel.getCodigoHotel(), Date.valueOf(LocalDate.of(2023, 1, 1)));
+
+        reservas.forEach(r -> System.out.println(r[0] + " - " + r[1] + " - " + r[2]));
+
+        Assertions.assertNotNull(reservas);
+        Assertions.assertEquals(1, reservas.size());
     }
 }

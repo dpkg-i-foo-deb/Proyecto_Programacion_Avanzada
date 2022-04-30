@@ -70,20 +70,12 @@ public class DepartamentoServicioTest
     @Test
     public void obtenerDepartamentosTest()
     {
-        Departamento departamento1 = new Departamento();
-        Departamento departamento2 = new Departamento();
-        List<Departamento> departamentos;
+        List<Departamento> departamentos = departamentoServicio.obtenerDepartamentos();
 
-        departamento1.setNombre("Quindío");
-        departamento2.setNombre("Meta");
-
-        departamentoServicio.registrarDepartamento(departamento1);
-        departamentoServicio.registrarDepartamento(departamento2);
-
-        departamentos=departamentoServicio.obtenerDepartamentos();
+        departamentos.forEach(System.out::println);
 
         Assertions.assertNotNull(departamentos);
-        Assertions.assertEquals(2, departamentos.size());
+        Assertions.assertEquals(3, departamentos.size());
 
     }
 }

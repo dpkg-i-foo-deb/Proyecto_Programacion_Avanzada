@@ -144,4 +144,33 @@ public class VueloTest
         Assertions.assertEquals(2, vuelos.size());
     }
 
+    @Test
+    public void obtenerVuelosCiudadOrigenTest()
+    {
+        crearDepartamento();
+        crearCiudades();
+
+        Vuelo vuelo1 = new Vuelo();
+        Vuelo vuelo2 = new Vuelo();
+
+        List<Vuelo> vuelos;
+
+        vuelo1.setAerolinea("Avianca");
+        vuelo1.setCiudadOrigen(ciudadOrigen);
+        vuelo1.setCiudadDestino(ciudadDestino);
+
+        vueloRepo.save(vuelo1);
+
+        vuelo2.setAerolinea("Abianka");
+        vuelo2.setCiudadOrigen(ciudadOrigen);
+        vuelo2.setCiudadDestino(ciudadDestino);
+
+        vueloRepo.save(vuelo2);
+
+        vuelos = vueloRepo.obtenerVuelosOrigenCiudad(ciudadOrigen.getNombre());
+
+        System.out.print(vuelos);
+
+        Assertions.assertEquals(2, vuelos.size());
+    }
 }

@@ -82,7 +82,7 @@ public class DetalleReservaHabitacionTest {
     }
 
     private void crearHotel() {
-        hotel = new Hotel("Hotelito", "Calle 45-25", ciudad, adminHotel, EstadoHotel.DISPONIBLE);
+        hotel = new Hotel("Hotelito", (short) 5, "Calle 45-25", ciudad, adminHotel, EstadoHotel.DISPONIBLE);
         hotelRepo.save(hotel);
     }
 
