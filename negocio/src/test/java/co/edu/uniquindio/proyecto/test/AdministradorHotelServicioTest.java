@@ -94,6 +94,6 @@ public class AdministradorHotelServicioTest {
                 administradorHotelServicio.listarAdministradoresHotel();
 
         Assertions.assertNotNull(administradoresHotel);
-        Assertions.assertEquals(2, administradoresHotel.size());
+        Assertions.assertEquals(5, administradoresHotel.size());
     }
 }

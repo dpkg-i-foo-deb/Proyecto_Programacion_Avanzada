@@ -40,6 +40,7 @@ public class HotelServicioTest {
 
         Hotel hotel1 = new Hotel(
                 "Hotel Cacique",
+                (short) 3,
                 "Calle 18",
                 ciudad1,
                 adminHotel,
@@ -48,6 +49,7 @@ public class HotelServicioTest {
 
         Hotel hotel2 = new Hotel(
                 "Hotel Cacique",
+                (short) 5,
                 "Calle 25",
                 ciudad2,
                 adminHotel,

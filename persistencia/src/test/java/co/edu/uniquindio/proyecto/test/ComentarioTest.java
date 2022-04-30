@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.test;
 
+import co.edu.uniquindio.proyecto.dto.Usuario_Comentarios_DTO;
 import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.repositorios.*;
 import org.junit.jupiter.api.Assertions;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,7 +73,7 @@ public class ComentarioTest {
     }
 
     private void crearHotel() {
-        hotel = new Hotel("Hotelito", "Calle 45-25", ciudad, adminHotel, EstadoHotel.DISPONIBLE);
+        hotel = new Hotel("Hotelito", (short) 5, "Calle 45-25", ciudad, adminHotel, EstadoHotel.DISPONIBLE);
         hotelRepo.save(hotel);
     }
 
@@ -82,7 +85,9 @@ public class ComentarioTest {
         crearUsuario();
         crearHotel();
 
-        Comentario comentario = new Comentario("Muy buena atención", (short) 5, usuario, hotel);
+        Comentario comentario = new Comentario(
+                "Muy buena atención", (short) 5, Date.valueOf(LocalDate.now().minusMonths(2)), usuario, hotel
+        );
         Comentario comentarioRecuperado = comentarioRepo.save(comentario);
 
         Assertions.assertNotNull(comentarioRecuperado);
@@ -97,7 +102,9 @@ public class ComentarioTest {
         crearUsuario();
         crearHotel();
 
-        Comentario comentario = new Comentario("Muy buena atención", (short) 5, usuario, hotel);
+        Comentario comentario = new Comentario(
+                "Muy buena atención", (short) 5, Date.valueOf(LocalDate.now().minusMonths(2)), usuario, hotel
+        );
         comentarioRepo.save(comentario);
         int codigo = comentario.getCodigo();
 
@@ -116,7 +123,9 @@ public class ComentarioTest {
         crearUsuario();
         crearHotel();
 
-        Comentario comentario = new Comentario("Muy buena atención", (short) 5, usuario, hotel);
+        Comentario comentario = new Comentario(
+                "Muy buena atención", (short) 5, Date.valueOf(LocalDate.now().minusMonths(2)), usuario, hotel
+        );
         comentario = comentarioRepo.save(comentario);
 
         comentario.setCalificacion( (short) 3);
@@ -135,17 +144,53 @@ public class ComentarioTest {
         crearUsuario();
         crearHotel();
 
-        Comentario comentario1 = new Comentario("Muy buena atención", (short) 5, usuario, hotel);
+        Comentario comentario1 = new Comentario(
+                "Muy buena atención", (short) 5, Date.valueOf(LocalDate.now().minusMonths(2)), usuario, hotel
+        );
         comentarioRepo.save(comentario1);
 
-        Comentario comentario2 = new Comentario("La comida estaba maluca", (short) 1, usuario, hotel);
+        Comentario comentario2 = new Comentario(
+                "La comida estaba maluca", (short) 1, Date.valueOf(LocalDate.now().minusMonths(2)), usuario, hotel
+        );
         comentarioRepo.save(comentario2);
 
-        Comentario comentario3 = new Comentario("Empleados groseros", (short) 2, usuario, hotel);
+        Comentario comentario3 = new Comentario(
+                "Empleados groseros", (short) 2, Date.valueOf(LocalDate.now().minusMonths(2)), usuario, hotel
+        );
         comentarioRepo.save(comentario3);
 
         List<Comentario> comentarios = comentarioRepo.findAll();
 
         Assertions.assertEquals(3, comentarios.size());
+    }
+
+    @Test
+    public void obtenerComentariosUsuarioTest() {
+        crearDepartamento();
+        crearCiudad();
+        crearAdminHotel();
+        crearUsuario();
+        crearHotel();
+
+        Comentario comentario1 = new Comentario(
+                "Muy buena atención", (short) 5, Date.valueOf(LocalDate.now().minusMonths(2)), usuario, hotel
+        );
+        comentarioRepo.save(comentario1);
+
+        Comentario comentario2 = new Comentario(
+                "La comida estaba maluca", (short) 1, Date.valueOf(LocalDate.now().minusMonths(2)), usuario, hotel
+        );
+        comentarioRepo.save(comentario2);
+
+        Comentario comentario3 = new Comentario(
+                "Empleados groseros", (short) 2, Date.valueOf(LocalDate.now().minusMonths(2)), usuario, hotel
+        );
+        comentarioRepo.save(comentario3);
+
+        List<Usuario_Comentarios_DTO> comentarios = comentarioRepo.obtenerComentariosUsuario();
+
+        Assertions.assertEquals(3, comentarios.size());
+
+        comentarios.forEach(System.out::println);
     }
 }

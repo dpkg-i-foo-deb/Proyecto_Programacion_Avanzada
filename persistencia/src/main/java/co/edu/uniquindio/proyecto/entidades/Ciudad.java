@@ -37,11 +37,11 @@ public class Ciudad implements Serializable {
 
     @OneToMany(mappedBy = "ciudadOrigen")
     @ToString.Exclude
-    private List<Vuelo> ciudadesOrigen;
+    private List<Vuelo> vuelosOrigen;
 
     @OneToMany(mappedBy = "ciudadDestino")
     @ToString.Exclude
-    private List<Vuelo> ciudadesDestino;
+    private List<Vuelo> vuelosDestino;
 
     public Ciudad(String nombre, Departamento departamento) {
         this.nombre = nombre;

@@ -72,6 +72,14 @@ public class HotelServicioImpl implements IHotelServicio
 
         existeHotel(hotelBuscado);
 
+        Optional<Hotel> hotelRepetido = hotelRepo.buscarHotelRepetidoPorUbicacion(
+                hotel.getDireccion(), hotel.getCiudad(), hotel.getCodigoHotel()
+        );
+
+        if(hotelRepetido.isPresent()) {
+            throw new HotelException("Ya existe un hotel con esa dirección");
+        }
+
         return hotelRepo.save(hotel);
     }
 
