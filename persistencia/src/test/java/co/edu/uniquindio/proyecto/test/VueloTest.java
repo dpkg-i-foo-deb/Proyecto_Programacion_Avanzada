@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.test;
 
+import co.edu.uniquindio.proyecto.dto.Ciudad_Vuelos_DTO;
 import co.edu.uniquindio.proyecto.entidades.Ciudad;
 import co.edu.uniquindio.proyecto.entidades.Departamento;
 import co.edu.uniquindio.proyecto.entidades.Vuelo;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
@@ -172,5 +174,19 @@ public class VueloTest
         System.out.print(vuelos);
 
         Assertions.assertEquals(2, vuelos.size());
+    }
+
+    @Test
+    @Sql("classpath:DatosSQL.sql")
+    public void obtenerVuelosPorCiudadOrigen() {
+        List<Ciudad_Vuelos_DTO> vuelos = vueloRepo.obtenerTotalVuelosPorCiudadOrigen();
+
+        vuelos.forEach(System.out::println);
+
+        Assertions.assertEquals(9, vuelos.size());
+        Assertions.assertEquals(0, vuelos.get(0).getTotalRegistros());
+        Assertions.assertEquals(1, vuelos.get(2).getTotalRegistros());
+        Assertions.assertEquals(2, vuelos.get(3).getTotalRegistros());
+        Assertions.assertEquals(1, vuelos.get(5).getTotalRegistros());
     }
 }
