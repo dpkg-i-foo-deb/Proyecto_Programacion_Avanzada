@@ -70,6 +70,7 @@ public class HabitacionTest
         hotel.setCiudad(ciudad);
         hotel.setAdministrador(administrador_hotel);
         hotel.setEstadoHotel(EstadoHotel.DISPONIBLE);
+        hotel.setNumeroEstrellas((short) 4);
 
         hotel = hotelRepo.save(hotel);
     }

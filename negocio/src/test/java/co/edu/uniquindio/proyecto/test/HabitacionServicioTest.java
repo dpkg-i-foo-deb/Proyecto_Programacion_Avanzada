@@ -88,7 +88,7 @@ public class HabitacionServicioTest {
         List<Habitacion> habitaciones = habitacionServicio.listarHabitaciones();
 
         Assertions.assertNotNull(habitaciones);
-        Assertions.assertEquals(12, habitaciones.size());
+        Assertions.assertEquals(9, habitaciones.size());
     }
 
     @Test

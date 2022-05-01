@@ -8,6 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -37,7 +38,7 @@ public class  Persona implements Serializable
     private String email;
 
     @ElementCollection
-    private List<String> telefonos;
+    private List<String> telefonos = new ArrayList<>();
 
     @NotBlank
     @Size(max = 100)
