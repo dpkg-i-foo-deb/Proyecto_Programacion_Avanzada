@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -226,5 +227,15 @@ public class ReservaTest {
 
         Assertions.assertNotNull(reservas);
         Assertions.assertEquals(1, reservas.size());
+    }
+
+    @Test
+    @Sql("classpath:DatosSQL.sql")
+    public void totalReservasPendientesHotel() {
+        Hotel hotel = hotelRepo.getById(1);
+        int reservas = reservaRepo.obtenerCantidadReservasPendientes(1);
+
+        System.out.println("TOTAL: " + reservas);
+        Assertions.assertEquals(2, reservas);
     }
 }

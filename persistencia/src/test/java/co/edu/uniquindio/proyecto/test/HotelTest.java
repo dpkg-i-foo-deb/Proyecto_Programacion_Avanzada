@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.Sort;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
@@ -399,5 +400,28 @@ public class HotelTest
         String nombreCiudad = hotelRepo.obtenerNombreCiudad(hotel1.getCodigoHotel());
 
         Assertions.assertEquals(ciudad.getNombre(), nombreCiudad);
+    }
+
+    @Test
+    @Sql("classpath:DatosSQL.sql")
+    public void obtenerHotelesSinComentarios() {
+        List<Hotel> hoteles = hotelRepo.hotelesSinComentarios();
+
+        hoteles.forEach(System.out::println);
+        Assertions.assertEquals(1, hoteles.size());
+    }
+
+    @Test
+    @Sql("classpath:DatosSQL.sql")
+    public void obtenerHotelesPorPatron() {
+        List<Hotel> hoteles = hotelRepo.obtenerHotelesPorNombrePatron("Hotel");
+
+        hoteles.forEach(System.out::println);
+        Assertions.assertEquals(3, hoteles.size());
+
+        hoteles = hotelRepo.obtenerHotelesPorNombrePatron("P");
+
+        hoteles.forEach(System.out::println);
+        Assertions.assertEquals(2, hoteles.size());
     }
 }
