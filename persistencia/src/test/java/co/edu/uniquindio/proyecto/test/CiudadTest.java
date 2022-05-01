@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.test;
 
+import co.edu.uniquindio.proyecto.dto.Ciudad_TotalHoteles_DTO;
 import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.repositorios.AdministradorHotelRepo;
 import co.edu.uniquindio.proyecto.repositorios.CiudadRepo;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
@@ -209,5 +211,18 @@ public class CiudadTest
         System.out.print(hoteles);
 
         Assertions.assertEquals(3, hoteles.size());
+    }
+
+    @Test
+    @Sql("classpath:DatosSQL.sql")
+    public void obtenerTotalHotelesPorCiudad() {
+        List<Ciudad_TotalHoteles_DTO> res = ciudadRepo.obtenerTotalHotelesPorCiudad();
+
+        res.forEach(System.out::println);
+
+        Assertions.assertEquals(9, res.size());
+        Assertions.assertEquals(2, res.get(0).getTotalHoteles());
+        Assertions.assertEquals(0, res.get(1).getTotalHoteles());
+        Assertions.assertEquals(1, res.get(3).getTotalHoteles());
     }
 }

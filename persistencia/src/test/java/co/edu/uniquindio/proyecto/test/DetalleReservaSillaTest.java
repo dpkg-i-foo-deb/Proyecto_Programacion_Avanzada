@@ -72,7 +72,7 @@ public class DetalleReservaSillaTest {
     }
 
     private void crearVuelo() {
-        vuelo = new Vuelo("Avianca", ciudadOrigen, ciudadDestino);
+        vuelo = new Vuelo("Avianca", EstadoVuelo.CONFIRMADO, ciudadOrigen, ciudadDestino);
         vueloRepo.save(vuelo);
     }
 

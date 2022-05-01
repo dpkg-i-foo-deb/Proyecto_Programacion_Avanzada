@@ -31,6 +31,10 @@ public class Vuelo
     private Ciudad ciudadOrigen;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
+    private EstadoVuelo estado;
+
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "ciudad_destino")
     private Ciudad ciudadDestino;
@@ -38,8 +42,9 @@ public class Vuelo
     @OneToMany (mappedBy = "vuelo")
     private List<Silla> sillas;
 
-    public Vuelo(String aerolinea, Ciudad ciudadOrigen, Ciudad ciudadDestino) {
+    public Vuelo(String aerolinea, EstadoVuelo estado, Ciudad ciudadOrigen, Ciudad ciudadDestino) {
         this.aerolinea = aerolinea;
+        this.estado = estado;
         this.ciudadOrigen = ciudadOrigen;
         this.ciudadDestino = ciudadDestino;
     }

@@ -1,5 +1,7 @@
 package co.edu.uniquindio.proyecto.repositorios;
 
+import co.edu.uniquindio.proyecto.dto.Ciudad_TotalHoteles_DTO;
+import co.edu.uniquindio.proyecto.dto.Ciudad_Vuelos_DTO;
 import co.edu.uniquindio.proyecto.entidades.Ciudad;
 import co.edu.uniquindio.proyecto.entidades.Hotel;
 import co.edu.uniquindio.proyecto.entidades.Vuelo;
@@ -14,4 +16,7 @@ public interface CiudadRepo extends JpaRepository<Ciudad, Integer>
 {
     @Query("select c.listaHoteles from Ciudad c where c.nombre = :nombreCiudad")
     List<Hotel> obtenerHoteles(String nombreCiudad);
+
+    @Query("select new co.edu.uniquindio.proyecto.dto.Ciudad_TotalHoteles_DTO(c, count(h)) from Ciudad c left join c.listaHoteles h group by c")
+    List<Ciudad_TotalHoteles_DTO> obtenerTotalHotelesPorCiudad();
 }
