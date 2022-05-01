@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,4 +33,14 @@ public interface HotelRepo extends JpaRepository <Hotel, Integer>
 
     @Query("select h from Hotel h where h.nombre like concat('%', trim(both from :patron), '%')")
     List<Hotel> obtenerHotelesPorNombrePatron(String patron);
+
+    @Query("select avg(c.calificacion) from Hotel h, IN(h.listaComentarios) c where h.codigoHotel = :codigoHotel")
+    Double obtenerCalificacionPromedio(Integer codigoHotel);
+
+    @Query("select h from Hotel h where h.ciudad.nombre = :nombreCiudad order by h.nombre asc")
+    List<Hotel> obtenerHotelesCiudad(String nombreCiudad);
+
+    //@Query("select distinct h from Hotel h, IN(h.habitaciones) hb left join hb.listaReservas dr on hb = dr.codigoHabitacion where (hb.capacidad >= :capacidad) and (hb.precio between :precioInicio and :precioFin) and (:fechaInicio > dr.codigoReserva.fechaSalida or :fechaFin < dr.codigoReserva.fechaLlegada)")
+    @Query("select distinct h from Hotel h, IN(h.habitaciones) hb left join hb.listaReservas dr on hb = dr.codigoHabitacion where (hb.capacidad >= :capacidad) and (hb.precio between :precioInicio and :precioFin) and (:fecha not between dr.codigoReserva.fechaLlegada and dr.codigoReserva.fechaSalida)")
+    List<Hotel> obtenerHotelesConHabitacionesEnRango(Double precioInicio, Double precioFin, Integer capacidad, Date fecha);
 }

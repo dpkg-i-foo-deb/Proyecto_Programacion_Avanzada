@@ -1,5 +1,7 @@
 package co.edu.uniquindio.proyecto.test;
 
+import co.edu.uniquindio.proyecto.dto.Reserva_Detalles_DTO;
+import co.edu.uniquindio.proyecto.dto.Reserva_TotalGastado_DTO;
 import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.entidades.intermediate.Detalle_Reserva_Habitacion;
 import co.edu.uniquindio.proyecto.repositorios.*;
@@ -232,10 +234,33 @@ public class ReservaTest {
     @Test
     @Sql("classpath:DatosSQL.sql")
     public void totalReservasPendientesHotel() {
-        Hotel hotel = hotelRepo.getById(1);
         int reservas = reservaRepo.obtenerCantidadReservasPendientes(1);
 
         System.out.println("TOTAL: " + reservas);
         Assertions.assertEquals(2, reservas);
+    }
+
+    @Test
+    @Sql("classpath:DatosSQL.sql")
+    public void obtenerTotalGastadoPorReservas() {
+        List<Reserva_TotalGastado_DTO> res = reservaRepo.obtenerTotalGastadoPorReservas("55555");
+
+        res.forEach(System.out::println);
+        Assertions.assertEquals(3, res.size());
+        Assertions.assertEquals(360_000, res.get(0).getTotalGastadoReservas());
+        Assertions.assertEquals(43_000, res.get(0).getTotalGastadoSillas());
+        Assertions.assertEquals(304_000, res.get(1).getTotalGastadoReservas());
+        Assertions.assertEquals(0, res.get(1).getTotalGastadoSillas());
+        Assertions.assertEquals(0, res.get(2).getTotalGastadoReservas());
+        Assertions.assertEquals(0, res.get(2).getTotalGastadoSillas());
+    }
+
+    @Test
+    @Sql("classpath:DatosSQL.sql")
+    public void obtenerReservasConDetalles() {
+        List<Reserva_Detalles_DTO> res = reservaRepo.obtenerDetallesPorReserva("55555");
+
+        res.forEach(System.out::println);
+        Assertions.assertNotNull(res);
     }
 }

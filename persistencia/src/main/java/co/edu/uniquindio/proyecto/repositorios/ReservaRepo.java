@@ -1,15 +1,12 @@
 package co.edu.uniquindio.proyecto.repositorios;
 
-import co.edu.uniquindio.proyecto.entidades.Habitacion;
-import co.edu.uniquindio.proyecto.entidades.Hotel;
+import co.edu.uniquindio.proyecto.dto.Reserva_Detalles_DTO;
+import co.edu.uniquindio.proyecto.dto.Reserva_TotalGastado_DTO;
 import co.edu.uniquindio.proyecto.entidades.Reserva;
-import co.edu.uniquindio.proyecto.entidades.intermediate.Detalle_Reserva_Habitacion;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -21,4 +18,10 @@ public interface ReservaRepo extends JpaRepository<Reserva, Integer> {
     //@Query("select count(r) from Reserva r join r.listaHabitaciones rh on r = rh.codigoReserva where rh.codigoHabitacion.hotel.codigoHotel = :idHotel and r.fechaLlegada > CURRENT_DATE group by rh.codigoHabitacion.hotel")
     @Query("select count(r) from Reserva r join r.listaHabitaciones rh on r = rh.codigoReserva where rh.codigoHabitacion.hotel.codigoHotel = :idHotel and r.fechaLlegada > CURRENT_DATE")
     int obtenerCantidadReservasPendientes(Integer idHotel);
+
+    @Query("select new co.edu.uniquindio.proyecto.dto.Reserva_TotalGastado_DTO(r.codigo, coalesce((select sum(h.cantidadHabitaciones * h.precio) from r.listaHabitaciones h where h.codigoReserva = r group by r), 0), coalesce((select sum(s.precio) from r.listaSillas s where s.codigoReserva = r group by r), 0)) from Reserva r where r.usuario.cedula = :cedula group by r")
+    List<Reserva_TotalGastado_DTO> obtenerTotalGastadoPorReservas(String cedula);
+
+    @Query("select new co.edu.uniquindio.proyecto.dto.Reserva_Detalles_DTO(r, h, s) from Reserva r left join r.listaHabitaciones h on r = h.codigoReserva left join r.listaSillas s on r = s.codigoReserva where r.usuario.cedula = :cedula")
+    List<Reserva_Detalles_DTO> obtenerDetallesPorReserva(String cedula);
 }

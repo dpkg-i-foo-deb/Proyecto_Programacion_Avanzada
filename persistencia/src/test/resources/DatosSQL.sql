@@ -75,19 +75,34 @@ INSERT INTO cama(tipo, codigo_habitacion) VALUES ("Doble", 9);
 
 -- Comentarios
 INSERT INTO comentario(calificacion, fecha, observacion, cedula_usuario, codigo_hotel) VALUES (4, "2021-07-30", "Me gustó", "44444", 1);
+INSERT INTO comentario(calificacion, fecha, observacion, cedula_usuario, codigo_hotel) VALUES (2, "2021-07-30", "Comida vencida", "55555", 1);
 INSERT INTO comentario(calificacion, fecha, observacion, cedula_usuario, codigo_hotel) VALUES (2, "2020-07-20", "Mala atención", "44444", 2);
 
 -- Reservas
 INSERT INTO reserva(estado_reserva, fecha_llegada, fecha_reserva, fecha_salida, codigo_usuario) VALUES ("CONFIRMADA", "2022-07-10", "2022-04-30", "2022-12-31", 55555);
 INSERT INTO reserva(estado_reserva, fecha_llegada, fecha_reserva, fecha_salida, codigo_usuario) VALUES ("CONFIRMADA", "2022-06-10", "2022-04-30", "2022-12-31", 55555);
 INSERT INTO reserva(estado_reserva, fecha_llegada, fecha_reserva, fecha_salida, codigo_usuario) VALUES ("CONFIRMADA", "2022-04-10", "2022-03-05", "2022-11-25", 55555);
+INSERT INTO reserva(estado_reserva, fecha_llegada, fecha_reserva, fecha_salida, codigo_usuario) VALUES ("FINALIZADA", "2022-04-10", "2022-03-05", "2022-12-18", 44444);
 
 -- Reserva-Habitacion
 INSERT INTO detalle_reserva_habitacion(cantidad_habitaciones, precio, codigo_habitacion, codigo_reserva) VALUES (2, 150000, 1, 1);
 INSERT INTO detalle_reserva_habitacion(cantidad_habitaciones, precio, codigo_habitacion, codigo_reserva) VALUES (1, 270000, 1, 2);
+INSERT INTO detalle_reserva_habitacion(cantidad_habitaciones, precio, codigo_habitacion, codigo_reserva) VALUES (3, 20000, 1, 1);
+INSERT INTO detalle_reserva_habitacion(cantidad_habitaciones, precio, codigo_habitacion, codigo_reserva) VALUES (2, 17000, 2, 2);
+INSERT INTO detalle_reserva_habitacion(cantidad_habitaciones, precio, codigo_habitacion, codigo_reserva) VALUES (2, 19000, 2, 4);
 
 -- Vuelos
 INSERT INTO vuelo(aerolinea, estado, ciudad_destino, ciudad_origen) VALUES ("Avianca", "CONFIRMADO", 1, 4);
 INSERT INTO vuelo(aerolinea, estado, ciudad_destino, ciudad_origen) VALUES ("Avianca", "CONFIRMADO", 8, 4);
 INSERT INTO vuelo(aerolinea, estado, ciudad_destino, ciudad_origen) VALUES ("Avianca", "CONFIRMADO", 1, 6);
 INSERT INTO vuelo(aerolinea, estado, ciudad_destino, ciudad_origen) VALUES ("Avianca", "CONFIRMADO", 9, 3);
+
+-- Sillas
+INSERT INTO silla(precio, codigo_vuelo) VALUES (27000, 1);
+INSERT INTO silla(precio, codigo_vuelo) VALUES (18000, 1);
+INSERT INTO silla(precio, codigo_vuelo) VALUES (36000, 2);
+
+-- Reservas-Sillas
+INSERT INTO detalle_reserva_silla(precio, codigo_reserva, codigo_silla) VALUES (25000, 1, 1);
+INSERT INTO detalle_reserva_silla(precio, codigo_reserva, codigo_silla) VALUES (18000, 1, 2);
+INSERT INTO detalle_reserva_silla(precio, codigo_reserva, codigo_silla) VALUES (41000, 4, 3);
