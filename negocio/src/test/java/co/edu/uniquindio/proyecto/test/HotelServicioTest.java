@@ -126,4 +126,17 @@ public class HotelServicioTest {
 
         Assertions.assertEquals(0, hotelesFiltrados.size());
     }
+
+    @Test
+    public void obtenerHotelesPorNombre() {
+        List<Hotel> hoteles = hotelServicio.obtenerHotelesPorNombre("Hotel");
+
+        Assertions.assertNotNull(hoteles);
+        Assertions.assertEquals(3, hoteles.size());
+
+        hoteles = hotelServicio.obtenerHotelesPorNombre("Paraiso");
+
+        Assertions.assertNotNull(hoteles);
+        Assertions.assertEquals(0, hoteles.size());
+    }
 }

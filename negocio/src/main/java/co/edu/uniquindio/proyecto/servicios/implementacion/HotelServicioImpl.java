@@ -99,4 +99,16 @@ public class HotelServicioImpl implements IHotelServicio
     public List<Hotel> obtenerHotelesPorCiudad(Ciudad ciudad) {
         return hotelRepo.findAllByCiudad(ciudad);
     }
+
+    public List<Hotel> obtenerHotelesPorNombre(String nombre) {
+        List<Hotel> hoteles = hotelRepo.obtenerHotelesPorNombrePatron(nombre);
+
+        /*
+        if(hoteles == null) {
+            throw new HotelException("No hay hoteles con ese nombre");
+        }
+        */
+
+        return hoteles;
+    }
 }
