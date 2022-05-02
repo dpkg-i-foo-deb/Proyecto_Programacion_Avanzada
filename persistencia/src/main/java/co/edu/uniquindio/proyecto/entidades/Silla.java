@@ -27,6 +27,7 @@ public class Silla implements Serializable {
     private Double precio;
 
     @OneToMany(mappedBy = "codigoSilla")
+    @ToString.Exclude
     private List<Detalle_Reserva_Silla> listaReservas;
 
     @ManyToOne

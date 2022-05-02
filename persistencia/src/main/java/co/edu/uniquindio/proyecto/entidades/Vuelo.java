@@ -40,6 +40,7 @@ public class Vuelo
     private Ciudad ciudadDestino;
 
     @OneToMany (mappedBy = "vuelo")
+    @ToString.Exclude
     private List<Silla> sillas;
 
     public Vuelo(String aerolinea, EstadoVuelo estado, Ciudad ciudadOrigen, Ciudad ciudadDestino) {

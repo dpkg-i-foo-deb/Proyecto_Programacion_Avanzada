@@ -13,6 +13,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @DataJpaTest
@@ -423,5 +425,36 @@ public class HotelTest
 
         hoteles.forEach(System.out::println);
         Assertions.assertEquals(2, hoteles.size());
+    }
+
+
+    @Test
+    @Sql("classpath:DatosSQL.sql")
+    public void obtenerCalificacionPromedio() {
+        Double calificacion = hotelRepo.obtenerCalificacionPromedio(1);
+
+        Assertions.assertEquals(3, calificacion);
+    }
+
+    @Test
+    @Sql("classpath:DatosSQL.sql")
+    public void obtenerHotelesPorCiudad() {
+        List<Hotel> hoteles = hotelRepo.obtenerHotelesCiudad("Medellín");
+
+        Assertions.assertEquals(2, hoteles.size());
+    }
+
+    @Test
+    @Sql("classpath:DatosSQL.sql")
+    public void obtenerHotelesConHabitacionesEnRango() {
+        List<Hotel> hoteles = hotelRepo.obtenerHotelesConHabitacionesEnRango(10_000.0, 15_000.0, 1, Date.valueOf(LocalDate.of(2022, 7, 15)));
+
+        hoteles.forEach(System.out::println);
+        Assertions.assertEquals(0, hoteles.size());
+
+        hoteles = hotelRepo.obtenerHotelesConHabitacionesEnRango(10_000.0, 15_000.0, 1, Date.valueOf(LocalDate.of(2022, 6, 7)));
+
+        hoteles.forEach(System.out::println);
+        Assertions.assertEquals(1, hoteles.size());
     }
 }
