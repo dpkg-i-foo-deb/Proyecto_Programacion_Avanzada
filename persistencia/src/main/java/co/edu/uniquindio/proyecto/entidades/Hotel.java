@@ -4,7 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Getter
@@ -77,6 +77,8 @@ public class Hotel
         this.ciudad = ciudad;
         this.administrador = administrador;
         this.estadoHotel = estadoHotel;
+
+        habitaciones = new ArrayList<>();
     }
 
 }
