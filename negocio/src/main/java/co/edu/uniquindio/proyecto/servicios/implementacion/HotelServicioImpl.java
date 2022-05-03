@@ -1,6 +1,7 @@
 package co.edu.uniquindio.proyecto.servicios.implementacion;
 
 import co.edu.uniquindio.proyecto.entidades.Ciudad;
+import co.edu.uniquindio.proyecto.entidades.EstadoHotel;
 import co.edu.uniquindio.proyecto.entidades.Hotel;
 import co.edu.uniquindio.proyecto.entidades.Persona_Administrador_Hotel;
 import co.edu.uniquindio.proyecto.repositorios.HotelRepo;
@@ -100,8 +101,68 @@ public class HotelServicioImpl implements IHotelServicio
         return hotelRepo.findAllByCiudad(ciudad);
     }
 
+    @Override
+    public Hotel pausarHotel(Persona_Administrador_Hotel administrador_hotel, Integer codigoHotel) throws  HotelException{
+
+        Hotel hotel = hotelRepo.findById(codigoHotel).orElse(null);
+        EstadoHotel estado;
+        List<Hotel> hotelesAdmin = administrador_hotel.getListaHoteles();
+
+        if(hotel==null)
+            throw  new HotelException("El hotel solicitado no existe");
+
+        if(!hotelesAdmin.contains(hotel))
+        {
+            throw new HotelException("El administrador no posee acceso a este hotel");
+        }
+
+        estado= hotel.getEstadoHotel();
+
+        if(estado.equals(EstadoHotel.DISPONIBLE))
+        {
+            estado = EstadoHotel.PAUSADO;
+        }
+        else
+        {
+            throw new HotelException("El hotel solicitado ya se encuentra pausado");
+        }
+
+        hotel.setEstadoHotel(estado);
+
+        return hotel;
+    }
+
+    @Override
+    public Hotel reanudarHotel(Persona_Administrador_Hotel administrador_hotel, Integer codigoHotel) throws HotelException {
+
+        Hotel hotel = hotelRepo.findById(codigoHotel).orElse(null);
+        EstadoHotel estado;
+        List<Hotel> hotelesAdmin = administrador_hotel.getListaHoteles();
+
+        if(hotel==null)
+            throw  new HotelException("El hotel solicitado no existe");
+
+        if(!hotelesAdmin.contains(hotel))
+        {
+            throw new HotelException("El administrador no posee acceso a este hotel");
+        }
+
+        estado= hotel.getEstadoHotel();
+
+        if(estado.equals(EstadoHotel.PAUSADO))
+        {
+            estado = EstadoHotel.DISPONIBLE;
+        }
+        else
+        {
+            throw new HotelException("El hotel solicitado ya se encuentra disponible");
+        }
+
+        hotel.setEstadoHotel(estado);
+        return null;
+    }
+
     public List<Hotel> obtenerHotelesPorNombre(String nombre) {
-        List<Hotel> hoteles = hotelRepo.obtenerHotelesPorNombrePatron(nombre);
 
         /*
         if(hoteles == null) {
@@ -109,6 +170,6 @@ public class HotelServicioImpl implements IHotelServicio
         }
         */
 
-        return hoteles;
+        return hotelRepo.obtenerHotelesPorNombrePatron(nombre);
     }
 }
