@@ -12,6 +12,5 @@ import lombok.ToString;
 @ToString
 public class Usuario_Comentarios_DTO {
     private String email;
-
     private Comentario comentario;
 }

@@ -3,6 +3,7 @@ package co.edu.uniquindio.proyecto.test;
 import co.edu.uniquindio.proyecto.NegocioApplication;
 import co.edu.uniquindio.proyecto.entidades.Ciudad;
 import co.edu.uniquindio.proyecto.entidades.Persona_Administrador_Hotel;
+import co.edu.uniquindio.proyecto.entidades.Persona_Usuario;
 import co.edu.uniquindio.proyecto.repositorios.CiudadRepo;
 import co.edu.uniquindio.proyecto.servicios.excepciones.AdministradorHotelException;
 import co.edu.uniquindio.proyecto.servicios.implementacion.AdministradorHotelServicioImpl;
@@ -96,4 +97,28 @@ public class AdministradorHotelServicioTest {
         Assertions.assertNotNull(administradoresHotel);
         Assertions.assertEquals(5, administradoresHotel.size());
     }
+
+    @Test
+    public void validarLogin() {
+        Ciudad ciudad = ciudadRepo.getById(1);
+        Persona_Administrador_Hotel administrador_hotel = new Persona_Administrador_Hotel(
+                "09876",
+                "Mateo Estrada",
+                "stiven@email.com",
+                "mateo123",
+                ciudad
+        );
+
+        try{
+            administrador_hotel = administradorHotelServicio.registrarAdministradorHotel(administrador_hotel);
+            String correo = administrador_hotel.getEmail();
+            String password = administrador_hotel.getContrasena();
+            Persona_Administrador_Hotel administrador_HotelEncontrado = administradorHotelServicio.validarLogin(correo, password);
+            Assertions.assertNotNull(administrador_HotelEncontrado);
+        } catch(Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+
+    }
+
 }

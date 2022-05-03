@@ -21,6 +21,11 @@ public interface UsuarioRepo extends JpaRepository <Persona_Usuario, String>
 
     boolean existsByCedulaOrEmail(String cedula, String email);
 
+    @Query("select u from Persona_Usuario u where u.email = :correo and u.contrasena = :password ")
+    Optional<Persona_Usuario> autenticar(String correo, String password);
+
+    Optional<Persona_Usuario> findByEmailAndContrasena(String email, String password);
+
     List<Persona_Usuario> findAllByNombreCompleto(String nombre);
 
     Page<Persona_Usuario> findAll(Pageable pageable);
@@ -33,4 +38,5 @@ public interface UsuarioRepo extends JpaRepository <Persona_Usuario, String>
 
     @Query("select distinct u from Persona_Usuario u join u.telefonos t where t = :telefono")
     List<Persona_Usuario> obtenerUsuariosTelefono(String telefono);
+
 }

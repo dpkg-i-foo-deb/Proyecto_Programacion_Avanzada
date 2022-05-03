@@ -55,4 +55,28 @@ public class UsuarioServicioTest {
             Assertions.fail(e.getMessage());
         }
     }
+
+    @Test
+    public void validarLogin() {
+        Ciudad ciudad = ciudadRepo.getById(1);
+        Persona_Usuario usuario1 = new Persona_Usuario(
+                "09876",
+                "Mateo Estrada",
+                "stiven@email.com",
+                "mateo123",
+                ciudad
+        );
+
+        try{
+            usuario1 = usuarioServicio.registrarUsuario(usuario1);
+            String correo = usuario1.getEmail();
+            String password = usuario1.getContrasena();
+            Persona_Usuario usuarioEncontrado = usuarioServicio.validarLogin(correo, password);
+            Assertions.assertNotNull(usuarioEncontrado);
+        } catch(Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+
+    }
+
 }

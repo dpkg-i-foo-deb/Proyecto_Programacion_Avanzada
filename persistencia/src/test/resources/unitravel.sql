@@ -29,7 +29,6 @@ INSERT INTO reserva (estado_reserva, fecha_llegada, fecha_reserva, fecha_salida,
 INSERT INTO detalle_reserva_habitacion (cantidad_habitaciones, precio, codigo_habitacion, codigo_reserva)
     VALUES (2, 7.00, 1, 1);
 
-
 INSERT INTO detalle_reserva_silla (cantidad_sillas, precio, codigo_reserva, codigo_silla)
     VALUES (1, 3.00, 1, 1);
 

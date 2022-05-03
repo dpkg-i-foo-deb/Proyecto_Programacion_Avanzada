@@ -28,33 +28,27 @@ public class CamaServicioImpl implements ICamaServicio {
     @Override
     public Cama actualizarCama(Cama cama) throws CamaException {
         boolean existe = camaRepo.existsByCodigoCama(cama.getCodigoCama());
-
         if( !existe ) {
             throw new CamaException("La cama especificada no está registrada");
         }
-
         return camaRepo.save(cama);
     }
 
     @Override
     public void eliminarCama(Cama cama) throws CamaException {
         boolean existe = camaRepo.existsByCodigoCama(cama.getCodigoCama());
-
         if( !existe ) {
             throw new CamaException("La cama especificada no está registrada");
         }
-
         camaRepo.deleteById(cama.getCodigoCama());
     }
 
     @Override
     public Cama obtenerCama(Integer codigo) throws CamaException {
         Optional<Cama> cama = camaRepo.findById(codigo);
-
         if ( cama.isEmpty() ) {
             throw new CamaException("No hay registro que coincida con el código de la cama");
         }
-
         return cama.get();
     }
 

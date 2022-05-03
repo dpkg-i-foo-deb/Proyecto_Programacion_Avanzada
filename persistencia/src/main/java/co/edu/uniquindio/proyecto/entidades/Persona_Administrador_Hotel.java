@@ -20,8 +20,7 @@ public class Persona_Administrador_Hotel extends Persona
     @ToString.Exclude
     private List<Hotel> listaHoteles;
 
-    public Persona_Administrador_Hotel(String cedula, String nombreCompleto, String email, String contrasena,
-                                       Ciudad ciudad) {
+    public Persona_Administrador_Hotel(String cedula, String nombreCompleto, String email, String contrasena, Ciudad ciudad) {
         super(cedula, nombreCompleto, email, contrasena, ciudad);
     }
 
