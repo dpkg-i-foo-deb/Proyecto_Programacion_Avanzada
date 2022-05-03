@@ -4,6 +4,7 @@ import co.edu.uniquindio.proyecto.NegocioApplication;
 import co.edu.uniquindio.proyecto.entidades.Ciudad;
 import co.edu.uniquindio.proyecto.entidades.Persona_Usuario;
 import co.edu.uniquindio.proyecto.repositorios.CiudadRepo;
+import co.edu.uniquindio.proyecto.repositorios.UsuarioRepo;
 import co.edu.uniquindio.proyecto.servicios.excepciones.UsuarioException;
 import co.edu.uniquindio.proyecto.servicios.implementacion.UsuarioServicioImpl;
 import org.junit.jupiter.api.Test;
@@ -55,4 +56,28 @@ public class UsuarioServicioTest {
             Assertions.fail(e.getMessage());
         }
     }
+
+    @Test
+    public void validarLogin() {
+        Ciudad ciudad = ciudadRepo.getById(1);
+        Persona_Usuario usuario1 = new Persona_Usuario(
+                "09876",
+                "Mateo Estrada",
+                "stiven@email.com",
+                "mateo123",
+                ciudad
+        );
+
+        try{
+            usuario1 = usuarioServicio.registrarUsuario(usuario1);
+            String correo = usuario1.getEmail();
+            String password = usuario1.getContrasena();
+            Persona_Usuario usuarioEncontrado = usuarioServicio.validarLogin(correo, password);
+            Assertions.assertNotNull(usuarioEncontrado);
+        } catch(Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+
+    }
+
 }

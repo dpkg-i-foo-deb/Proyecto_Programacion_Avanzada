@@ -9,6 +9,7 @@ import co.edu.uniquindio.proyecto.repositorios.VueloRepo;
 import co.edu.uniquindio.proyecto.servicios.IAdministradorServicio;
 import co.edu.uniquindio.proyecto.servicios.excepciones.AdministradorException;
 import co.edu.uniquindio.proyecto.servicios.excepciones.AdministradorHotelException;
+import co.edu.uniquindio.proyecto.servicios.excepciones.UsuarioException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -71,7 +72,11 @@ public class AdministradorServicioImpl implements IAdministradorServicio {
 
     @Override
     public Persona_Administrador validarLogin(String correo, String password) throws Exception {
-        return null;
+        Optional<Persona_Administrador> administrador = administradorRepo.findByCorreoAndPassword(correo, password);
+        if(administrador.isEmpty()){
+            throw new UsuarioException("Los datos de autenticación son incorrectos");
+        }
+        return administrador.get();
     }
 
     @Override

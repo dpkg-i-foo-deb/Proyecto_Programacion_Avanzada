@@ -4,6 +4,7 @@ import co.edu.uniquindio.proyecto.entidades.Persona_Administrador_Hotel;
 import co.edu.uniquindio.proyecto.repositorios.AdministradorHotelRepo;
 import co.edu.uniquindio.proyecto.servicios.IAdministradorHotelServicio;
 import co.edu.uniquindio.proyecto.servicios.excepciones.AdministradorHotelException;
+import co.edu.uniquindio.proyecto.servicios.excepciones.UsuarioException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -66,6 +67,10 @@ public class AdministradorHotelServicioImpl implements IAdministradorHotelServic
 
     @Override
     public Persona_Administrador_Hotel validarLogin(String correo, String password) throws Exception {
-        return null;
+        Optional<Persona_Administrador_Hotel> administrador_hotel = administradorHotelRepo.findByCorreoAndPassword(correo, password);
+        if(administrador_hotel.isEmpty()){
+            throw new UsuarioException("Los datos de autenticación son incorrectos");
+        }
+        return administrador_hotel.get();
     }
 }

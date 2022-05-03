@@ -91,3 +91,13 @@ INSERT INTO vuelo(aerolinea, estado, ciudad_destino, ciudad_origen) VALUES ("Avi
 INSERT INTO vuelo(aerolinea, estado, ciudad_destino, ciudad_origen) VALUES ("Avianca", "CONFIRMADO", 8, 4);
 INSERT INTO vuelo(aerolinea, estado, ciudad_destino, ciudad_origen) VALUES ("Avianca", "CONFIRMADO", 1, 6);
 INSERT INTO vuelo(aerolinea, estado, ciudad_destino, ciudad_origen) VALUES ("Avianca", "CONFIRMADO", 9, 3);
+
+-- Sillas
+INSERT INTO silla(precio, codigo_vuelo) VALUES (27000, 1);
+INSERT INTO silla(precio, codigo_vuelo) VALUES (18000, 1);
+INSERT INTO silla(precio, codigo_vuelo) VALUES (36000, 2);
+
+-- Reservas-Sillas
+INSERT INTO detalle_reserva_silla(precio, codigo_reserva, codigo_silla) VALUES (25000, 1, 1);
+INSERT INTO detalle_reserva_silla(precio, codigo_reserva, codigo_silla) VALUES (18000, 1, 2);
+INSERT INTO detalle_reserva_silla(precio, codigo_reserva, codigo_silla) VALUES (41000, 2, 3);
