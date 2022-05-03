@@ -13,6 +13,10 @@
 .idea/**/dictionaries
 .idea/**/shelf
 
+#Database thingys
+negocio/src/main/resources/application.properties
+persistencia/src/main/resources/application.properties
+
 # AWS User-specific
 .idea/**/aws.xml
 
