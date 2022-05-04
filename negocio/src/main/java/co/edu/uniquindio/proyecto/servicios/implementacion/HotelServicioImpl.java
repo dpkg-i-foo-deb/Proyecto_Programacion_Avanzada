@@ -162,6 +162,15 @@ public class HotelServicioImpl implements IHotelServicio
         return null;
     }
 
+    @Override
+    public boolean estaPausado(Hotel hotel)
+    {
+        if(hotel.getEstadoHotel().equals(EstadoHotel.PAUSADO))
+            return true;
+
+        return false;
+    }
+
     public List<Hotel> obtenerHotelesPorNombre(String nombre) {
 
         /*

@@ -25,4 +25,6 @@ public interface IHotelServicio
     Hotel pausarHotel(Persona_Administrador_Hotel administrador_hotel, Integer codigo_hotel) throws HotelException;
 
     Hotel reanudarHotel(Persona_Administrador_Hotel administrador_hotel, Integer codigo_hotel) throws HotelException;
+
+    boolean estaPausado(Hotel hotel);
 }
