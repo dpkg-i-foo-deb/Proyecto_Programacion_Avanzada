@@ -3,6 +3,7 @@ package co.edu.uniquindio.proyecto.test;
 import co.edu.uniquindio.proyecto.NegocioApplication;
 import co.edu.uniquindio.proyecto.entidades.Ciudad;
 import co.edu.uniquindio.proyecto.entidades.Departamento;
+import co.edu.uniquindio.proyecto.entidades.EstadoVuelo;
 import co.edu.uniquindio.proyecto.entidades.Vuelo;
 import co.edu.uniquindio.proyecto.servicios.excepciones.VueloException;
 import co.edu.uniquindio.proyecto.servicios.implementacion.CiudadServicioImpl;
@@ -72,8 +73,13 @@ public class VueloServicioTest
         vuelo.setAerolinea("Avianca");
         vuelo.setCiudadOrigen(ciudadOrigen);
         vuelo.setCiudadDestino(ciudadDestino);
+        vuelo.setEstado(EstadoVuelo.CONFIRMADO);
 
-        vuelo = vueloServicio.crearVuelo(vuelo);
+        try {
+            vuelo = vueloServicio.crearVuelo(vuelo);
+        } catch (VueloException e) {
+            System.out.print(e.getMessage());
+        }
 
         Assertions.assertNotNull(vuelo);
     }
@@ -89,8 +95,13 @@ public class VueloServicioTest
         vuelo.setAerolinea("Avianca");
         vuelo.setCiudadOrigen(ciudadOrigen);
         vuelo.setCiudadDestino(ciudadDestino);
+        vuelo.setEstado(EstadoVuelo.CONFIRMADO);
 
-        vuelo = vueloServicio.crearVuelo(vuelo);
+        try {
+            vuelo = vueloServicio.crearVuelo(vuelo);
+        } catch (VueloException e) {
+            System.out.print(e.getMessage());
+        }
 
         Vuelo finalVuelo = vuelo;
 
@@ -108,8 +119,13 @@ public class VueloServicioTest
         vuelo.setAerolinea("Avianca");
         vuelo.setCiudadOrigen(ciudadOrigen);
         vuelo.setCiudadDestino(ciudadDestino);
+        vuelo.setEstado(EstadoVuelo.CONFIRMADO);
 
-        vuelo = vueloServicio.crearVuelo(vuelo);
+        try {
+            vuelo = vueloServicio.crearVuelo(vuelo);
+        } catch (VueloException e) {
+            System.out.print(e.getMessage());
+        }
 
         vuelo.setAerolinea("Avianka");
 
@@ -129,8 +145,13 @@ public class VueloServicioTest
         vuelo.setAerolinea("Avianca");
         vuelo.setCiudadOrigen(ciudadOrigen);
         vuelo.setCiudadDestino(ciudadDestino);
+        vuelo.setEstado(EstadoVuelo.CONFIRMADO);
 
-        vuelo = vueloServicio.crearVuelo(vuelo);
+        try {
+            vuelo = vueloServicio.crearVuelo(vuelo);
+        } catch (VueloException e) {
+            System.out.print(e.getMessage());
+        }
 
         vueloServicio.eliminarVuelo(vuelo);
 
@@ -152,13 +173,23 @@ public class VueloServicioTest
         vuelo1.setAerolinea("Avianca");
         vuelo1.setCiudadOrigen(ciudadOrigen);
         vuelo1.setCiudadDestino(ciudadDestino);
+        vuelo1.setEstado(EstadoVuelo.CONFIRMADO);
 
         vuelo2.setAerolinea("Avianka");
         vuelo2.setCiudadOrigen(ciudadOrigen);
         vuelo2.setCiudadDestino(ciudadDestino);
+        vuelo2.setEstado(EstadoVuelo.CONFIRMADO);
 
-        vueloServicio.crearVuelo(vuelo1);
-        vueloServicio.crearVuelo(vuelo2);
+        try {
+            vueloServicio.crearVuelo(vuelo1);
+        } catch (VueloException e) {
+            System.out.print(e.getMessage());
+        }
+        try {
+            vueloServicio.crearVuelo(vuelo2);
+        } catch (VueloException e) {
+            System.out.print(e.getMessage());
+        }
 
         vuelos=vueloServicio.obtenerVuelos();
 
