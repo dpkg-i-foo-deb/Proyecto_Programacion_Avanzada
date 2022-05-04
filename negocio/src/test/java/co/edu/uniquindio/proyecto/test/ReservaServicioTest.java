@@ -312,4 +312,32 @@ public class ReservaServicioTest
 
         Assertions.assertThrows(ReservaException.class, ()->reservaServicio.reservar(listaHabitaciones, listaSillas, usuario, fechaEntrada, fechaSalida, (short) 1,100 ));
     }
+
+    @Test
+    public void reservarNoHabitacion()
+    {
+        crearDepartamento();
+        crearCiudad();
+        crearUsuario();
+        crearAdministrador();
+        crearHotel();
+        crearVuelo();
+        crearSilla();
+        crearHabitacion();
+
+        Date fechaEntrada;
+        Date fechaSalida;
+        List<Habitacion> listaHabitaciones = new ArrayList<>();
+        List<Silla> listaSillas = new ArrayList<>();
+        Reserva reserva = null;
+
+        fechaEntrada = Date.valueOf(LocalDate.now().plusDays(2));
+        fechaSalida = Date.valueOf(LocalDate.now().plusDays(30));
+
+        listaHabitaciones.add(habitacion);
+        listaHabitaciones.clear();
+        listaSillas.add(silla);
+
+        Assertions.assertThrows(ReservaException.class, ()->reservaServicio.reservar(listaHabitaciones, listaSillas, usuario, fechaEntrada, fechaSalida, (short) 1,1 ));
+    }
 }

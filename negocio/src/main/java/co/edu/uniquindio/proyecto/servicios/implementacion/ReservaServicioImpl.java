@@ -46,7 +46,11 @@ public class ReservaServicioImpl implements IReservaServicio
 
         Hotel hotelTemp;
 
-        //Paso 1, encontrar los hoteles de las habitaciones solicitadas
+        //Se debe reservar al menos una habitación
+        if(habitaciones.isEmpty())
+            throw new ReservaException("Se debe reservar al menos una habitación");
+
+        //Encontrar los hoteles de las habitaciones solicitadas
 
         for (Habitacion habitacionesEntrada : habitaciones)
         {
@@ -54,7 +58,7 @@ public class ReservaServicioImpl implements IReservaServicio
                 hoteles.add(habitacionesEntrada.getHotel());
         }
 
-        //Paso 2, si algún hotel está pausado, no podemos continuar con la reserva, el usuario sólo puede reservar habitaciones de un hotel
+        //Si algún hotel está pausado, no podemos continuar con la reserva, el usuario sólo puede reservar habitaciones de un hotel
 
         hotelTemp=hoteles.get(0);
 
@@ -70,7 +74,7 @@ public class ReservaServicioImpl implements IReservaServicio
             }
         }
 
-        //Paso 4, la capacidad de las habitaciones debe soportar a los acompañantes
+        //La capacidad de las habitaciones debe soportar a los acompañantes
 
         for(Habitacion habitacion : habitaciones)
         {
@@ -80,7 +84,7 @@ public class ReservaServicioImpl implements IReservaServicio
             throw new ReservaException("Las habitaciones solicitadas no cumplen con los acompañantes recibidos");
 
 
-        //Paso 3, crear y guardar la reserva inicial para tener el código
+        //Crear y guardar la reserva inicial para tener el código
         reserva.setUsuario(usuario);
         reserva.setFechaLlegada(fechaLlegada);
         reserva.setFechaSalida(fechaSalida);
@@ -92,7 +96,7 @@ public class ReservaServicioImpl implements IReservaServicio
 
         reserva = reservaRepo.save(reserva);
 
-        //Paso 4, en caso de que se deseen reservar sillas, agregarlas al detalle
+        //En caso de que se deseen reservar sillas, agregarlas al detalle
         if(!sillas.isEmpty())
         {
             for (Silla silla : sillas) {
@@ -105,7 +109,7 @@ public class ReservaServicioImpl implements IReservaServicio
             }
         }
 
-        //Paso 5, agregar las habitaciones deseadas a los detalles de habitación
+        //Agregar las habitaciones deseadas a los detalles de habitación
         for (Habitacion habitacionesFor : habitaciones) {
             detalle_reserva_habitacion = new Detalle_Reserva_Habitacion();
 
