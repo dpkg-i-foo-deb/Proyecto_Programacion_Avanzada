@@ -9,9 +9,6 @@ import co.edu.uniquindio.proyecto.servicios.IHotelServicio;
 import co.edu.uniquindio.proyecto.servicios.excepciones.HotelException;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
-import javax.validation.ConstraintViolationException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import java.util.Optional;
 

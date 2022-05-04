@@ -1,6 +1,5 @@
 package co.edu.uniquindio.proyecto.test;
 
-import co.edu.uniquindio.proyecto.dto.Reserva_TotalGastado_DTO;
 import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.repositorios.*;
 import org.junit.jupiter.api.Assertions;
@@ -10,11 +9,11 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.test.context.jdbc.Sql;
 
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace=AutoConfigureTestDatabase.Replace.NONE)
@@ -37,6 +36,7 @@ public class UsuarioTest
     private Departamento departamento;
     private Persona_Administrador_Hotel adminHotel;
     private Persona_Usuario usuario;
+    private Hotel hotel;
 
     private void crearDepartamento()
     {
@@ -78,7 +78,7 @@ public class UsuarioTest
     }
 
     private void crearHotel() {
-        Hotel hotel = new Hotel("Hotelito", (short) 5, "Calle 45-25", ciudad, adminHotel, EstadoHotel.DISPONIBLE);
+        hotel = new Hotel("Hotelito", (short) 5, "Calle 45-25", ciudad, adminHotel, EstadoHotel.DISPONIBLE);
         hotelRepo.save(hotel);
     }
 
@@ -323,5 +323,45 @@ public class UsuarioTest
 
         usuarios = usuarioRepo.obtenerUsuariosTelefono("3226728811");
         Assertions.assertEquals(0, usuarios.size());
+    }
+
+    @Test
+    public void obtenerHotelesFavoritosUsuario() {
+        crearDepartamento();
+        crearCiudad();
+        crearAdminHotel();
+        crearUsuario();
+        crearHotel();
+
+        usuario.getHotelesFavoritos().add(hotel);
+
+        usuarioRepo.save(usuario);
+
+        List<Hotel> favoritos = usuarioRepo.obtenerHotelesFavoritosUsuario(usuario.getEmail());
+
+        Assertions.assertEquals(1, favoritos.size());
+        Assertions.assertEquals(hotel, favoritos.get(0));
+    }
+
+    @Test
+    public void obtenerHotelFavoritoUsuario() {
+        crearDepartamento();
+        crearCiudad();
+        crearAdminHotel();
+        crearUsuario();
+        crearHotel();
+
+        usuario.getHotelesFavoritos().add(hotel);
+
+        usuarioRepo.save(usuario);
+
+        Optional<Hotel> hotelFavorito = usuarioRepo.obtenerHotelFavoritoUsuario(usuario.getEmail(), "Hotelito");
+
+        Assertions.assertTrue(hotelFavorito.isPresent());
+        Assertions.assertEquals(hotel, hotelFavorito.get());
+
+        hotelFavorito = usuarioRepo.obtenerHotelFavoritoUsuario(usuario.getEmail(), "Amazonía");
+
+        Assertions.assertTrue(hotelFavorito.isEmpty());
     }
 }

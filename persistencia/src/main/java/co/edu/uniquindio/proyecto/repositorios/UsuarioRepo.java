@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.repositorios;
 
+import co.edu.uniquindio.proyecto.entidades.Hotel;
 import co.edu.uniquindio.proyecto.entidades.Persona_Usuario;
 import co.edu.uniquindio.proyecto.entidades.Reserva;
 import co.edu.uniquindio.proyecto.dto.Usuario_Reservas_DTO;
@@ -33,4 +34,10 @@ public interface UsuarioRepo extends JpaRepository <Persona_Usuario, String>
 
     @Query("select distinct u from Persona_Usuario u join u.telefonos t where t = :telefono")
     List<Persona_Usuario> obtenerUsuariosTelefono(String telefono);
+
+    @Query("select h from Persona_Usuario u, in(u.hotelesFavoritos) h where u.email = :email")
+    List<Hotel> obtenerHotelesFavoritosUsuario(String email);
+
+    @Query(value = "select h from Persona_Usuario u, in(u.hotelesFavoritos) h where u.email = :email and lower(h.nombre) like concat('%', lower(:nombreHotel), '%')")
+    List<Hotel> obtenerHotelesFavoritosByName(String email, String nombreHotel);
 }
