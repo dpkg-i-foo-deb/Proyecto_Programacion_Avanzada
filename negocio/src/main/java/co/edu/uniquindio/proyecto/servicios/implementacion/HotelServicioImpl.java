@@ -167,12 +167,6 @@ public class HotelServicioImpl implements IHotelServicio
 
     public List<Hotel> obtenerHotelesPorNombre(String nombre) {
 
-        /*
-        if(hoteles == null) {
-            throw new HotelException("No hay hoteles con ese nombre");
-        }
-        */
-
         return hotelRepo.obtenerHotelesPorNombrePatron(nombre);
     }
 }

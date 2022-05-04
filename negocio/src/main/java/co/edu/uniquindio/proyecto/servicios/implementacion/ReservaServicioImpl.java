@@ -36,13 +36,13 @@ public class ReservaServicioImpl implements IReservaServicio
 
         ArrayList<Hotel> hoteles = new ArrayList<>();
         Reserva reserva = new Reserva();
-        Detalle_Reserva_Habitacion detalle_reserva_habitacion = new Detalle_Reserva_Habitacion();
+        Detalle_Reserva_Habitacion detalle_reserva_habitacion;
         ArrayList<Detalle_Reserva_Habitacion> detalles_habitacion = new ArrayList<>();
         ArrayList<Detalle_Reserva_Silla> detalles_sillas = new ArrayList<>();
-        Detalle_Reserva_Silla detalle_silla = new Detalle_Reserva_Silla();
+        Detalle_Reserva_Silla detalle_silla;
 
-        Integer cantidadPersonas=1+cantidadAcompanantes;
-        Integer capacidad=0;
+        int cantidadPersonas=1+cantidadAcompanantes;
+        int capacidad=0;
 
         Hotel hotelTemp;
 
