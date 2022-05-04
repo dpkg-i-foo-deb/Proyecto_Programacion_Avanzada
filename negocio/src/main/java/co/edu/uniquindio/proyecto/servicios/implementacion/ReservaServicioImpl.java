@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class ReservaImpl implements IReservaServicio
+public class ReservaServicioImpl implements IReservaServicio
 {
     private final ReservaRepo reservaRepo;
     private final DetalleReservaSillaRepo detalleReservaSillaRepo;
@@ -23,7 +23,7 @@ public class ReservaImpl implements IReservaServicio
 
 
 
-    public ReservaImpl(ReservaRepo reservaRepo, DetalleReservaSillaRepo detalleReservaSillaRepo, DetalleReservaHabitacionRepo detalleReservaHabitacionRepo) {
+    public ReservaServicioImpl(ReservaRepo reservaRepo, DetalleReservaSillaRepo detalleReservaSillaRepo, DetalleReservaHabitacionRepo detalleReservaHabitacionRepo) {
         this.reservaRepo = reservaRepo;
         this.detalleReservaSillaRepo = detalleReservaSillaRepo;
         this.detalleReservaHabitacionRepo = detalleReservaHabitacionRepo;
