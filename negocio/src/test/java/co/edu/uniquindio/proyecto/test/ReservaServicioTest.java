@@ -191,7 +191,7 @@ public class ReservaServicioTest
 
         try
         {
-            reserva = reservaServicio.reservar(listaHabitaciones, listaSillas, usuario, fechaEntrada, fechaSalida, (short) 1);
+            reserva = reservaServicio.reservar(listaHabitaciones, listaSillas, usuario, fechaEntrada, fechaSalida, (short) 1,1);
         } catch (ReservaException e) {
             System.out.print(e.getMessage());
         }
@@ -226,7 +226,7 @@ public class ReservaServicioTest
         hotel.setEstadoHotel(EstadoHotel.PAUSADO);
         Assertions.assertDoesNotThrow(()-> hotelServicio.editarHotel(hotel));
 
-        Assertions.assertThrows(ReservaException.class, ()->reservaServicio.reservar(listaHabitaciones, listaSillas, usuario, fechaEntrada, fechaSalida, (short) 1));
+        Assertions.assertThrows(ReservaException.class, ()->reservaServicio.reservar(listaHabitaciones, listaSillas, usuario, fechaEntrada, fechaSalida, (short) 1, 1));
 
     }
 
@@ -282,7 +282,34 @@ public class ReservaServicioTest
         listaSillas.add(silla);
 
 
-        Assertions.assertThrows(ReservaException.class, ()->reservaServicio.reservar(listaHabitaciones, listaSillas, usuario, fechaEntrada, fechaSalida, (short) 1));
+        Assertions.assertThrows(ReservaException.class, ()->reservaServicio.reservar(listaHabitaciones, listaSillas, usuario, fechaEntrada, fechaSalida, (short) 1,1 ));
 
+    }
+
+    @Test
+    public void RegistrarMuchosAcompanantes()
+    {
+        crearDepartamento();
+        crearCiudad();
+        crearUsuario();
+        crearAdministrador();
+        crearHotel();
+        crearVuelo();
+        crearSilla();
+        crearHabitacion();
+
+        Date fechaEntrada;
+        Date fechaSalida;
+        List<Habitacion> listaHabitaciones = new ArrayList<>();
+        List<Silla> listaSillas = new ArrayList<>();
+        Reserva reserva = null;
+
+        fechaEntrada = Date.valueOf(LocalDate.now().plusDays(2));
+        fechaSalida = Date.valueOf(LocalDate.now().plusDays(30));
+
+        listaHabitaciones.add(habitacion);
+        listaSillas.add(silla);
+
+        Assertions.assertThrows(ReservaException.class, ()->reservaServicio.reservar(listaHabitaciones, listaSillas, usuario, fechaEntrada, fechaSalida, (short) 1,100 ));
     }
 }

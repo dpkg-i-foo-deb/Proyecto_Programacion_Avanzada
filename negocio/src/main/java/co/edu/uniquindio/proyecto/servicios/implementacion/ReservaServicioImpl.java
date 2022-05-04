@@ -32,7 +32,7 @@ public class ReservaServicioImpl implements IReservaServicio
     }
 
     @Override
-    public Reserva reservar(List<Habitacion> habitaciones, List<Silla> sillas, Persona_Usuario usuario, java.util.Date fechaLlegada, java.util.Date fechaSalida, short cantidadHabitaciones) throws ReservaException {
+    public Reserva reservar(List<Habitacion> habitaciones, List<Silla> sillas, Persona_Usuario usuario, java.util.Date fechaLlegada, java.util.Date fechaSalida, short cantidadHabitaciones, Integer cantidadAcompanantes) throws ReservaException {
 
         ArrayList<Hotel> hoteles = new ArrayList<>();
         Reserva reserva = new Reserva();
@@ -40,6 +40,9 @@ public class ReservaServicioImpl implements IReservaServicio
         ArrayList<Detalle_Reserva_Habitacion> detalles_habitacion = new ArrayList<>();
         ArrayList<Detalle_Reserva_Silla> detalles_sillas = new ArrayList<>();
         Detalle_Reserva_Silla detalle_silla = new Detalle_Reserva_Silla();
+
+        Integer cantidadPersonas=1+cantidadAcompanantes;
+        Integer capacidad=0;
 
         Hotel hotelTemp;
 
@@ -67,7 +70,14 @@ public class ReservaServicioImpl implements IReservaServicio
             }
         }
 
+        //Paso 4, la capacidad de las habitaciones debe soportar a los acompañantes
 
+        for(Habitacion habitacion : habitaciones)
+        {
+            capacidad+=habitacion.getCapacidad();
+        }
+        if(capacidad-cantidadPersonas<0)
+            throw new ReservaException("Las habitaciones solicitadas no cumplen con los acompañantes recibidos");
 
 
         //Paso 3, crear y guardar la reserva inicial para tener el código
