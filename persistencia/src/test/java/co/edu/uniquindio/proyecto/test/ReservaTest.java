@@ -89,6 +89,7 @@ public class ReservaTest {
 
     private void crearHabitacion() {
         habitacion = new Habitacion(27.00, 5, hotel);
+        hotel.getHabitaciones().add(habitacion);
         habitacionRepo.save(habitacion);
     }
 
@@ -99,17 +100,35 @@ public class ReservaTest {
         crearAdminHotel();
         crearUsuario();
         crearHotel();
+        crearHabitacion();
+
+        Detalle_Reserva_Habitacion detalle_reserva_habitacion= new Detalle_Reserva_Habitacion();
 
         Reserva reserva = new Reserva(
                 Date.valueOf(LocalDate.now().plusDays(1)),
                 Date.valueOf(LocalDate.now().plusDays(30)),
                 Date.valueOf(LocalDate.now()),
-                EstadoReserva.CONFIRMADA, usuario
+                EstadoReserva.CONFIRMADA,
+                usuario
         );
+
         Reserva reservaGuardada = reservaRepo.save(reserva);
+
 
         Assertions.assertNotNull(reservaGuardada);
         Assertions.assertEquals(reserva.getCodigo(), reservaGuardada.getCodigo());
+
+        detalle_reserva_habitacion.setCodigoReserva(reserva);
+
+        detalle_reserva_habitacion.setCodigoHabitacion(habitacion);
+
+        detalle_reserva_habitacion.setCantidadHabitaciones((short) 1);
+
+        detalle_reserva_habitacion.setPrecio(habitacion.getPrecio());
+
+       detalle_reserva_habitacion= detalleReservaHabitacionRepo.save(detalle_reserva_habitacion);
+
+       Assertions.assertNotNull(detalle_reserva_habitacion);
 
         System.out.println(reserva);
     }
@@ -121,6 +140,9 @@ public class ReservaTest {
         crearAdminHotel();
         crearUsuario();
         crearHotel();
+        crearHabitacion();
+
+        Detalle_Reserva_Habitacion detalle_reserva_habitacion= new Detalle_Reserva_Habitacion();
 
         Reserva reserva = new Reserva(
                 Date.valueOf(LocalDate.now().plusDays(1)),
@@ -130,12 +152,29 @@ public class ReservaTest {
         );
         reservaRepo.save(reserva);
 
+
+        detalle_reserva_habitacion.setCodigoReserva(reserva);
+
+        detalle_reserva_habitacion.setCodigoHabitacion(habitacion);
+
+        detalle_reserva_habitacion.setCantidadHabitaciones((short) 1);
+
+        detalle_reserva_habitacion.setPrecio(habitacion.getPrecio());
+
+        detalle_reserva_habitacion= detalleReservaHabitacionRepo.save(detalle_reserva_habitacion);
+
         int codigo = reserva.getCodigo();
+        int codigoDetalle = detalle_reserva_habitacion.getCodigo();
 
         reservaRepo.delete(reserva);
+        detalleReservaHabitacionRepo.delete(detalle_reserva_habitacion);
+
         Optional<Reserva> reservaRecuperada = reservaRepo.findById(codigo);
+        Optional<Detalle_Reserva_Habitacion> detalleRecuperado = detalleReservaHabitacionRepo.findById(codigoDetalle);
+
 
         Assertions.assertFalse(reservaRecuperada.isPresent());
+        Assertions.assertFalse(detalleRecuperado.isPresent());
     }
 
     @Test
@@ -145,6 +184,9 @@ public class ReservaTest {
         crearAdminHotel();
         crearUsuario();
         crearHotel();
+        crearHabitacion();
+
+        Detalle_Reserva_Habitacion detalle_reserva_habitacion= new Detalle_Reserva_Habitacion();
 
         Reserva reserva = new Reserva(
                 Date.valueOf(LocalDate.now().plusDays(1)),
@@ -154,12 +196,28 @@ public class ReservaTest {
         );
         reservaRepo.save(reserva);
 
+        detalle_reserva_habitacion.setCodigoReserva(reserva);
+
+        detalle_reserva_habitacion.setCodigoHabitacion(habitacion);
+
+        detalle_reserva_habitacion.setCantidadHabitaciones((short) 1);
+
+        detalle_reserva_habitacion.setPrecio(habitacion.getPrecio());
+
+        detalle_reserva_habitacion= detalleReservaHabitacionRepo.save(detalle_reserva_habitacion);
+
+        detalle_reserva_habitacion.setPrecio(1000000.00);
+
         reserva.setEstadoReserva(EstadoReserva.FINALIZADA);
 
         Reserva reservaModificada = reservaRepo.save(reserva);
+        Detalle_Reserva_Habitacion detalleModificado = detalleReservaHabitacionRepo.save(detalle_reserva_habitacion);
+
 
         Assertions.assertNotNull(reservaModificada);
+        Assertions.assertNotNull(detalleModificado);
         Assertions.assertEquals(EstadoReserva.FINALIZADA, reservaModificada.getEstadoReserva());
+        Assertions.assertEquals(1000000.00, detalleModificado.getPrecio());
     }
 
     @Test

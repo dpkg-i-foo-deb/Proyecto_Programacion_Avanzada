@@ -6,6 +6,8 @@ dependencies {
     implementation('javax.mail:javax.mail-api:1.6.2')
     implementation('org.thymeleaf:thymeleaf-spring5')
     implementation('org.thymeleaf:thymeleaf')
+    implementation 'junit:junit:4.13.1'
+    implementation 'junit:junit:4.13.1'
 }
 
 test {
