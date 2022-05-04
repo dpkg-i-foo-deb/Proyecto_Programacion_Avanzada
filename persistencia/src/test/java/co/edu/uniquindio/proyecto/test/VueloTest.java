@@ -3,6 +3,7 @@ package co.edu.uniquindio.proyecto.test;
 import co.edu.uniquindio.proyecto.dto.Ciudad_Vuelos_DTO;
 import co.edu.uniquindio.proyecto.entidades.Ciudad;
 import co.edu.uniquindio.proyecto.entidades.Departamento;
+import co.edu.uniquindio.proyecto.entidades.EstadoVuelo;
 import co.edu.uniquindio.proyecto.entidades.Vuelo;
 import co.edu.uniquindio.proyecto.repositorios.*;
 import org.junit.jupiter.api.Assertions;
@@ -63,6 +64,7 @@ public class VueloTest
         Vuelo vuelo = new Vuelo();
 
         vuelo.setAerolinea("Avianca");
+        vuelo.setEstado(EstadoVuelo.CONFIRMADO);
         vuelo.setCiudadOrigen(ciudadOrigen);
         vuelo.setCiudadDestino(ciudadDestino);
 
@@ -81,6 +83,7 @@ public class VueloTest
         int codigo;
 
         vuelo.setAerolinea("Avianca");
+        vuelo.setEstado(EstadoVuelo.CONFIRMADO);
         vuelo.setCiudadOrigen(ciudadOrigen);
         vuelo.setCiudadDestino(ciudadDestino);
 
@@ -104,6 +107,7 @@ public class VueloTest
         Vuelo vuelo = new Vuelo();
 
         vuelo.setAerolinea("Avianca");
+        vuelo.setEstado(EstadoVuelo.CONFIRMADO);
         vuelo.setCiudadOrigen(ciudadOrigen);
         vuelo.setCiudadDestino(ciudadDestino);
 
@@ -128,12 +132,14 @@ public class VueloTest
         List<Vuelo> vuelos;
 
         vuelo1.setAerolinea("Avianca");
+        vuelo1.setEstado(EstadoVuelo.CONFIRMADO);
         vuelo1.setCiudadOrigen(ciudadOrigen);
         vuelo1.setCiudadDestino(ciudadDestino);
 
         vueloRepo.save(vuelo1);
 
         vuelo2.setAerolinea("Abianka");
+        vuelo2.setEstado(EstadoVuelo.CONFIRMADO);
         vuelo2.setCiudadOrigen(ciudadOrigen);
         vuelo2.setCiudadDestino(ciudadDestino);
 
@@ -158,12 +164,14 @@ public class VueloTest
         List<Vuelo> vuelos;
 
         vuelo1.setAerolinea("Avianca");
+        vuelo1.setEstado(EstadoVuelo.CONFIRMADO);
         vuelo1.setCiudadOrigen(ciudadOrigen);
         vuelo1.setCiudadDestino(ciudadDestino);
 
         vueloRepo.save(vuelo1);
 
         vuelo2.setAerolinea("Abianka");
+        vuelo2.setEstado(EstadoVuelo.CONFIRMADO);
         vuelo2.setCiudadOrigen(ciudadOrigen);
         vuelo2.setCiudadDestino(ciudadDestino);
 
