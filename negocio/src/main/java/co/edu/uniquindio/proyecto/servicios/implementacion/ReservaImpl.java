@@ -42,9 +42,9 @@ public class ReservaImpl implements IReservaServicio
 
         for (int contador = 0; contador < hoteles.size(); contador++)
         {
-            if(true)
+            if(hoteles.get(contador).getEstadoHotel().equals(EstadoHotel.PAUSADO))
             {
-
+                throw new ReservaException("El hotel de la habitación solicitada está pausada");
             }
         }
 
