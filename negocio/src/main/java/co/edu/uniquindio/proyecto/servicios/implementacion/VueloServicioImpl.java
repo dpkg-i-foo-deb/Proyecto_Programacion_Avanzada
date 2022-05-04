@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.servicios.implementacion;
 
+import co.edu.uniquindio.proyecto.entidades.Ciudad;
 import co.edu.uniquindio.proyecto.entidades.Vuelo;
 import co.edu.uniquindio.proyecto.repositorios.VueloRepo;
 import co.edu.uniquindio.proyecto.servicios.IVueloServicio;
@@ -16,8 +17,14 @@ public class VueloServicioImpl implements IVueloServicio
     public VueloServicioImpl(VueloRepo vueloRepo) { this.vueloRepo = vueloRepo; }
 
     @Override
-    public Vuelo crearVuelo(Vuelo vuelo)
+    public Vuelo crearVuelo(Vuelo vuelo) throws VueloException
     {
+        Ciudad ciudadOrigen = vuelo.getCiudadOrigen();
+        Ciudad ciudadDestino = vuelo.getCiudadDestino();
+
+        if(ciudadOrigen.equals(ciudadDestino))
+            throw new VueloException("La ciudad origen y destino deben ser diferentes");
+
         return vueloRepo.save(vuelo);
     }
 

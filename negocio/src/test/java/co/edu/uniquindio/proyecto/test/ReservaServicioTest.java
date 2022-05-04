@@ -2,10 +2,7 @@ package co.edu.uniquindio.proyecto.test;
 
 import co.edu.uniquindio.proyecto.NegocioApplication;
 import co.edu.uniquindio.proyecto.entidades.*;
-import co.edu.uniquindio.proyecto.servicios.excepciones.AdministradorHotelException;
-import co.edu.uniquindio.proyecto.servicios.excepciones.HotelException;
-import co.edu.uniquindio.proyecto.servicios.excepciones.ReservaException;
-import co.edu.uniquindio.proyecto.servicios.excepciones.UsuarioException;
+import co.edu.uniquindio.proyecto.servicios.excepciones.*;
 import co.edu.uniquindio.proyecto.servicios.implementacion.*;
 import net.bytebuddy.asm.Advice;
 import org.junit.jupiter.api.Assertions;
@@ -56,6 +53,7 @@ public class ReservaServicioTest
 
     private Departamento departamento;
     private Ciudad ciudad;
+    private Ciudad ciudad1;
     private Persona_Usuario usuario;
     private Silla silla;
     private Hotel hotel;
@@ -78,7 +76,12 @@ public class ReservaServicioTest
         ciudad.setNombre("Armenia");
         ciudad.setDepartamento(departamento);
 
+        ciudad1 = new Ciudad();
+        ciudad1.setNombre("Montenegro");
+        ciudad1.setDepartamento(departamento);
+
         ciudadServicio.registrarCiudad(ciudad);
+        ciudadServicio.registrarCiudad(ciudad1);
     }
 
     private void crearUsuario()
@@ -150,11 +153,15 @@ public class ReservaServicioTest
     {
         vuelo = new Vuelo();
         vuelo.setCiudadOrigen(ciudad);
-        vuelo.setCiudadDestino(ciudad);
+        vuelo.setCiudadDestino(ciudad1);
         vuelo.setAerolinea("Avianca");
         vuelo.setEstado(EstadoVuelo.CONFIRMADO);
 
-        vueloServicio.crearVuelo(vuelo);
+        try {
+            vueloServicio.crearVuelo(vuelo);
+        } catch (VueloException e) {
+            System.out.print(e.getMessage());
+        }
     }
 
     private void crearSilla()
@@ -365,7 +372,7 @@ public class ReservaServicioTest
         vuelo2.setEstado(EstadoVuelo.CONFIRMADO);
         vuelo2.setAerolinea("Avianka");
         vuelo2.setCiudadOrigen(ciudad);
-        vuelo2.setCiudadDestino(ciudad);
+        vuelo2.setCiudadDestino(ciudad1);
 
         silla2.setVuelo(vuelo2);
         silla2.setPrecio(10.0);
