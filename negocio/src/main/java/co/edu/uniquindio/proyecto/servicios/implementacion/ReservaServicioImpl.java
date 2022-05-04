@@ -46,6 +46,8 @@ public class ReservaServicioImpl implements IReservaServicio
 
         Hotel hotelTemp;
 
+        Vuelo vueloTemp;
+
         //Se debe reservar al menos una habitación
         if(habitaciones.isEmpty())
             throw new ReservaException("Se debe reservar al menos una habitación");
@@ -96,6 +98,16 @@ public class ReservaServicioImpl implements IReservaServicio
 
         reserva = reservaRepo.save(reserva);
 
+        //Sólo se debe reservar un vuelo por reserva
+        vueloTemp=sillas.get(0).getVuelo();
+
+        for(Silla silla: sillas)
+        {
+            if(!silla.getVuelo().equals(vueloTemp))
+                throw new ReservaException("No se puede reservar más de un vuelo por reserva");
+        }
+
+
         //En caso de que se deseen reservar sillas, agregarlas al detalle
         if(!sillas.isEmpty())
         {
@@ -122,8 +134,6 @@ public class ReservaServicioImpl implements IReservaServicio
         }
 
         reserva.setListaHabitaciones(detalles_habitacion);
-
-
 
         return reserva;
     }

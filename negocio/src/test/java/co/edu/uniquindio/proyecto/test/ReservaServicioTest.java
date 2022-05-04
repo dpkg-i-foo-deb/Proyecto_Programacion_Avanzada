@@ -231,7 +231,7 @@ public class ReservaServicioTest
     }
 
     @Test
-    public void reservarMultiplesHoteles()
+    public void reservarMultiplesHotelesTest()
     {
         crearDepartamento();
         crearCiudad();
@@ -287,7 +287,7 @@ public class ReservaServicioTest
     }
 
     @Test
-    public void RegistrarMuchosAcompanantes()
+    public void RegistrarMuchosAcompanantesTest()
     {
         crearDepartamento();
         crearCiudad();
@@ -314,7 +314,7 @@ public class ReservaServicioTest
     }
 
     @Test
-    public void reservarNoHabitacion()
+    public void reservarNoHabitacionTest()
     {
         crearDepartamento();
         crearCiudad();
@@ -339,5 +339,46 @@ public class ReservaServicioTest
         listaSillas.add(silla);
 
         Assertions.assertThrows(ReservaException.class, ()->reservaServicio.reservar(listaHabitaciones, listaSillas, usuario, fechaEntrada, fechaSalida, (short) 1,1 ));
+    }
+
+    @Test
+    public void reservarMuchosVuelosTest()
+    {
+        crearDepartamento();
+        crearCiudad();
+        crearUsuario();
+        crearAdministrador();
+        crearHotel();
+        crearVuelo();
+        crearSilla();
+        crearHabitacion();
+
+        Date fechaEntrada;
+        Date fechaSalida;
+        List<Habitacion> listaHabitaciones = new ArrayList<>();
+        List<Silla> listaSillas = new ArrayList<>();
+        Reserva reserva = null;
+
+        Silla silla2= new Silla();
+        Vuelo vuelo2= new Vuelo();
+
+        vuelo2.setEstado(EstadoVuelo.CONFIRMADO);
+        vuelo2.setAerolinea("Avianka");
+        vuelo2.setCiudadOrigen(ciudad);
+        vuelo2.setCiudadDestino(ciudad);
+
+        silla2.setVuelo(vuelo2);
+        silla2.setPrecio(10.0);
+
+        fechaEntrada = Date.valueOf(LocalDate.now().plusDays(2));
+        fechaSalida = Date.valueOf(LocalDate.now().plusDays(30));
+
+        listaHabitaciones.add(habitacion);
+        listaSillas.add(silla);
+        listaSillas.add(silla2);
+
+
+        Assertions.assertThrows(ReservaException.class,()->reservaServicio.reservar(listaHabitaciones, listaSillas, usuario, fechaEntrada, fechaSalida, (short) 1,1));
+
     }
 }
