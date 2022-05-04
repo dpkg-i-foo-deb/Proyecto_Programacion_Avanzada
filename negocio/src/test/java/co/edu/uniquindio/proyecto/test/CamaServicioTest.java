@@ -49,7 +49,21 @@ public class CamaServicioTest {
 
             cama.setHabitacion(habitacion6);
 
-            Assertions.assertEquals(habitacion6, cama.getHabitacion());
+            Cama camaModificada = camaServicio.actualizarCama(cama);
+
+            Assertions.assertEquals(habitacion6, camaModificada.getHabitacion());
+        } catch (CamaException e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void eliminarCamaTest() {
+        try {
+            Cama cama = camaServicio.obtenerCama(1);
+            camaServicio.eliminarCama(cama);
+
+            Assertions.assertThrows(CamaException.class, () -> camaServicio.obtenerCama(1));
         } catch (CamaException e) {
             Assertions.fail(e.getMessage());
         }

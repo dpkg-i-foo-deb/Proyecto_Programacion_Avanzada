@@ -5,6 +5,7 @@ import co.edu.uniquindio.proyecto.entidades.Persona_Usuario;
 import co.edu.uniquindio.proyecto.repositorios.HotelRepo;
 import co.edu.uniquindio.proyecto.repositorios.UsuarioRepo;
 import co.edu.uniquindio.proyecto.servicios.IUsuarioServicio;
+import co.edu.uniquindio.proyecto.servicios.excepciones.AdministradorHotelException;
 import co.edu.uniquindio.proyecto.servicios.excepciones.HotelException;
 import co.edu.uniquindio.proyecto.servicios.excepciones.UsuarioException;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,34 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
 
         return usuarioRepo.save(usuario);
     }
+
+    @Override
+    public Persona_Usuario actualizarUsuario(Persona_Usuario usuarioActualizado) throws UsuarioException {
+        Persona_Usuario usuario = usuarioRepo.getPersona_UsuarioByCedula(usuarioActualizado.getCedula());
+
+        if ( usuario == null ) {
+            throw new UsuarioException("El usuario no está registrado");
+        }
+
+        return usuarioRepo.save(usuarioActualizado);
+    }
+
+    @Override
+    public void eliminarUsuario(String cedula) throws UsuarioException {
+        Persona_Usuario usuario = usuarioRepo.getPersona_UsuarioByCedula(cedula);
+
+        if ( usuario == null ) {
+            throw new UsuarioException("No hay registro que coincida con la cédula especificada");
+        }
+
+        usuarioRepo.deleteById(cedula);
+    }
+
+    @Override
+    public List<Persona_Usuario> obtenerUsuarios() {
+        return usuarioRepo.findAll();
+    }
+
 
     @Override
     public Persona_Usuario obtenerUsuarioByCedula(String cedula) throws UsuarioException {

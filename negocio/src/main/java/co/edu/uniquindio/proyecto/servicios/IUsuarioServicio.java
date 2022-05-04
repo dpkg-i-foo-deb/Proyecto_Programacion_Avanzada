@@ -9,7 +9,13 @@ import javax.mail.MessagingException;
 import java.util.List;
 
 public interface IUsuarioServicio {
-    Persona_Usuario registrarUsuario(Persona_Usuario usuario) throws Exception;
+    Persona_Usuario registrarUsuario(Persona_Usuario usuario) throws UsuarioException;
+
+    Persona_Usuario actualizarUsuario(Persona_Usuario usuarioActualizado) throws UsuarioException;
+
+    void eliminarUsuario(String cedula) throws UsuarioException;
+
+    List<Persona_Usuario> obtenerUsuarios();
 
     Persona_Usuario obtenerUsuarioByEmail(String email) throws UsuarioException;
 

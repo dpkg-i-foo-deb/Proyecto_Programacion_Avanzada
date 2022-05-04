@@ -13,7 +13,6 @@ import org.springframework.data.domain.PageRequest;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace=AutoConfigureTestDatabase.Replace.NONE)
@@ -355,13 +354,12 @@ public class UsuarioTest
 
         usuarioRepo.save(usuario);
 
-        Optional<Hotel> hotelFavorito = usuarioRepo.obtenerHotelFavoritoUsuario(usuario.getEmail(), "Hotelito");
+        List<Hotel> favoritos = usuarioRepo.obtenerHotelesFavoritosByName(usuario.getEmail(), "Hotelito");
 
-        Assertions.assertTrue(hotelFavorito.isPresent());
-        Assertions.assertEquals(hotel, hotelFavorito.get());
+        Assertions.assertEquals(1, favoritos.size());
 
-        hotelFavorito = usuarioRepo.obtenerHotelFavoritoUsuario(usuario.getEmail(), "Amazonía");
+        favoritos = usuarioRepo.obtenerHotelesFavoritosByName(usuario.getEmail(), "Amazonía");
 
-        Assertions.assertTrue(hotelFavorito.isEmpty());
+        Assertions.assertTrue(favoritos.isEmpty());
     }
 }

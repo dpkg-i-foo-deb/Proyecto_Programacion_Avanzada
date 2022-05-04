@@ -64,6 +64,47 @@ public class UsuarioServicioTest {
     }
 
     @Test
+    public void actualizarUsuarioTest() {
+        try {
+            Persona_Usuario usuario = usuarioServicio.obtenerUsuarioByCedula("44444");
+            usuario.getTelefonos().add("3114657182");
+            usuario.getTelefonos().add("3156658182");
+
+            usuarioServicio.actualizarUsuario(usuario);
+
+            usuario = usuarioServicio.obtenerUsuarioByCedula("44444");
+
+            Assertions.assertEquals(2, usuario.getTelefonos().size());
+        } catch (UsuarioException e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void eliminarUsuarioTest() {
+        try {
+            Ciudad ciudad = ciudadRepo.getById(1);
+            Persona_Usuario usuario = new Persona_Usuario("99999", "Julian Gaviria", "julian@email.com", "juli123", ciudad);
+            usuarioServicio.registrarUsuario(usuario);
+
+            usuarioServicio.eliminarUsuario("99999");
+
+            Assertions.assertThrows(UsuarioException.class, () -> usuarioServicio.obtenerUsuarioByCedula("99999"));
+
+            Assertions.assertThrows(UsuarioException.class, () -> usuarioServicio.obtenerUsuarioByCedula("888888"));
+        } catch (UsuarioException e) {
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void obtenerUsuarios() {
+        List<Persona_Usuario> usuarios = usuarioServicio.obtenerUsuarios();
+
+        Assertions.assertEquals(2, usuarios.size());
+    }
+
+    @Test
     public void obtenerUsuarioByEmail() {
         try {
             Persona_Usuario usuario = usuarioServicio.obtenerUsuarioByEmail("miguel@email.com");
