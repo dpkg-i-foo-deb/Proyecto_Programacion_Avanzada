@@ -53,9 +53,8 @@ public class DepartamentoServicioImpl implements IDepartamentoServicio
     }
 
     @Override
-    public boolean eliminarDepartamento(Departamento departamento)
+    public void eliminarDepartamento(Departamento departamento)
     {
         departamentoRepo.delete(departamento);
-        return true;
     }
 }

@@ -10,8 +10,6 @@ import co.edu.uniquindio.proyecto.servicios.IReservaServicio;
 import co.edu.uniquindio.proyecto.servicios.excepciones.ReservaException;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

@@ -6,8 +6,6 @@ import co.edu.uniquindio.proyecto.entidades.Reserva;
 import co.edu.uniquindio.proyecto.entidades.Silla;
 import co.edu.uniquindio.proyecto.servicios.excepciones.ReservaException;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 import java.util.Date;
 import java.util.List;
 

@@ -3,10 +3,8 @@ package co.edu.uniquindio.proyecto.servicios.implementacion;
 import co.edu.uniquindio.proyecto.entidades.Cama;
 import co.edu.uniquindio.proyecto.entidades.Habitacion;
 import co.edu.uniquindio.proyecto.repositorios.CamaRepo;
-import co.edu.uniquindio.proyecto.repositorios.HabitacionRepo;
 import co.edu.uniquindio.proyecto.servicios.ICamaServicio;
 import co.edu.uniquindio.proyecto.servicios.excepciones.CamaException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

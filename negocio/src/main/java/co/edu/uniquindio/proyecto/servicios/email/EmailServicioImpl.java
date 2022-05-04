@@ -104,16 +104,16 @@ public class EmailServicioImpl implements EmailServicio {
         Context template = setTemplateRecuperacion(email);
         String htmlBody = thymeleafTemplateEngine.process("email-recuperacion-template.html", template);
 
-        sendMessage(email.getEmail(), "Recuperación de contraseña UniTravel", htmlBody);
+        sendMessage(email.getEmail(), htmlBody);
     }
 
-    private void sendMessage(String emailTo, String subject, String htmlBody) throws MessagingException {
+    private void sendMessage(String emailTo, String htmlBody) throws MessagingException {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
         helper.setFrom("stiven13072000@gmail.com");
         helper.setTo(emailTo);
-        helper.setSubject(subject);
+        helper.setSubject("Recuperación de contraseña UniTravel");
         helper.setText(htmlBody, true);
         helper.addInline("logo.jpg", new ClassPathResource("static/images/EmailLogo.jpg"));
 

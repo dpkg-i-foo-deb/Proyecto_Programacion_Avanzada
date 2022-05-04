@@ -1,10 +1,8 @@
 package co.edu.uniquindio.proyecto.repositorios;
 
 import co.edu.uniquindio.proyecto.dto.Ciudad_TotalHoteles_DTO;
-import co.edu.uniquindio.proyecto.dto.Ciudad_Vuelos_DTO;
 import co.edu.uniquindio.proyecto.entidades.Ciudad;
 import co.edu.uniquindio.proyecto.entidades.Hotel;
-import co.edu.uniquindio.proyecto.entidades.Vuelo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
