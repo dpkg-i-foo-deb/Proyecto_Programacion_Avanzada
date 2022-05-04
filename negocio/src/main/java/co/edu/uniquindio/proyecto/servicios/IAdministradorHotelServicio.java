@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.servicios;
 
+import co.edu.uniquindio.proyecto.entidades.Cama;
 import co.edu.uniquindio.proyecto.entidades.Persona_Administrador_Hotel;
 import co.edu.uniquindio.proyecto.servicios.excepciones.AdministradorHotelException;
 
@@ -18,4 +19,6 @@ public interface IAdministradorHotelServicio {
     List<Persona_Administrador_Hotel> listarAdministradoresHotel();
 
     Persona_Administrador_Hotel validarLogin(String correo, String password) throws Exception;
+
+    Cama registrarCama(Cama cama) throws Exception;
 }

@@ -1,7 +1,9 @@
 package co.edu.uniquindio.proyecto.servicios.implementacion;
 
+import co.edu.uniquindio.proyecto.entidades.Cama;
 import co.edu.uniquindio.proyecto.entidades.Persona_Administrador_Hotel;
 import co.edu.uniquindio.proyecto.repositorios.AdministradorHotelRepo;
+import co.edu.uniquindio.proyecto.repositorios.CamaRepo;
 import co.edu.uniquindio.proyecto.servicios.IAdministradorHotelServicio;
 import co.edu.uniquindio.proyecto.servicios.excepciones.AdministradorHotelException;
 import co.edu.uniquindio.proyecto.servicios.excepciones.UsuarioException;
@@ -14,9 +16,11 @@ import java.util.Optional;
 public class AdministradorHotelServicioImpl implements IAdministradorHotelServicio {
 
     private final AdministradorHotelRepo administradorHotelRepo;
+    private final CamaRepo camaRepo;
 
-    public AdministradorHotelServicioImpl(AdministradorHotelRepo administradorHotelRepo) {
+    public AdministradorHotelServicioImpl(AdministradorHotelRepo administradorHotelRepo, CamaRepo camaRepo) {
         this.administradorHotelRepo = administradorHotelRepo;
+        this.camaRepo = camaRepo;
     }
 
     @Override
@@ -73,4 +77,13 @@ public class AdministradorHotelServicioImpl implements IAdministradorHotelServic
         }
         return administrador_hotel.get();
     }
+
+    @Override
+    public Cama registrarCama(Cama cama) throws Exception{
+        if(cama.getHabitacion().getCodigoHabitacion() == null){
+            throw new UsuarioException("Esta habitación no se encuentra registrada");
+        }
+        return camaRepo.save(cama);
+    }
+
 }

@@ -1,12 +1,12 @@
 package co.edu.uniquindio.proyecto.test;
 
 import co.edu.uniquindio.proyecto.NegocioApplication;
-import co.edu.uniquindio.proyecto.entidades.Ciudad;
-import co.edu.uniquindio.proyecto.entidades.Persona_Administrador_Hotel;
-import co.edu.uniquindio.proyecto.entidades.Persona_Usuario;
+import co.edu.uniquindio.proyecto.entidades.*;
+import co.edu.uniquindio.proyecto.repositorios.AdministradorHotelRepo;
 import co.edu.uniquindio.proyecto.repositorios.CiudadRepo;
 import co.edu.uniquindio.proyecto.servicios.excepciones.AdministradorHotelException;
 import co.edu.uniquindio.proyecto.servicios.implementacion.AdministradorHotelServicioImpl;
+import co.edu.uniquindio.proyecto.servicios.implementacion.CamaServicioImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
@@ -25,7 +25,13 @@ public class AdministradorHotelServicioTest {
     private AdministradorHotelServicioImpl administradorHotelServicio;
 
     @Autowired
+    private CamaServicioImpl camaServicio;
+
+    @Autowired
     private CiudadRepo ciudadRepo;
+
+    @Autowired
+    private AdministradorHotelRepo administradorHotelRepo;
 
     @Test
     public void registrarAdministradorHotelTest() {
@@ -119,6 +125,29 @@ public class AdministradorHotelServicioTest {
             Assertions.fail(e.getMessage());
         }
 
+    }
+
+    @Test
+    public void registrarCama (){
+        Ciudad ciudad1 = ciudadRepo.getById(8);
+        Persona_Administrador_Hotel adminHotel = administradorHotelRepo.getById("22222");
+
+        Hotel hotel1 = new Hotel(
+                "Hotel Cacique",
+                (short) 3,
+                "Calle 18",
+                ciudad1,
+                adminHotel,
+                EstadoHotel.DISPONIBLE
+        );
+        Habitacion habitacion = new Habitacion( 15.000, 5, hotel1 );
+        Cama cama = new Cama("sencilla", habitacion);
+        try {
+            Cama cama1 = camaServicio.registrarCama(cama);
+            Assertions.assertNotNull(cama1);
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
     }
 
 }
