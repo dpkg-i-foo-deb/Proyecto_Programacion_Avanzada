@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IVueloServicio
 {
-    Vuelo crearVuelo(Vuelo vuelo);
+    Vuelo crearVuelo(Vuelo vuelo) throws VueloException;
 
     List<Vuelo> obtenerVuelos();
 
