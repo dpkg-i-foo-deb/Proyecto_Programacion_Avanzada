@@ -193,7 +193,8 @@ public class VueloServicioTest
 
         vuelos=vueloServicio.obtenerVuelos();
 
-        Assertions.assertEquals(2,vuelos.size());
+        Assertions.assertTrue(vuelos.contains(vuelo1));
+        Assertions.assertTrue(vuelos.contains(vuelo2));
     }
 
 }
