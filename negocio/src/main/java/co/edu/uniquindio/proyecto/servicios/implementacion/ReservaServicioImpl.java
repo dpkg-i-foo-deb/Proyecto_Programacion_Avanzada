@@ -33,7 +33,7 @@ public class ReservaServicioImpl implements IReservaServicio
 
     @Override
     public Reserva reservar(List<Habitacion> habitaciones, List<Silla> sillas, Persona_Usuario usuario, java.util.Date fechaLlegada, java.util.Date fechaSalida, short cantidadHabitaciones) throws ReservaException {
-        //Paso 1, encontrar los hoteles de las habitaciones solicitadas
+
         ArrayList<Hotel> hoteles = new ArrayList<>();
         Reserva reserva = new Reserva();
         Detalle_Reserva_Habitacion detalle_reserva_habitacion = new Detalle_Reserva_Habitacion();
@@ -41,18 +41,32 @@ public class ReservaServicioImpl implements IReservaServicio
         ArrayList<Detalle_Reserva_Silla> detalles_sillas = new ArrayList<>();
         Detalle_Reserva_Silla detalle_silla = new Detalle_Reserva_Silla();
 
-        for (Habitacion habitacionesEntrada : habitaciones) {
+        Hotel hotelTemp;
+
+        //Paso 1, encontrar los hoteles de las habitaciones solicitadas
+
+        for (Habitacion habitacionesEntrada : habitaciones)
+        {
             if (!hoteles.contains(habitacionesEntrada.getHotel()))
                 hoteles.add(habitacionesEntrada.getHotel());
         }
 
-        //Paso 2, si algún hotel está pausado, no podemos continuar con la reserva
+        //Paso 2, si algún hotel está pausado, no podemos continuar con la reserva, el usuario sólo puede reservar habitaciones de un hotel
+
+        hotelTemp=hoteles.get(0);
+
+        for(Hotel hotel : hoteles)
+        {
+            if(!hotel.equals(hotelTemp))
+                throw new ReservaException("Cada reserva incluye únicamente un hotel");
+        }
 
         for (Hotel hotelesFor : hoteles) {
             if (hotelesFor.getEstadoHotel().equals(EstadoHotel.PAUSADO)) {
                 throw new ReservaException("El hotel de la habitación solicitada está pausada");
             }
         }
+
 
 
 

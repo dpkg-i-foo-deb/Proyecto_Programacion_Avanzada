@@ -229,4 +229,60 @@ public class ReservaServicioTest
         Assertions.assertThrows(ReservaException.class, ()->reservaServicio.reservar(listaHabitaciones, listaSillas, usuario, fechaEntrada, fechaSalida, (short) 1));
 
     }
+
+    @Test
+    public void reservarMultiplesHoteles()
+    {
+        crearDepartamento();
+        crearCiudad();
+        crearUsuario();
+        crearAdministrador();
+        crearHotel();
+        crearVuelo();
+        crearSilla();
+        crearHabitacion();
+
+        Date fechaEntrada;
+        Date fechaSalida;
+        List<Habitacion> listaHabitaciones = new ArrayList<>();
+        List<Silla> listaSillas = new ArrayList<>();
+        Reserva reserva = null;
+
+        fechaEntrada = Date.valueOf(LocalDate.now().plusDays(2));
+        fechaSalida = Date.valueOf(LocalDate.now().plusDays(30));
+
+        Hotel hotel1 = new Hotel();
+        hotel1.setNombre("hotelito1");
+        hotel1.setCiudad(ciudad);
+
+        hotel1.setAdministrador(administrador_hotel);
+
+        hotel1.setDireccion("CLL 1");
+        hotel1.setTelefono("12345");
+        hotel1.setEstadoHotel(EstadoHotel.DISPONIBLE);
+        hotel1.setNumeroEstrellas((short) 1);
+
+
+        try {
+            hotelServicio.registrarHotel(hotel1);
+        } catch (HotelException e) {
+            throw new RuntimeException(e);
+        }
+
+        Habitacion habitacion1 = new Habitacion();
+        habitacion1.setHotel(hotel1);
+        habitacion1.setCapacidad(2);
+        habitacion1.setPrecio(100000.0);
+
+        habitacion1 = habitacionServicio.registrarHabitacion(habitacion1);
+
+
+        listaHabitaciones.add(habitacion);
+        listaHabitaciones.add(habitacion1);
+        listaSillas.add(silla);
+
+
+        Assertions.assertThrows(ReservaException.class, ()->reservaServicio.reservar(listaHabitaciones, listaSillas, usuario, fechaEntrada, fechaSalida, (short) 1));
+
+    }
 }
