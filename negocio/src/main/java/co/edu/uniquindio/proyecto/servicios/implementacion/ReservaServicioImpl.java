@@ -54,10 +54,12 @@ public class ReservaServicioImpl implements IReservaServicio
         }
 
 
+
         //Paso 3, crear y guardar la reserva inicial para tener el código
         reserva.setUsuario(usuario);
         reserva.setFechaLlegada(fechaLlegada);
         reserva.setFechaSalida(fechaSalida);
+        reserva.setFechaReserva(fechaReserva);
         reserva.setEstadoReserva(EstadoReserva.CONFIRMADA);
         reserva.setListaSillas(detalles_sillas);
         reserva.setListaHabitaciones(detalles_habitacion);
@@ -91,6 +93,8 @@ public class ReservaServicioImpl implements IReservaServicio
         }
 
         reserva.setListaHabitaciones(detalles_habitacion);
+
+
 
         return reserva;
     }
