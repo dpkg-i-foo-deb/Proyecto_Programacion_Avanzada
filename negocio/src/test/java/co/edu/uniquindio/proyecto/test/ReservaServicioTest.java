@@ -191,7 +191,7 @@ public class ReservaServicioTest
 
         try
         {
-            reserva = reservaServicio.reservar(listaHabitaciones, listaSillas, usuario, fechaEntrada, fechaSalida, Date.valueOf(LocalDate.now()), (short) 1);
+            reserva = reservaServicio.reservar(listaHabitaciones, listaSillas, usuario, fechaEntrada, fechaSalida, (short) 1);
         } catch (ReservaException e) {
             System.out.print(e.getMessage());
         }
@@ -226,7 +226,7 @@ public class ReservaServicioTest
         hotel.setEstadoHotel(EstadoHotel.PAUSADO);
         Assertions.assertDoesNotThrow(()-> hotelServicio.editarHotel(hotel));
 
-        Assertions.assertThrows(ReservaException.class, ()->reservaServicio.reservar(listaHabitaciones, listaSillas, usuario, fechaEntrada, fechaSalida, Date.valueOf(LocalDate.now()), (short) 1));
+        Assertions.assertThrows(ReservaException.class, ()->reservaServicio.reservar(listaHabitaciones, listaSillas, usuario, fechaEntrada, fechaSalida, (short) 1));
 
     }
 }

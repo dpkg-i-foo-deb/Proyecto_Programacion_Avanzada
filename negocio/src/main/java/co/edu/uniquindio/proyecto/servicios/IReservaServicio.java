@@ -11,5 +11,5 @@ import java.util.List;
 
 public interface IReservaServicio
 {
-    Reserva reservar(List<Habitacion> habitaciones, List<Silla> sillas, Persona_Usuario usuario, Date fechaLlegada, Date fechaSalida, Date fechaReserva, short cantidadHabitaciones) throws ReservaException;
+    Reserva reservar(List<Habitacion> habitaciones, List<Silla> sillas, Persona_Usuario usuario, Date fechaLlegada, Date fechaSalida, short cantidadHabitaciones) throws ReservaException;
 }

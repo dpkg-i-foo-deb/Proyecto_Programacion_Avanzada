@@ -9,9 +9,10 @@ import co.edu.uniquindio.proyecto.repositorios.ReservaRepo;
 import co.edu.uniquindio.proyecto.servicios.IReservaServicio;
 import co.edu.uniquindio.proyecto.servicios.excepciones.ReservaException;
 import org.springframework.stereotype.Service;
+import java.sql.Date;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -31,7 +32,7 @@ public class ReservaServicioImpl implements IReservaServicio
     }
 
     @Override
-    public Reserva reservar(List<Habitacion> habitaciones, List<Silla> sillas, Persona_Usuario usuario, Date fechaLlegada, Date fechaSalida, Date fechaReserva, short cantidadHabitaciones) throws ReservaException {
+    public Reserva reservar(List<Habitacion> habitaciones, List<Silla> sillas, Persona_Usuario usuario, java.util.Date fechaLlegada, java.util.Date fechaSalida, short cantidadHabitaciones) throws ReservaException {
         //Paso 1, encontrar los hoteles de las habitaciones solicitadas
         ArrayList<Hotel> hoteles = new ArrayList<>();
         Reserva reserva = new Reserva();
@@ -59,7 +60,7 @@ public class ReservaServicioImpl implements IReservaServicio
         reserva.setUsuario(usuario);
         reserva.setFechaLlegada(fechaLlegada);
         reserva.setFechaSalida(fechaSalida);
-        reserva.setFechaReserva(fechaReserva);
+        reserva.setFechaReserva(Date.valueOf(LocalDate.now()));
         reserva.setEstadoReserva(EstadoReserva.CONFIRMADA);
         reserva.setListaSillas(detalles_sillas);
         reserva.setListaHabitaciones(detalles_habitacion);
