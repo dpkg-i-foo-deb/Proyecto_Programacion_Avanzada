@@ -93,7 +93,6 @@ public class UsuarioServicioTest {
         } catch(Exception e) {
             Assertions.fail(e.getMessage());
         }
-
     }
 
     @Test
