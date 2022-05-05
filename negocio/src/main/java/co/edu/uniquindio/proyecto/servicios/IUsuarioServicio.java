@@ -23,7 +23,7 @@ public interface IUsuarioServicio {
 
     Comentario crearComentario (Comentario comentario, String cedula, Integer codigo) throws Exception;
 
-    Comentario editarComentario (Comentario comentario, String cedula, Integer codigo) throws Exception;
+    Comentario editarComentario (Comentario comentarioAntiguo, Comentario comentarioNuevo, String cedula, Integer codigo) throws Exception;
 
     void eliminarComentario (Comentario comentario, String cedula, Integer codigo) throws Exception;
 

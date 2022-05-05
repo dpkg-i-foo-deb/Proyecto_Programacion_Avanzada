@@ -88,18 +88,20 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
     }
 
     @Override
-    public Comentario editarComentario(Comentario comentario, String cedula, Integer codigo) throws Exception {
+    public Comentario editarComentario(Comentario comentarioAntiguo, Comentario comentarioNuevo, String cedula, Integer codigo) throws Exception {
         Optional<Persona_Usuario> usuario = usuarioRepo.findById(cedula);
         Optional<Hotel> hotel = hotelRepo.findById(codigo);
         if(usuario.isEmpty() && hotel.isEmpty()){
             throw new UsuarioException("El usuario no existe");
         }
 
-        boolean existe = comentarioRepo.existsById(comentario.getCodigo());
+        boolean existe = comentarioRepo.existsById(comentarioAntiguo.getCodigo());
         if ( !existe ) {
             throw new UsuarioException("El comentario no existe");
         }
-        return comentarioRepo.save(comentario);
+
+        comentarioRepo.delete(comentarioAntiguo);
+        return comentarioRepo.save(comentarioNuevo);
     }
 
 
@@ -116,6 +118,5 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
         }
         comentarioRepo.deleteById(comentario.getCodigo());
     }
-
 
 }
