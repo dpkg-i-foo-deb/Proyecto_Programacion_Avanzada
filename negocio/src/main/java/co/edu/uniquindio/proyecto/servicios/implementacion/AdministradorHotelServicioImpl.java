@@ -43,6 +43,8 @@ public class AdministradorHotelServicioImpl implements IAdministradorHotelServic
 
         administrador_hotel.setEstadoPersona(EstadoPersona.INACTIVA);
 
+        administrador_hotel=  administradorHotelRepo.save(administrador_hotel);
+
         return administrador_hotel;
     }
 
