@@ -51,7 +51,7 @@ public class  Persona implements Serializable
 
     //El estado por defecto de la persona debe ser activo por defecto
     @Enumerated(EnumType.STRING)
-    private EstadoPersona estadoPersona = EstadoPersona.ACTIVA;
+    private EstadoPersona estadoPersona;
 
     public Persona(String cedula, String nombreCompleto, String email, String contrasena, Ciudad ciudad) {
         this.cedula = cedula;
@@ -59,6 +59,7 @@ public class  Persona implements Serializable
         this.email = email;
         this.contrasena = contrasena;
         this.ciudad = ciudad;
+        this.estadoPersona = EstadoPersona.ACTIVA;
     }
 
 }
