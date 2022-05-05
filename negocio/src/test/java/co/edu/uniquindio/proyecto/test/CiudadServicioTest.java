@@ -128,6 +128,7 @@ public class CiudadServicioTest
 
         ciudades = ciudadServicio.obtenerCiudades();
 
-        Assertions.assertEquals(2,ciudades.size());
+        Assertions.assertTrue(ciudades.contains(ciudad1));
+        Assertions.assertTrue(ciudades.contains(ciudad2));
     }
 }

@@ -1,11 +1,11 @@
 package co.edu.uniquindio.proyecto.servicios.implementacion;
 
 import co.edu.uniquindio.proyecto.entidades.Hotel;
+import co.edu.uniquindio.proyecto.entidades.EstadoPersona;
 import co.edu.uniquindio.proyecto.entidades.Persona_Usuario;
 import co.edu.uniquindio.proyecto.repositorios.HotelRepo;
 import co.edu.uniquindio.proyecto.repositorios.UsuarioRepo;
 import co.edu.uniquindio.proyecto.servicios.IUsuarioServicio;
-import co.edu.uniquindio.proyecto.servicios.excepciones.AdministradorHotelException;
 import co.edu.uniquindio.proyecto.servicios.excepciones.HotelException;
 import co.edu.uniquindio.proyecto.servicios.excepciones.UsuarioException;
 import org.springframework.stereotype.Service;
@@ -44,22 +44,37 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
         return usuarioRepo.save(usuarioActualizado);
     }
 
+    /**
+     * Elimina el registro de la base de datos.
+     * @param cedula Cedula del usuario. <String>
+     * @throws UsuarioException Si el usuario no existe.
+     */
     @Override
     public void eliminarUsuario(String cedula) throws UsuarioException {
         Persona_Usuario usuario = usuarioRepo.getPersona_UsuarioByCedula(cedula);
 
-        if ( usuario == null ) {
+        if (usuario == null) {
             throw new UsuarioException("No hay registro que coincida con la cédula especificada");
         }
 
         usuarioRepo.deleteById(cedula);
     }
 
+    /**
+     * Modifica el estado del registro a INACTIVO para realizar un borrado lógico.
+     * @param usuario Usuario.
+     * @return Usuario borrado.
+     */
+    @Override
+    public Persona_Usuario eliminarUsuario(Persona_Usuario usuario) {
+        usuario.setEstadoPersona(EstadoPersona.INACTIVA);
+        return usuarioRepo.save(usuario);
+    }
+
     @Override
     public List<Persona_Usuario> obtenerUsuarios() {
         return usuarioRepo.findAll();
     }
-
 
     @Override
     public Persona_Usuario obtenerUsuarioByCedula(String cedula) throws UsuarioException {

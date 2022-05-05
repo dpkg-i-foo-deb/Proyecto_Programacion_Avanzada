@@ -61,6 +61,7 @@ public class SillaTest
         vuelo.setEstado(EstadoVuelo.CONFIRMADO);
         vuelo.setCiudadOrigen(ciudadOrigen);
         vuelo.setCiudadDestino(ciudadDestino);
+        vuelo.setEstado(EstadoVuelo.CONFIRMADO);
 
         vuelo = vueloRepo.save(vuelo);
     }

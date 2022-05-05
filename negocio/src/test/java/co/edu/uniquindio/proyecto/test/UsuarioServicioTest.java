@@ -7,7 +7,11 @@ import co.edu.uniquindio.proyecto.entidades.Persona_Usuario;
 import co.edu.uniquindio.proyecto.repositorios.CiudadRepo;
 import co.edu.uniquindio.proyecto.repositorios.HotelRepo;
 import co.edu.uniquindio.proyecto.servicios.excepciones.HotelException;
+import co.edu.uniquindio.proyecto.entidades.Departamento;
+import co.edu.uniquindio.proyecto.entidades.EstadoPersona;
 import co.edu.uniquindio.proyecto.servicios.excepciones.UsuarioException;
+import co.edu.uniquindio.proyecto.servicios.implementacion.CiudadServicioImpl;
+import co.edu.uniquindio.proyecto.servicios.implementacion.DepartamentoServicioImpl;
 import co.edu.uniquindio.proyecto.servicios.implementacion.UsuarioServicioImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -31,6 +35,35 @@ public class UsuarioServicioTest {
 
     @Autowired
     private HotelRepo hotelRepo;
+
+    @Autowired
+    private DepartamentoServicioImpl departamentoServicio;
+
+    @Autowired
+    private CiudadServicioImpl ciudadServicio;
+
+    private Departamento departamento;
+
+    private Ciudad ciudad;
+
+
+    private void crearDepartamento()
+    {
+        departamento = new Departamento();
+        departamento.setNombre("Quindio");
+
+        departamentoServicio.registrarDepartamento(departamento);
+    }
+
+    private void crearCiudad()
+    {
+        ciudad = new Ciudad();
+        ciudad.setNombre("Armenia");
+        ciudad.setDepartamento(departamento);
+
+
+        ciudadServicio.registrarCiudad(ciudad);
+    }
 
     @Test
     public void registrarUsuarioTest() {
@@ -201,5 +234,34 @@ public class UsuarioServicioTest {
         } catch (UsuarioException e) {
             Assertions.fail(e.getMessage());
         }
+    }
+
+    @Test
+    public void eliminarUsuarioLogicoTest()
+    {
+        crearDepartamento();
+        crearCiudad();
+
+        Persona_Usuario usuario = new Persona_Usuario(
+                "12345",
+                "Stiven Herrera",
+                "stiven@email.com",
+                "usuario123",
+                ciudad
+        );
+
+        try
+        {
+            usuario = usuarioServicio.registrarUsuario(usuario);
+        } catch (UsuarioException e)
+        {
+            System.out.print(e.getMessage());
+        }
+
+        Assertions.assertNotNull(usuario);
+
+        usuario = usuarioServicio.eliminarUsuario(usuario);
+
+        Assertions.assertEquals(EstadoPersona.INACTIVA, usuario.getEstadoPersona());
     }
 }

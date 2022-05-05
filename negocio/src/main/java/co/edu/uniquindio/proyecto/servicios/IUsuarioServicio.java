@@ -5,7 +5,6 @@ import co.edu.uniquindio.proyecto.entidades.Persona_Usuario;
 import co.edu.uniquindio.proyecto.servicios.excepciones.HotelException;
 import co.edu.uniquindio.proyecto.servicios.excepciones.UsuarioException;
 
-import javax.mail.MessagingException;
 import java.util.List;
 
 public interface IUsuarioServicio {
@@ -14,6 +13,8 @@ public interface IUsuarioServicio {
     Persona_Usuario actualizarUsuario(Persona_Usuario usuarioActualizado) throws UsuarioException;
 
     void eliminarUsuario(String cedula) throws UsuarioException;
+
+    Persona_Usuario eliminarUsuario(Persona_Usuario usuario);
 
     List<Persona_Usuario> obtenerUsuarios();
 

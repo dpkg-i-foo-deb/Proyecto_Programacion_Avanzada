@@ -15,5 +15,5 @@ public interface IDepartamentoServicio
 
     Departamento editarDepartamento(Departamento departamento) throws DepartamentoException;
 
-    boolean eliminarDepartamento(Departamento departamento);
+    void eliminarDepartamento(Departamento departamento);
 }

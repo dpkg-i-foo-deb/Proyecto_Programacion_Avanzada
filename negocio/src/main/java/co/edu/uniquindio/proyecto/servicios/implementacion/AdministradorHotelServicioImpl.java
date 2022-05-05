@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.servicios.implementacion;
 
+import co.edu.uniquindio.proyecto.entidades.EstadoPersona;
 import co.edu.uniquindio.proyecto.entidades.Persona_Administrador_Hotel;
 import co.edu.uniquindio.proyecto.repositorios.AdministradorHotelRepo;
 import co.edu.uniquindio.proyecto.servicios.IAdministradorHotelServicio;
@@ -31,14 +32,20 @@ public class AdministradorHotelServicioImpl implements IAdministradorHotelServic
     }
 
     @Override
-    public void eliminarAdministradorHotel(String cedula) throws AdministradorHotelException {
-        boolean existe = administradorHotelRepo.existsByCedula(cedula);
+    public Persona_Administrador_Hotel eliminarAdministradorHotel(String cedula) throws AdministradorHotelException {
 
-        if ( !existe ) {
+        //TODO hacer esto mas optimo
+        Persona_Administrador_Hotel administrador_hotel = administradorHotelRepo.findByCedula(cedula).orElse(null);
+
+        if ( administrador_hotel == null ) {
             throw new AdministradorHotelException("No hay registro que coincida con la cédula especificada");
         }
 
-        administradorHotelRepo.deleteById(cedula);
+        administrador_hotel.setEstadoPersona(EstadoPersona.INACTIVA);
+
+        administradorHotelRepo.save(administrador_hotel);
+
+        return administrador_hotel;
     }
 
     @Override

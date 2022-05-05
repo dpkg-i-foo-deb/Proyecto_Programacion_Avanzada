@@ -67,6 +67,7 @@ public class VueloTest
         vuelo.setEstado(EstadoVuelo.CONFIRMADO);
         vuelo.setCiudadOrigen(ciudadOrigen);
         vuelo.setCiudadDestino(ciudadDestino);
+        vuelo.setEstado(EstadoVuelo.CONFIRMADO);
 
         vuelo = vueloRepo.save(vuelo);
 
@@ -86,6 +87,7 @@ public class VueloTest
         vuelo.setEstado(EstadoVuelo.CONFIRMADO);
         vuelo.setCiudadOrigen(ciudadOrigen);
         vuelo.setCiudadDestino(ciudadDestino);
+        vuelo.setEstado(EstadoVuelo.CONFIRMADO);
 
         vuelo = vueloRepo.save(vuelo);
 
@@ -110,6 +112,7 @@ public class VueloTest
         vuelo.setEstado(EstadoVuelo.CONFIRMADO);
         vuelo.setCiudadOrigen(ciudadOrigen);
         vuelo.setCiudadDestino(ciudadDestino);
+        vuelo.setEstado(EstadoVuelo.CONFIRMADO);
 
         vuelo = vueloRepo.save(vuelo);
 
@@ -135,6 +138,7 @@ public class VueloTest
         vuelo1.setEstado(EstadoVuelo.CONFIRMADO);
         vuelo1.setCiudadOrigen(ciudadOrigen);
         vuelo1.setCiudadDestino(ciudadDestino);
+        vuelo1.setEstado(EstadoVuelo.CONFIRMADO);
 
         vueloRepo.save(vuelo1);
 
@@ -142,6 +146,8 @@ public class VueloTest
         vuelo2.setEstado(EstadoVuelo.CONFIRMADO);
         vuelo2.setCiudadOrigen(ciudadOrigen);
         vuelo2.setCiudadDestino(ciudadDestino);
+        vuelo2.setEstado(EstadoVuelo.CONFIRMADO);
+
 
         vueloRepo.save(vuelo2);
 
@@ -167,6 +173,7 @@ public class VueloTest
         vuelo1.setEstado(EstadoVuelo.CONFIRMADO);
         vuelo1.setCiudadOrigen(ciudadOrigen);
         vuelo1.setCiudadDestino(ciudadDestino);
+        vuelo1.setEstado(EstadoVuelo.CONFIRMADO);
 
         vueloRepo.save(vuelo1);
 
@@ -174,6 +181,8 @@ public class VueloTest
         vuelo2.setEstado(EstadoVuelo.CONFIRMADO);
         vuelo2.setCiudadOrigen(ciudadOrigen);
         vuelo2.setCiudadDestino(ciudadDestino);
+        vuelo2.setEstado(EstadoVuelo.CONFIRMADO);
+
 
         vueloRepo.save(vuelo2);
 

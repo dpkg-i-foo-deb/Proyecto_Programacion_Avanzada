@@ -49,12 +49,17 @@ public class  Persona implements Serializable
     @JoinColumn(name = "codigo_ciudad")
     private Ciudad ciudad;
 
+    //El estado por defecto de la persona debe ser activo por defecto
+    @Enumerated(EnumType.STRING)
+    private EstadoPersona estadoPersona;
+
     public Persona(String cedula, String nombreCompleto, String email, String contrasena, Ciudad ciudad) {
         this.cedula = cedula;
         this.nombreCompleto = nombreCompleto;
         this.email = email;
         this.contrasena = contrasena;
         this.ciudad = ciudad;
+        this.estadoPersona = EstadoPersona.ACTIVA;
     }
 
 }
