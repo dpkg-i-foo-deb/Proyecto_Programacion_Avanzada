@@ -51,7 +51,6 @@ public class  Persona implements Serializable
 
     //El estado por defecto de la persona debe ser activo por defecto
     @Enumerated(EnumType.STRING)
-    @NotNull
     private EstadoPersona estadoPersona = EstadoPersona.ACTIVA;
 
     public Persona(String cedula, String nombreCompleto, String email, String contrasena, Ciudad ciudad) {
