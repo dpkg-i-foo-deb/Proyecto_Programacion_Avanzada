@@ -2,6 +2,7 @@ package co.edu.uniquindio.proyecto.test;
 
 import co.edu.uniquindio.proyecto.NegocioApplication;
 import co.edu.uniquindio.proyecto.entidades.Ciudad;
+import co.edu.uniquindio.proyecto.entidades.EstadoPersona;
 import co.edu.uniquindio.proyecto.entidades.Persona_Administrador_Hotel;
 import co.edu.uniquindio.proyecto.repositorios.CiudadRepo;
 import co.edu.uniquindio.proyecto.servicios.excepciones.AdministradorHotelException;
@@ -48,14 +49,19 @@ public class AdministradorHotelServicioTest {
     }
 
     @Test
-    public void eliminarAdministradoHotelTest() {
-        try {
-            administradorHotelServicio.eliminarAdministradorHotel("24680");
-
-            Assertions.assertTrue(true);
-        } catch (AdministradorHotelException e) {
-            Assertions.fail(e.getMessage());
+    public void eliminarAdministradoHotelTest()
+    {
+        Persona_Administrador_Hotel administrador_hotel=null;
+        try
+        {
+            administrador_hotel= administradorHotelServicio.eliminarAdministradorHotel("24680");
+        } catch (AdministradorHotelException e)
+        {
+            System.out.print(e.getMessage());
         }
+
+        Assertions.assertEquals(EstadoPersona.INACTIVA, administrador_hotel.getEstadoPersona());
+
     }
 
     @Test
