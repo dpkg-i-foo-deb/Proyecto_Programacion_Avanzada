@@ -2,6 +2,7 @@ package co.edu.uniquindio.proyecto.repositorios;
 
 import co.edu.uniquindio.proyecto.dto.Reserva_Detalles_DTO;
 import co.edu.uniquindio.proyecto.dto.Reserva_TotalGastado_DTO;
+import co.edu.uniquindio.proyecto.entidades.Persona_Usuario;
 import co.edu.uniquindio.proyecto.entidades.Reserva;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -24,4 +25,6 @@ public interface ReservaRepo extends JpaRepository<Reserva, Integer> {
 
     @Query("select new co.edu.uniquindio.proyecto.dto.Reserva_Detalles_DTO(r, h, s) from Reserva r left join r.listaHabitaciones h on r = h.codigoReserva left join r.listaSillas s on r = s.codigoReserva where r.usuario.cedula = :cedula")
     List<Reserva_Detalles_DTO> obtenerDetallesPorReserva(String cedula);
+
+    List<Reserva> findReservasByUsuario(Persona_Usuario usuario);
 }

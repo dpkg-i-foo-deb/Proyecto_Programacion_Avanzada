@@ -137,4 +137,23 @@ public class ReservaServicioImpl implements IReservaServicio
 
         return reserva;
     }
+
+    @Override
+    public Reserva editarReserva(Reserva reserva)
+    {
+        return reservaRepo.save(reserva);
+    }
+
+    @Override
+    public Reserva eliminarReserva(Reserva reserva)
+    {
+        reserva.setEstadoReserva(EstadoReserva.CANCELADA);
+        return reservaRepo.save(reserva);
+    }
+
+    @Override
+    public List<Reserva> obtenerReservas(Persona_Usuario usuario)
+    {
+        return reservaRepo.findReservasByUsuario(usuario);
+    }
 }

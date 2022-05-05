@@ -1,9 +1,6 @@
 package co.edu.uniquindio.proyecto.test;
 
-import co.edu.uniquindio.proyecto.entidades.Ciudad;
-import co.edu.uniquindio.proyecto.entidades.Departamento;
-import co.edu.uniquindio.proyecto.entidades.Silla;
-import co.edu.uniquindio.proyecto.entidades.Vuelo;
+import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.repositorios.CiudadRepo;
 import co.edu.uniquindio.proyecto.repositorios.DepartamentoRepo;
 import co.edu.uniquindio.proyecto.repositorios.SillaRepo;
@@ -63,6 +60,7 @@ public class SillaTest
         vuelo.setAerolinea("Avianca");
         vuelo.setCiudadOrigen(ciudadOrigen);
         vuelo.setCiudadDestino(ciudadDestino);
+        vuelo.setEstado(EstadoVuelo.CONFIRMADO);
 
         vuelo = vueloRepo.save(vuelo);
     }
