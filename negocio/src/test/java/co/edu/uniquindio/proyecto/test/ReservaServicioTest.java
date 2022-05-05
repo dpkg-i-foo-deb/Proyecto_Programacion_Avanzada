@@ -387,4 +387,115 @@ public class ReservaServicioTest
         Assertions.assertThrows(ReservaException.class,()->reservaServicio.reservar(listaHabitaciones, listaSillas, usuario, fechaEntrada, fechaSalida, (short) 1,1));
 
     }
+
+    @Test
+    public void editarReservaTest() {
+        crearDepartamento();
+        crearCiudad();
+        crearUsuario();
+        crearAdministrador();
+        crearHotel();
+        crearVuelo();
+        crearSilla();
+        crearHabitacion();
+
+        Date fechaEntrada;
+        Date fechaSalida;
+        List<Habitacion> listaHabitaciones = new ArrayList<>();
+        List<Silla> listaSillas = new ArrayList<>();
+        Reserva reserva = null;
+
+        fechaEntrada = Date.valueOf(LocalDate.now().plusDays(2));
+        fechaSalida = Date.valueOf(LocalDate.now().plusDays(30));
+
+        listaHabitaciones.add(habitacion);
+        listaSillas.add(silla);
+
+        try
+        {
+            reserva = reservaServicio.reservar(listaHabitaciones, listaSillas, usuario, fechaEntrada, fechaSalida, (short) 1,1);
+        } catch (ReservaException e) {
+            System.out.print(e.getMessage());
+        }
+        Assertions.assertNotNull(reserva);
+
+        reserva.setFechaSalida(Date.valueOf(LocalDate.now().plusDays(90)));
+
+        reserva = reservaServicio.editarReserva(reserva);
+
+        Assertions.assertEquals(Date.valueOf(LocalDate.now().plusDays(90)),reserva.getFechaSalida());
+
+    }
+
+    @Test
+    public void eliminarReservaTest()
+    {
+        crearDepartamento();
+        crearCiudad();
+        crearUsuario();
+        crearAdministrador();
+        crearHotel();
+        crearVuelo();
+        crearSilla();
+        crearHabitacion();
+
+        Date fechaEntrada;
+        Date fechaSalida;
+        List<Habitacion> listaHabitaciones = new ArrayList<>();
+        List<Silla> listaSillas = new ArrayList<>();
+        Reserva reserva = null;
+
+        fechaEntrada = Date.valueOf(LocalDate.now().plusDays(2));
+        fechaSalida = Date.valueOf(LocalDate.now().plusDays(30));
+
+        listaHabitaciones.add(habitacion);
+        listaSillas.add(silla);
+
+        try
+        {
+            reserva = reservaServicio.reservar(listaHabitaciones, listaSillas, usuario, fechaEntrada, fechaSalida, (short) 1,1);
+        } catch (ReservaException e) {
+            System.out.print(e.getMessage());
+        }
+        Assertions.assertNotNull(reserva);
+
+        reserva = reservaServicio.eliminarReserva(reserva);
+
+        Assertions.assertEquals(EstadoReserva.CANCELADA,reserva.getEstadoReserva());
+    }
+
+    @Test
+    public void obtenerReservas()
+    {
+        crearDepartamento();
+        crearCiudad();
+        crearUsuario();
+        crearAdministrador();
+        crearHotel();
+        crearVuelo();
+        crearSilla();
+        crearHabitacion();
+
+        Date fechaEntrada;
+        Date fechaSalida;
+        List<Habitacion> listaHabitaciones = new ArrayList<>();
+        List<Silla> listaSillas = new ArrayList<>();
+        Reserva reserva = null;
+
+        fechaEntrada = Date.valueOf(LocalDate.now().plusDays(2));
+        fechaSalida = Date.valueOf(LocalDate.now().plusDays(30));
+
+        listaHabitaciones.add(habitacion);
+        listaSillas.add(silla);
+
+        try
+        {
+            reserva = reservaServicio.reservar(listaHabitaciones, listaSillas, usuario, fechaEntrada, fechaSalida, (short) 1,1);
+        } catch (ReservaException e) {
+            System.out.print(e.getMessage());
+        }
+        Assertions.assertNotNull(reserva);
+
+        Assertions.assertEquals(1, reservaServicio.obtenerReservas(usuario).size());
+    }
 }
