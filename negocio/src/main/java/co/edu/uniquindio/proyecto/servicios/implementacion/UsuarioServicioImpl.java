@@ -7,6 +7,7 @@ import co.edu.uniquindio.proyecto.repositorios.ComentarioRepo;
 import co.edu.uniquindio.proyecto.repositorios.HotelRepo;
 import co.edu.uniquindio.proyecto.repositorios.UsuarioRepo;
 import co.edu.uniquindio.proyecto.servicios.IUsuarioServicio;
+import co.edu.uniquindio.proyecto.servicios.excepciones.ComentarioException;
 import co.edu.uniquindio.proyecto.servicios.excepciones.UsuarioException;
 import org.springframework.stereotype.Service;
 
@@ -107,8 +108,8 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
 
     public void eliminarComentario(Comentario comentario, String cedula, Integer codigo) throws Exception {
         Optional<Persona_Usuario> usuario = usuarioRepo.findById(cedula);
-        Optional<Hotel> hotel = hotelRepo.findById(codigo);
-        if(usuario.isEmpty() && hotel.isEmpty()){
+        hotelRepo.findById(codigo).orElseThrow(()-> new UsuarioException("El hotel no existe"));
+        if(usuario.isEmpty()){
             throw new UsuarioException("El usuario no existe");
         }
 
@@ -116,7 +117,14 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
         if ( !existe ) {
             throw new UsuarioException("El comentario no existe");
         }
-        comentarioRepo.deleteById(comentario.getCodigo());
+        comentarioRepo.delete(comentario);
     }
 
+    public Comentario obtenerComentario(Integer codigo) throws ComentarioException {
+        Optional<Comentario> comentario = comentarioRepo.findById(codigo);
+        if ( comentario.isEmpty() ) {
+            throw new ComentarioException("No hay registro que coincida con el comentario especificado");
+        }
+        return comentario.get();
+    }
 }

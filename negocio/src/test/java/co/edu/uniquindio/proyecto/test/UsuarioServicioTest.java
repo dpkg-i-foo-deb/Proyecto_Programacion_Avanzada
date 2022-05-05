@@ -3,6 +3,7 @@ package co.edu.uniquindio.proyecto.test;
 import co.edu.uniquindio.proyecto.NegocioApplication;
 import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.repositorios.*;
+import co.edu.uniquindio.proyecto.servicios.excepciones.ComentarioException;
 import co.edu.uniquindio.proyecto.servicios.excepciones.UsuarioException;
 import co.edu.uniquindio.proyecto.servicios.implementacion.ComentarioServicioImpl;
 import co.edu.uniquindio.proyecto.servicios.implementacion.HotelServicioImpl;
@@ -172,7 +173,7 @@ public class UsuarioServicioTest {
 
         try {
             usuarioServicio.eliminarComentario(comentario, usuario.getCedula(), hotel.getCodigoHotel());
-            Assertions.assertNull(comentarioRepo.getById(1));
+            Assertions.assertThrows(ComentarioException.class, () -> usuarioServicio.obtenerComentario(1));
         }catch (Exception e){
             Assertions.fail(e.getMessage());
         }
