@@ -4,6 +4,8 @@ import co.edu.uniquindio.proyecto.NegocioApplication;
 import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.repositorios.AdministradorHotelRepo;
 import co.edu.uniquindio.proyecto.repositorios.CiudadRepo;
+import co.edu.uniquindio.proyecto.repositorios.HabitacionRepo;
+import co.edu.uniquindio.proyecto.repositorios.HotelRepo;
 import co.edu.uniquindio.proyecto.servicios.excepciones.AdministradorHotelException;
 import co.edu.uniquindio.proyecto.servicios.implementacion.AdministradorHotelServicioImpl;
 import co.edu.uniquindio.proyecto.servicios.implementacion.CamaServicioImpl;
@@ -29,6 +31,12 @@ public class AdministradorHotelServicioTest {
 
     @Autowired
     private CiudadRepo ciudadRepo;
+
+    @Autowired
+    private HabitacionRepo habitacionRepo;
+
+    @Autowired
+    private HotelRepo hotelRepo;
 
     @Autowired
     private AdministradorHotelRepo administradorHotelRepo;
@@ -145,6 +153,20 @@ public class AdministradorHotelServicioTest {
         try {
             Cama cama1 = camaServicio.registrarCama(cama);
             Assertions.assertNotNull(cama1);
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void registrarHabitacion(){
+        Hotel hotel = hotelRepo.getById(1);
+        hotelRepo.save(hotel);
+        Habitacion habitacion = new Habitacion(15000.00, 3, hotel);
+
+        try {
+            habitacion = administradorHotelServicio.registrarHabitacion(habitacion);
+            Assertions.assertNotNull(habitacion);
         }catch (Exception e){
             Assertions.fail(e.getMessage());
         }

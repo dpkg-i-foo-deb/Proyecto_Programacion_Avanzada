@@ -1,9 +1,11 @@
 package co.edu.uniquindio.proyecto.servicios.implementacion;
 
 import co.edu.uniquindio.proyecto.entidades.Cama;
+import co.edu.uniquindio.proyecto.entidades.Habitacion;
 import co.edu.uniquindio.proyecto.entidades.Persona_Administrador_Hotel;
 import co.edu.uniquindio.proyecto.repositorios.AdministradorHotelRepo;
 import co.edu.uniquindio.proyecto.repositorios.CamaRepo;
+import co.edu.uniquindio.proyecto.repositorios.HabitacionRepo;
 import co.edu.uniquindio.proyecto.servicios.IAdministradorHotelServicio;
 import co.edu.uniquindio.proyecto.servicios.excepciones.AdministradorHotelException;
 import co.edu.uniquindio.proyecto.servicios.excepciones.UsuarioException;
@@ -17,10 +19,12 @@ public class AdministradorHotelServicioImpl implements IAdministradorHotelServic
 
     private final AdministradorHotelRepo administradorHotelRepo;
     private final CamaRepo camaRepo;
+    private final HabitacionRepo habitacionRepo;
 
-    public AdministradorHotelServicioImpl(AdministradorHotelRepo administradorHotelRepo, CamaRepo camaRepo) {
+    public AdministradorHotelServicioImpl(AdministradorHotelRepo administradorHotelRepo, CamaRepo camaRepo, HabitacionRepo habitacionRepo) {
         this.administradorHotelRepo = administradorHotelRepo;
         this.camaRepo = camaRepo;
+        this.habitacionRepo = habitacionRepo;
     }
 
     @Override
@@ -73,7 +77,7 @@ public class AdministradorHotelServicioImpl implements IAdministradorHotelServic
     public Persona_Administrador_Hotel validarLogin(String correo, String password) throws Exception {
         Optional<Persona_Administrador_Hotel> administrador_hotel = administradorHotelRepo.findByEmailAndContrasena(correo, password);
         if(administrador_hotel.isEmpty()){
-            throw new UsuarioException("Los datos de autenticación son incorrectos");
+            throw new AdministradorHotelException("Los datos de autenticación son incorrectos");
         }
         return administrador_hotel.get();
     }
@@ -81,9 +85,17 @@ public class AdministradorHotelServicioImpl implements IAdministradorHotelServic
     @Override
     public Cama registrarCama(Cama cama) throws Exception{
         if(cama.getHabitacion().getCodigoHabitacion() == null){
-            throw new UsuarioException("Esta habitación no se encuentra registrada");
+            throw new AdministradorHotelException("Esta habitación no se encuentra registrada");
         }
         return camaRepo.save(cama);
+    }
+
+    @Override
+    public Habitacion registrarHabitacion(Habitacion habitacion) throws Exception {
+        if(habitacion.getHotel().getCodigoHotel() == null){
+            throw new AdministradorHotelException("Este hotel no se encuentra registrado");
+        }
+        return habitacionRepo.save(habitacion);
     }
 
 }
