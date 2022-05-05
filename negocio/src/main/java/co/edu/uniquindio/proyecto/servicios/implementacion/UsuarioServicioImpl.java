@@ -1,10 +1,13 @@
 package co.edu.uniquindio.proyecto.servicios.implementacion;
 
+import co.edu.uniquindio.proyecto.entidades.EstadoPersona;
 import co.edu.uniquindio.proyecto.entidades.Persona_Usuario;
 import co.edu.uniquindio.proyecto.repositorios.UsuarioRepo;
 import co.edu.uniquindio.proyecto.servicios.IUsuarioServicio;
 import co.edu.uniquindio.proyecto.servicios.excepciones.UsuarioException;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UsuarioServicioImpl implements IUsuarioServicio {
@@ -23,5 +26,21 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
         }
 
         return usuarioRepo.save(usuario);
+    }
+
+    @Override
+    public Persona_Usuario eliminarUsuario(Persona_Usuario usuario) {
+        usuario.setEstadoPersona(EstadoPersona.INACTIVA);
+        return usuarioRepo.save(usuario);
+    }
+
+    @Override
+    public Persona_Usuario editarUsuario(Persona_Usuario usuario) {
+        return usuarioRepo.save(usuario);
+    }
+
+    @Override
+    public List<Persona_Usuario> obtenerUsuarios() {
+        return usuarioRepo.findAll();
     }
 }
