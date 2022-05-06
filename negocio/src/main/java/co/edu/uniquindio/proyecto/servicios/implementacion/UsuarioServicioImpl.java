@@ -1,11 +1,8 @@
 package co.edu.uniquindio.proyecto.servicios.implementacion;
 
-import co.edu.uniquindio.proyecto.entidades.Comentario;
-import co.edu.uniquindio.proyecto.entidades.Hotel;
-import co.edu.uniquindio.proyecto.entidades.Persona_Usuario;
-import co.edu.uniquindio.proyecto.repositorios.ComentarioRepo;
-import co.edu.uniquindio.proyecto.repositorios.HotelRepo;
-import co.edu.uniquindio.proyecto.repositorios.UsuarioRepo;
+import co.edu.uniquindio.proyecto.entidades.*;
+import co.edu.uniquindio.proyecto.entidades.intermediate.Detalle_Reserva_Silla;
+import co.edu.uniquindio.proyecto.repositorios.*;
 import co.edu.uniquindio.proyecto.servicios.IUsuarioServicio;
 import co.edu.uniquindio.proyecto.servicios.excepciones.ComentarioException;
 import co.edu.uniquindio.proyecto.servicios.excepciones.UsuarioException;
@@ -19,11 +16,19 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
     private final UsuarioRepo usuarioRepo;
     private final ComentarioRepo comentarioRepo;
     private final HotelRepo hotelRepo;
+    private final VueloRepo vueloRepo;
+    private final SillaRepo sillaRepo;
+    private final ReservaRepo reservaRepo;
+    private final DetalleReservaSillaRepo detalleReservaSillaRepo;
 
-    public UsuarioServicioImpl(UsuarioRepo usuarioRepo, ComentarioRepo comentarioRepo, HotelRepo hotelRepo) {
+    public UsuarioServicioImpl(UsuarioRepo usuarioRepo, ComentarioRepo comentarioRepo, HotelRepo hotelRepo, VueloRepo vueloRepo, SillaRepo sillaRepo, ReservaRepo reservaRepo, DetalleReservaSillaRepo detalleReservaSillaRepo) {
         this.usuarioRepo = usuarioRepo;
         this.comentarioRepo = comentarioRepo;
         this.hotelRepo = hotelRepo;
+        this.vueloRepo = vueloRepo;
+        this.sillaRepo = sillaRepo;
+        this.reservaRepo = reservaRepo;
+        this.detalleReservaSillaRepo = detalleReservaSillaRepo;
     }
 
     @Override
@@ -120,6 +125,7 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
         comentarioRepo.delete(comentario);
     }
 
+
     public Comentario obtenerComentario(Integer codigo) throws ComentarioException {
         Optional<Comentario> comentario = comentarioRepo.findById(codigo);
         if ( comentario.isEmpty() ) {
@@ -127,4 +133,18 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
         }
         return comentario.get();
     }
+
+    @Override
+    public Boolean reservarVuelo(List<Reserva> reservas, Integer codigoVuelo, Integer codigoSilla, Integer codigoReserva, Integer codigoReservaSilla) throws Exception {
+        Vuelo vuelo = vueloRepo.getById(codigoVuelo);
+        Silla silla = sillaRepo.getById(codigoSilla);
+        Reserva reserva = reservaRepo.getById(codigoReserva);
+        Detalle_Reserva_Silla detalle_reserva_silla = detalleReservaSillaRepo.getById(codigoReservaSilla);
+
+        if(!(vuelo.getCodigoVuelo().equals(codigoVuelo) && silla.getCodigoSilla().equals(codigoSilla) && reserva.getCodigo().equals(codigoReserva) && detalle_reserva_silla.getCodigo().equals(codigoReservaSilla))){
+            throw new UsuarioException("Algun dato relacionado con la reserva no existe");
+        }
+        return reservas.add(reserva);
+    }
+
 }

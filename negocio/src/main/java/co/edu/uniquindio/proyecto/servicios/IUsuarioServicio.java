@@ -1,7 +1,6 @@
 package co.edu.uniquindio.proyecto.servicios;
 
-import co.edu.uniquindio.proyecto.entidades.Comentario;
-import co.edu.uniquindio.proyecto.entidades.Persona_Usuario;
+import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.servicios.excepciones.UsuarioException;
 
 import javax.mail.MessagingException;
@@ -26,5 +25,7 @@ public interface IUsuarioServicio {
     Comentario editarComentario (Comentario comentarioAntiguo, Comentario comentarioNuevo, String cedula, Integer codigo) throws Exception;
 
     void eliminarComentario (Comentario comentario, String cedula, Integer codigo) throws Exception;
+
+    Boolean reservarVuelo(List<Reserva> reservas, Integer codigoVuelo, Integer codigoSilla, Integer codigoReserva, Integer codigoReservaSilla)throws Exception;
 
 }

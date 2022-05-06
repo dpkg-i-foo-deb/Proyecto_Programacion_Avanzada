@@ -2,6 +2,7 @@ package co.edu.uniquindio.proyecto.test;
 
 import co.edu.uniquindio.proyecto.NegocioApplication;
 import co.edu.uniquindio.proyecto.entidades.*;
+import co.edu.uniquindio.proyecto.entidades.intermediate.Detalle_Reserva_Silla;
 import co.edu.uniquindio.proyecto.repositorios.*;
 import co.edu.uniquindio.proyecto.servicios.excepciones.ComentarioException;
 import co.edu.uniquindio.proyecto.servicios.excepciones.UsuarioException;
@@ -19,6 +20,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 import javax.transaction.Transactional;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = NegocioApplication.class)
@@ -38,6 +43,18 @@ public class UsuarioServicioTest {
 
     @Autowired
     private ComentarioRepo comentarioRepo;
+
+    @Autowired
+    private VueloRepo vueloRepo;
+
+    @Autowired
+    private SillaRepo sillaRepo;
+
+    @Autowired
+    private ReservaRepo reservaRepo;
+
+    @Autowired
+    private DetalleReservaSillaRepo detalleReservaSillaRepo;
 
     @Autowired
     private AdministradorHotelRepo administradorHotelRepo;
@@ -173,6 +190,138 @@ public class UsuarioServicioTest {
         try {
             usuarioServicio.eliminarComentario(comentario, usuario.getCedula(), hotel.getCodigoHotel());
             Assertions.assertThrows(ComentarioException.class, () -> usuarioServicio.obtenerComentario(1));
+        }catch (Exception e){
+            Assertions.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void reservarVuelo(){
+        List<Reserva> reservas = new List<Reserva>() {
+            @Override
+            public int size() {
+                return 0;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
+            @Override
+            public boolean contains(Object o) {
+                return false;
+            }
+
+            @Override
+            public Iterator<Reserva> iterator() {
+                return null;
+            }
+
+            @Override
+            public Object[] toArray() {
+                return new Object[0];
+            }
+
+            @Override
+            public <T> T[] toArray(T[] a) {
+                return null;
+            }
+
+            @Override
+            public boolean add(Reserva reserva) {
+                return false;
+            }
+
+            @Override
+            public boolean remove(Object o) {
+                return false;
+            }
+
+            @Override
+            public boolean containsAll(Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public boolean addAll(Collection<? extends Reserva> c) {
+                return false;
+            }
+
+            @Override
+            public boolean addAll(int index, Collection<? extends Reserva> c) {
+                return false;
+            }
+
+            @Override
+            public boolean removeAll(Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public boolean retainAll(Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public void clear() {
+
+            }
+
+            @Override
+            public Reserva get(int index) {
+                return null;
+            }
+
+            @Override
+            public Reserva set(int index, Reserva element) {
+                return null;
+            }
+
+            @Override
+            public void add(int index, Reserva element) {
+
+            }
+
+            @Override
+            public Reserva remove(int index) {
+                return null;
+            }
+
+            @Override
+            public int indexOf(Object o) {
+                return 0;
+            }
+
+            @Override
+            public int lastIndexOf(Object o) {
+                return 0;
+            }
+
+            @Override
+            public ListIterator<Reserva> listIterator() {
+                return null;
+            }
+
+            @Override
+            public ListIterator<Reserva> listIterator(int index) {
+                return null;
+            }
+
+            @Override
+            public List<Reserva> subList(int fromIndex, int toIndex) {
+                return null;
+            }
+        };
+
+        Vuelo vuelo = vueloRepo.getById(1);
+        Silla silla = sillaRepo.getById(1);
+        Reserva reserva = reservaRepo.getById(1);
+        Detalle_Reserva_Silla detalle_reserva_silla = detalleReservaSillaRepo.getById(1);
+
+        try {
+            usuarioServicio.reservarVuelo(reservas, vuelo.getCodigoVuelo(), silla.getCodigoSilla(), reserva.getCodigo(), detalle_reserva_silla.getCodigo());
+            Assertions.assertTrue(true);
         }catch (Exception e){
             Assertions.fail(e.getMessage());
         }
