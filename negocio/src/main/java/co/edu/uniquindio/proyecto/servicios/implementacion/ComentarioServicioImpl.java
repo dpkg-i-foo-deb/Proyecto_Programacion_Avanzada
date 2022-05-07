@@ -4,7 +4,6 @@ import co.edu.uniquindio.proyecto.entidades.Comentario;
 import co.edu.uniquindio.proyecto.entidades.Hotel;
 import co.edu.uniquindio.proyecto.repositorios.ComentarioRepo;
 import co.edu.uniquindio.proyecto.servicios.IComentarioServicio;
-import co.edu.uniquindio.proyecto.servicios.excepciones.ComentarioException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,4 +41,5 @@ public class ComentarioServicioImpl implements IComentarioServicio
     {
         return comentarioRepo.findByCodigoHotel(hotel);
     }
+
 }

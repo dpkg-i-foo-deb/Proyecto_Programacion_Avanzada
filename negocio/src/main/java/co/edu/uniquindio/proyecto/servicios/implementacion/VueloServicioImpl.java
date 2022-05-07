@@ -29,36 +29,28 @@ public class VueloServicioImpl implements IVueloServicio
     }
 
     @Override
-    public List<Vuelo> obtenerVuelos()
-    {
+    public List<Vuelo> obtenerVuelos() {
         return vueloRepo.findAll();
     }
 
     @Override
-    public Vuelo obtenerVuelo(Integer codigo) throws VueloException
-    {
+    public Vuelo obtenerVuelo(Integer codigo) throws VueloException {
         Vuelo vuelo = vueloRepo.findById(codigo).orElse(null);
-
         if(vuelo==null)
             throw new VueloException("El vuelo no existe");
-
         return vuelo;
     }
 
     @Override
-    public Vuelo editarVuelo(Vuelo vuelo) throws VueloException
-    {
+    public Vuelo editarVuelo(Vuelo vuelo) throws VueloException {
         if(vueloRepo.findById(vuelo.getCodigoVuelo()).orElse(null)==null)
             throw new VueloException("El vuelo no existe");
-
        return vueloRepo.save(vuelo);
     }
 
     @Override
-    public boolean eliminarVuelo(Vuelo vuelo)
-    {
+    public boolean eliminarVuelo(Vuelo vuelo) {
         vueloRepo.delete(vuelo);
-
         return true;
     }
 }

@@ -3,7 +3,10 @@ package co.edu.uniquindio.proyecto.servicios;
 import co.edu.uniquindio.proyecto.entidades.Hotel;
 import co.edu.uniquindio.proyecto.entidades.Persona_Usuario;
 import co.edu.uniquindio.proyecto.servicios.excepciones.HotelException;
+import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.servicios.excepciones.UsuarioException;
+
+import java.util.List;
 
 import java.util.List;
 
@@ -29,4 +32,15 @@ public interface IUsuarioServicio {
     List<Hotel> obtenerHotelesFavoritos(String emailUsuario);
 
     List<Hotel> obtenerHotelesFavoritosByName(String emailUsuario, String nombreHotel) throws UsuarioException;
+
+    Persona_Usuario validarLogin(String correo, String password) throws Exception;
+
+    Comentario crearComentario (Comentario comentario, String cedula, Integer codigo) throws Exception;
+
+    Comentario editarComentario (Comentario comentarioAntiguo, Comentario comentarioNuevo, String cedula, Integer codigo) throws Exception;
+
+    void eliminarComentario (Comentario comentario, String cedula, Integer codigo) throws Exception;
+
+    Boolean reservarVuelo(List<Reserva> reservas, Integer codigoVuelo, Integer codigoSilla, Integer codigoReserva, Integer codigoReservaSilla)throws Exception;
+
 }
