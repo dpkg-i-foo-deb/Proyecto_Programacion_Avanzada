@@ -295,6 +295,7 @@ public class UsuarioServicioTest {
         Assertions.assertEquals(EstadoPersona.INACTIVA, usuario.getEstadoPersona());
     }
 
+    @Test
     public void validarLogin() {
         Ciudad ciudad = ciudadRepo.getById(1);
         Persona_Usuario usuario1 = new Persona_Usuario(
@@ -401,7 +402,7 @@ public class UsuarioServicioTest {
 
     @Test
     public void reservarVuelo(){
-        List<Reserva> reservas = new List<Reserva>() {
+        List<Reserva> reservas = new List<>() {
             @Override
             public int size() {
                 return 0;
