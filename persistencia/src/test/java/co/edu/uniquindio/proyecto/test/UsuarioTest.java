@@ -35,6 +35,7 @@ public class UsuarioTest
     private Departamento departamento;
     private Persona_Administrador_Hotel adminHotel;
     private Persona_Usuario usuario;
+    private Hotel hotel;
 
     private void crearDepartamento()
     {
@@ -76,7 +77,7 @@ public class UsuarioTest
     }
 
     private void crearHotel() {
-        Hotel hotel = new Hotel("Hotelito", (short) 5, "Calle 45-25", ciudad, adminHotel, EstadoHotel.DISPONIBLE);
+        hotel = new Hotel("Hotelito", (short) 5, "Calle 45-25", ciudad, adminHotel, EstadoHotel.DISPONIBLE);
         hotelRepo.save(hotel);
     }
 
@@ -321,5 +322,44 @@ public class UsuarioTest
 
         usuarios = usuarioRepo.obtenerUsuariosTelefono("3226728811");
         Assertions.assertEquals(0, usuarios.size());
+    }
+
+    @Test
+    public void obtenerHotelesFavoritosUsuario() {
+        crearDepartamento();
+        crearCiudad();
+        crearAdminHotel();
+        crearUsuario();
+        crearHotel();
+
+        usuario.getHotelesFavoritos().add(hotel);
+
+        usuarioRepo.save(usuario);
+
+        List<Hotel> favoritos = usuarioRepo.obtenerHotelesFavoritosUsuario(usuario.getEmail());
+
+        Assertions.assertEquals(1, favoritos.size());
+        Assertions.assertEquals(hotel, favoritos.get(0));
+    }
+
+    @Test
+    public void obtenerHotelFavoritoUsuario() {
+        crearDepartamento();
+        crearCiudad();
+        crearAdminHotel();
+        crearUsuario();
+        crearHotel();
+
+        usuario.getHotelesFavoritos().add(hotel);
+
+        usuarioRepo.save(usuario);
+
+        List<Hotel> favoritos = usuarioRepo.obtenerHotelesFavoritosByName(usuario.getEmail(), "Hotelito");
+
+        Assertions.assertEquals(1, favoritos.size());
+
+        favoritos = usuarioRepo.obtenerHotelesFavoritosByName(usuario.getEmail(), "Amazonía");
+
+        Assertions.assertTrue(favoritos.isEmpty());
     }
 }

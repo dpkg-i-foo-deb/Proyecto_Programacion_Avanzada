@@ -60,6 +60,7 @@ public class AdministradorHotelServicioTest {
             System.out.print(e.getMessage());
         }
 
+        assert administrador_hotel != null;
         Assertions.assertEquals(EstadoPersona.INACTIVA, administrador_hotel.getEstadoPersona());
 
     }

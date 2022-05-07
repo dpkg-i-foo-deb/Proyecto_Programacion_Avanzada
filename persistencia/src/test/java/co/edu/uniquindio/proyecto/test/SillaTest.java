@@ -58,6 +58,7 @@ public class SillaTest
     {
         vuelo = new Vuelo();
         vuelo.setAerolinea("Avianca");
+        vuelo.setEstado(EstadoVuelo.CONFIRMADO);
         vuelo.setCiudadOrigen(ciudadOrigen);
         vuelo.setCiudadDestino(ciudadDestino);
         vuelo.setEstado(EstadoVuelo.CONFIRMADO);

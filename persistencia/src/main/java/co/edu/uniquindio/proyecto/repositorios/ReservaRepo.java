@@ -17,7 +17,7 @@ public interface ReservaRepo extends JpaRepository<Reserva, Integer> {
     List<Object[]> obtenerReservasHotel(Integer idHotel, Date fechaInicio);
 
     //@Query("select count(r) from Reserva r join r.listaHabitaciones rh on r = rh.codigoReserva where rh.codigoHabitacion.hotel.codigoHotel = :idHotel and r.fechaLlegada > CURRENT_DATE group by rh.codigoHabitacion.hotel")
-    @Query("select count(r) from Reserva r join r.listaHabitaciones rh on r = rh.codigoReserva where rh.codigoHabitacion.hotel.codigoHotel = :idHotel and r.fechaLlegada > CURRENT_DATE")
+    @Query("select count(distinct r) from Reserva r join r.listaHabitaciones rh on r = rh.codigoReserva where rh.codigoHabitacion.hotel.codigoHotel = :idHotel and r.fechaLlegada > CURRENT_DATE")
     int obtenerCantidadReservasPendientes(Integer idHotel);
 
     @Query("select new co.edu.uniquindio.proyecto.dto.Reserva_TotalGastado_DTO(r.codigo, coalesce((select sum(h.cantidadHabitaciones * h.precio) from r.listaHabitaciones h where h.codigoReserva = r group by r), 0), coalesce((select sum(s.precio) from r.listaSillas s where s.codigoReserva = r group by r), 0)) from Reserva r where r.usuario.cedula = :cedula group by r")

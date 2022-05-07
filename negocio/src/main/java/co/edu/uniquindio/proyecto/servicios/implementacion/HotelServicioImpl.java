@@ -166,7 +166,6 @@ public class HotelServicioImpl implements IHotelServicio
     }
 
     public List<Hotel> obtenerHotelesPorNombre(String nombre) {
-
         return hotelRepo.obtenerHotelesPorNombrePatron(nombre);
     }
 }

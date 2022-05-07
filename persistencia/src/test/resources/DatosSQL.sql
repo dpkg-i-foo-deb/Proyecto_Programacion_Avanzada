@@ -106,3 +106,9 @@ INSERT INTO silla(precio, codigo_vuelo) VALUES (36000, 2);
 INSERT INTO detalle_reserva_silla(precio, codigo_reserva, codigo_silla) VALUES (25000, 1, 1);
 INSERT INTO detalle_reserva_silla(precio, codigo_reserva, codigo_silla) VALUES (18000, 1, 2);
 INSERT INTO detalle_reserva_silla(precio, codigo_reserva, codigo_silla) VALUES (41000, 4, 3);
+
+-- Hotel favorito
+INSERT INTO persona_hoteles_favoritos VALUES("44444", 1);
+INSERT INTO persona_hoteles_favoritos VALUES("44444", 2);
+INSERT INTO persona_hoteles_favoritos VALUES("55555", 2);
+INSERT INTO persona_hoteles_favoritos VALUES("55555", 3);

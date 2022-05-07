@@ -59,16 +59,16 @@ public class Hotel
     @ToString.Exclude
     private List<Caracteristica> listaCaracteristicas;
 
+    @ManyToMany(mappedBy = "hotelesFavoritos")
+    @ToString.Exclude
+    private List<Persona_Usuario> usuariosFavoritos;
+
     @OneToMany(mappedBy = "hotel")
     @ToString.Exclude
     private List<Habitacion> habitaciones;
 
     @ElementCollection
     private List<String> listaFotos;
-
-    @ManyToMany
-    @ToString.Exclude
-    private List<Persona_Usuario> listaFavoritosUsuarios;
 
     public Hotel(String nombre, short numeroEstrellas, String direccion, Ciudad ciudad, Persona_Administrador_Hotel administrador, EstadoHotel estadoHotel) {
         this.nombre = nombre;

@@ -3,32 +3,23 @@ package co.edu.uniquindio.proyecto.servicios.implementacion;
 import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.entidades.intermediate.Detalle_Reserva_Habitacion;
 import co.edu.uniquindio.proyecto.entidades.intermediate.Detalle_Reserva_Silla;
-import co.edu.uniquindio.proyecto.repositorios.DetalleReservaHabitacionRepo;
-import co.edu.uniquindio.proyecto.repositorios.DetalleReservaSillaRepo;
 import co.edu.uniquindio.proyecto.repositorios.ReservaRepo;
 import co.edu.uniquindio.proyecto.servicios.IReservaServicio;
 import co.edu.uniquindio.proyecto.servicios.excepciones.ReservaException;
 import org.springframework.stereotype.Service;
-import java.sql.Date;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
 public class ReservaServicioImpl implements IReservaServicio
 {
     private final ReservaRepo reservaRepo;
-    private final DetalleReservaSillaRepo detalleReservaSillaRepo;
-    private final DetalleReservaHabitacionRepo detalleReservaHabitacionRepo;
 
-
-
-    public ReservaServicioImpl(ReservaRepo reservaRepo, DetalleReservaSillaRepo detalleReservaSillaRepo, DetalleReservaHabitacionRepo detalleReservaHabitacionRepo) {
+    public ReservaServicioImpl(ReservaRepo reservaRepo) {
         this.reservaRepo = reservaRepo;
-        this.detalleReservaSillaRepo = detalleReservaSillaRepo;
-        this.detalleReservaHabitacionRepo = detalleReservaHabitacionRepo;
-
     }
 
     @Override

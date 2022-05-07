@@ -3,6 +3,7 @@ package co.edu.uniquindio.proyecto.entidades;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -28,6 +29,7 @@ public class Persona_Usuario extends Persona
 
     public Persona_Usuario(String cedula, String nombreCompleto, String email, String contrasena, Ciudad ciudad) {
         super(cedula, nombreCompleto, email, contrasena, ciudad);
+        this.hotelesFavoritos = new ArrayList<>(0);
     }
 
 }
