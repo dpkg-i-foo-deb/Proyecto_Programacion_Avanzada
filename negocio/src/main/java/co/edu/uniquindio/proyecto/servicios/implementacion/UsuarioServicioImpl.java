@@ -1,10 +1,5 @@
 package co.edu.uniquindio.proyecto.servicios.implementacion;
 
-import co.edu.uniquindio.proyecto.entidades.Hotel;
-import co.edu.uniquindio.proyecto.entidades.EstadoPersona;
-import co.edu.uniquindio.proyecto.entidades.Persona_Usuario;
-import co.edu.uniquindio.proyecto.repositorios.HotelRepo;
-import co.edu.uniquindio.proyecto.repositorios.UsuarioRepo;
 import co.edu.uniquindio.proyecto.servicios.IUsuarioServicio;
 import co.edu.uniquindio.proyecto.servicios.excepciones.HotelException;
 import co.edu.uniquindio.proyecto.entidades.*;

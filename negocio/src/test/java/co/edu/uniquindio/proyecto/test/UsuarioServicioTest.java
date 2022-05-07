@@ -1,14 +1,7 @@
 package co.edu.uniquindio.proyecto.test;
 
 import co.edu.uniquindio.proyecto.NegocioApplication;
-import co.edu.uniquindio.proyecto.entidades.Ciudad;
-import co.edu.uniquindio.proyecto.entidades.Hotel;
-import co.edu.uniquindio.proyecto.entidades.Persona_Usuario;
-import co.edu.uniquindio.proyecto.repositorios.CiudadRepo;
-import co.edu.uniquindio.proyecto.repositorios.HotelRepo;
 import co.edu.uniquindio.proyecto.servicios.excepciones.HotelException;
-import co.edu.uniquindio.proyecto.entidades.Departamento;
-import co.edu.uniquindio.proyecto.entidades.EstadoPersona;
 import co.edu.uniquindio.proyecto.servicios.excepciones.UsuarioException;
 import co.edu.uniquindio.proyecto.servicios.implementacion.CiudadServicioImpl;
 import co.edu.uniquindio.proyecto.servicios.implementacion.DepartamentoServicioImpl;

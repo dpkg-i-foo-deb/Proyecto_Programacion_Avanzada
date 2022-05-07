@@ -7,7 +7,7 @@ dependencies {
     implementation('org.thymeleaf:thymeleaf-spring5')
     implementation('org.thymeleaf:thymeleaf')
     implementation 'junit:junit:4.13.2'
-    implementation 'junit:junit:4.13.1'
+    implementation 'junit:junit:4.13.2'
 }
 
 test {

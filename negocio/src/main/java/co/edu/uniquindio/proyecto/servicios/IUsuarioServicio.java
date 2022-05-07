@@ -1,12 +1,8 @@
 package co.edu.uniquindio.proyecto.servicios;
 
-import co.edu.uniquindio.proyecto.entidades.Hotel;
-import co.edu.uniquindio.proyecto.entidades.Persona_Usuario;
 import co.edu.uniquindio.proyecto.servicios.excepciones.HotelException;
 import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.servicios.excepciones.UsuarioException;
-
-import java.util.List;
 
 import java.util.List;
 
