@@ -8,9 +8,9 @@ import co.edu.uniquindio.proyecto.servicios.IReservaServicio;
 import co.edu.uniquindio.proyecto.servicios.excepciones.ReservaException;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -81,11 +81,12 @@ public class ReservaServicioImpl implements IReservaServicio
         reserva.setUsuario(usuario);
         reserva.setFechaLlegada(fechaLlegada);
         reserva.setFechaSalida(fechaSalida);
-        reserva.setFechaReserva(Date.valueOf(LocalDate.now()));
+        reserva.setFechaReserva(new Date());
         reserva.setEstadoReserva(EstadoReserva.CONFIRMADA);
         reserva.setListaSillas(detalles_sillas);
         reserva.setListaHabitaciones(detalles_habitacion);
 
+        //LocalDate date = LocalDate.of(2022, 02, 12);
 
         reserva = reservaRepo.save(reserva);
 
@@ -109,8 +110,12 @@ public class ReservaServicioImpl implements IReservaServicio
                 detalle_silla.setPrecio(silla.getPrecio());
 
                 detalles_sillas.add(detalle_silla);
+
+                //llamar el repo de detalle reserva silla y save()
             }
         }
+
+        reserva.setListaSillas( detalles_sillas );
 
         //Agregar las habitaciones deseadas a los detalles de habitación
         for (Habitacion habitacionesFor : habitaciones) {
@@ -126,7 +131,10 @@ public class ReservaServicioImpl implements IReservaServicio
 
         reserva.setListaHabitaciones(detalles_habitacion);
 
-        return reserva;
+
+
+
+        return reservaRepo.save(reserva);
     }
 
     @Override
