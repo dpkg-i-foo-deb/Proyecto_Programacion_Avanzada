@@ -39,7 +39,7 @@ public interface HotelRepo extends JpaRepository <Hotel, Integer>
     @Query("select h from Hotel h where h.ciudad.nombre = :nombreCiudad order by h.nombre asc")
     List<Hotel> obtenerHotelesCiudad(String nombreCiudad);
 
-    //@Query("select distinct h from Hotel h, IN(h.habitaciones) hb left join hb.listaReservas dr on hb = dr.codigoHabitacion where (hb.capacidad >= :capacidad) and (hb.precio between :precioInicio and :precioFin) and (:fechaInicio > dr.codigoReserva.fechaSalida or :fechaFin < dr.codigoReserva.fechaLlegada)")
-    @Query("select distinct h from Hotel h, IN(h.habitaciones) hb left join hb.listaReservas dr on hb = dr.codigoHabitacion where (hb.capacidad >= :capacidad) and (hb.precio between :precioInicio and :precioFin) and (:fecha not between dr.codigoReserva.fechaLlegada and dr.codigoReserva.fechaSalida)")
+    //@Query("select distinct h from Hotel h, IN(h.habitaciones) hb left join hb.listaReservas dr on hb = dr.codigoHabitacion where (hb.capacidad >= :capacidad) and (hb.precio between :precioInicio and :precioFin) and (:fecha not between dr.codigoReserva.fechaLlegada and dr.codigoReserva.fechaSalida)")
+    @Query("select distinct h from Hotel h, IN(h.habitaciones) hb left join hb.listaReservas dr on hb = dr.codigoHabitacion where (hb.capacidad >= :capacidad) and (hb.precio between :precioInicio and :precioFin) and (:fechaInicio > dr.codigoReserva.fechaSalida or :fechaFin < dr.codigoReserva.fechaLlegada)")
     List<Hotel> obtenerHotelesConHabitacionesEnRango(Double precioInicio, Double precioFin, Integer capacidad, Date fecha);
 }
