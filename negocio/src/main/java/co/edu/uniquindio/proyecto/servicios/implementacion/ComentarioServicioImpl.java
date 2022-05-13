@@ -33,7 +33,13 @@ public class ComentarioServicioImpl implements IComentarioServicio
     @Override
     public void eliminarComentario(Comentario comentario)
     {
-         comentarioRepo.delete(comentario);
+
+        try{
+            comentarioRepo.delete(comentario);
+        }catch (Exception e)
+        {
+            System.out.print("No ha sido posible eliminar el comentario");
+        }
     }
 
     @Override

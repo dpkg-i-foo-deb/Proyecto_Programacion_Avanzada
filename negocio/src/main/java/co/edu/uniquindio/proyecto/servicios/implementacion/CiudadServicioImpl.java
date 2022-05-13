@@ -33,7 +33,13 @@ public class CiudadServicioImpl implements ICiudadServicio
     @Override
     public void eliminarCiudad(Ciudad ciudad)
     {
-        ciudadRepo.delete(ciudad);
+
+        try{
+            ciudadRepo.delete(ciudad);
+        }catch (Exception e)
+        {
+            System.out.print("No ha sido posible eliminar la ciudad");
+        }
     }
 
     @Override

@@ -50,8 +50,11 @@ public class SillaServicioImpl implements ISillaServicio
     @Override
     public boolean eliminarSilla(Silla silla)
     {
-        sillaRepo.delete(silla);
-
-        return true;
+        try {
+            sillaRepo.delete(silla);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 }

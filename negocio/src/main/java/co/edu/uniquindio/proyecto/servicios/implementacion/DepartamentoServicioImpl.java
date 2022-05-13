@@ -55,6 +55,12 @@ public class DepartamentoServicioImpl implements IDepartamentoServicio
     @Override
     public void eliminarDepartamento(Departamento departamento)
     {
-        departamentoRepo.delete(departamento);
+
+        try{
+            departamentoRepo.delete(departamento);
+        }catch (Exception e)
+        {
+            System.out.print("Algo salió mal al eliminar el departamento");
+        }
     }
 }

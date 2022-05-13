@@ -72,7 +72,12 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
             throw new UsuarioException("No hay registro que coincida con la cédula especificada");
         }
 
-        usuarioRepo.deleteById(cedula);
+        try{
+            usuarioRepo.deleteById(cedula);
+        }catch (Exception e)
+        {
+            throw new UsuarioException("Algo ha salido mal");
+        }
     }
 
     /**

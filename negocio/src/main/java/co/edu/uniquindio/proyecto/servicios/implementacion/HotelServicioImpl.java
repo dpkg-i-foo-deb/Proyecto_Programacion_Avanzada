@@ -89,7 +89,12 @@ public class HotelServicioImpl implements IHotelServicio
 
         existeHotel(hotelBuscado);
 
-        hotelRepo.delete(hotel);
+        try{
+            hotelRepo.delete(hotel);
+        } catch(Exception e)
+        {
+            return false;
+        }
 
         return true;
     }
