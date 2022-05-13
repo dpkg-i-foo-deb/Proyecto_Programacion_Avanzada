@@ -1,4 +1,5 @@
 rootProject.name = 'Proyecto_Programacion_Avanzada'
 include 'persistencia'
 include 'negocio'
+include 'web'
 
