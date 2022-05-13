@@ -23,6 +23,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 import java.util.Properties;
 
+
 @Service
 @PropertySource("classpath:mail/mailconfig.properties")
 public class EmailServicioImpl implements EmailServicio {
