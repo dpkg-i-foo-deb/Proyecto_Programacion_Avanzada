@@ -1,5 +1,7 @@
 # Proyecto Final Programación Avanzada
 
+# Este proyecto está licenciado bajo GPLv3, puedes hacer lo que quieras desde que respetes los términos del software libre
+
 Este proyeto representa el codigo que desarrollamos para dar solucion al proyecto final del espacio academico Programación Avanzada
 
 ## Los integrantes del grupo son:
