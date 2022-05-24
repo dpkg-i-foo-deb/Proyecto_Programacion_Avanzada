@@ -4,6 +4,7 @@ import co.edu.uniquindio.proyecto.NegocioApplication;
 import co.edu.uniquindio.proyecto.entidades.Ciudad;
 import co.edu.uniquindio.proyecto.entidades.Departamento;
 import co.edu.uniquindio.proyecto.servicios.excepciones.CiudadException;
+import co.edu.uniquindio.proyecto.servicios.excepciones.DepartamentoException;
 import co.edu.uniquindio.proyecto.servicios.implementacion.CiudadServicioImpl;
 import co.edu.uniquindio.proyecto.servicios.implementacion.DepartamentoServicioImpl;
 import org.junit.jupiter.api.Test;
@@ -130,5 +131,17 @@ public class CiudadServicioTest
 
         Assertions.assertTrue(ciudades.contains(ciudad1));
         Assertions.assertTrue(ciudades.contains(ciudad2));
+    }
+
+    @Test
+    public void obtenerCiudadesDepartamentoTest() {
+        try {
+            Departamento departamento = departamentoServicio.obtenerDepartamento(1);
+            List<Ciudad> ciudades = ciudadServicio.obtenerCiudadesDepartamento(departamento);
+
+            Assertions.assertEquals(3, ciudades.size());
+        } catch (DepartamentoException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -225,4 +225,15 @@ public class CiudadTest
         Assertions.assertEquals(0, res.get(1).getTotalHoteles());
         Assertions.assertEquals(1, res.get(3).getTotalHoteles());
     }
+
+    @Test
+    @Sql("classpath:DatosSQL.sql")
+    public void obtenerCiudadesDepartamento() {
+        Departamento departamento = departamentoRepo.getById(1);
+        List<Ciudad> res = ciudadRepo.findAllByDepartamento(departamento);
+
+        res.forEach(System.out::println);
+
+        Assertions.assertEquals(3, res.size());
+    }
 }

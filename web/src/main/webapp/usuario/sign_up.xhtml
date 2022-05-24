@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Registro de Usuario</title>
+    <h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+    <p:panel styleClass="panel" header="Registro">
+        <h:form>
+                <div class="ui-inputgroup ui-fluid margin-bot">
+                    <div class="ui-inputgroup-addon"><i class="pi pi-user-plus" /></div>
+                    <p:inputText placeholder="Nombre completo *" value="#{signUpBean.usuario.nombreCompleto}"
+                                 required="true" requiredMessage="Debe ingresar un nombre válido"/>
+                </div>
+
+                <div class="ui-inputgroup ui-fluid margin-bot">
+                    <div class="ui-inputgroup-addon"><i class="pi pi-id-card" /></div>
+                    <p:inputText placeholder="Número de cédula *" value="#{signUpBean.usuario.cedula}"
+                                 required="true" requiredMessage="Debe ingresar una cédula válida"/>
+                </div>
+
+                <div class="ui-inputgroup ui-fluid margin-bot">
+                    <div class="ui-inputgroup-addon"><i class="pi pi-map-marker" /></div>
+                    <p:selectOneMenu id="ciudad-selector" value="#{signUpBean.usuario.ciudad}"
+                                     converter="#{ciudadConverter}" required="true"
+                                     requiredMessage="La ciudad es obligatoria" filter="true"
+                                     filterMatchMode="startsWith">
+                        <f:selectItems value="#{signUpBean.ciudadesGrupo}" var="ciudad" itemValue="#{ciudad}"/>
+                    </p:selectOneMenu>
+                </div>
+
+                <div class="horizontal margin-bot">
+                    <div class="ui-inputgroup stretch ui-fluid">
+                        <div class="ui-inputgroup-addon"><i class="pi pi-envelope" /></div>
+                        <p:inputText placeholder="Correo electrónico *" value="#{signUpBean.usuario.email}"
+                                     required="true" requiredMessage="Debe ingresar un correo válido"/>
+                    </div>
+
+                    <p:password styleClass="fill-width" toggleMask="true" redisplay="true" placeholder="Contraseña *"
+                                value="#{signUpBean.usuario.contrasena}" required="true"
+                                requiredMessage="Debe ingresar una contraseña válida"/>
+                </div>
+
+                <p:commandButton styleClass="submit-btn" value="Registrarse" action="#{signUpBean.registrarUsuario}"
+                                 update="@form"/>
+
+            <p:growl showDetail="true" />
+        </h:form>
+    </p:panel>
+</h:body>
+</html>
+
+
+
+
