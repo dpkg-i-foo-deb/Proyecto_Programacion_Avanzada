@@ -46,8 +46,8 @@ body {
     outline: none;
 }
 .ui-button {
-    background: midnightblue !important;
-    border: midnightblue !important;
+    background: var(--primary-color) !important;
+    border: var(--primary-color) !important;
 }
 
 /* Estilos Barra Navegación*/
