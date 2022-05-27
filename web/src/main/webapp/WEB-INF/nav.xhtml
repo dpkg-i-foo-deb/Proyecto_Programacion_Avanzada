@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<body>
+    <div class="navbar ui-fluid p-formgrid p-grid">
+        <a href="../index.xhtml" class="logo">
+            <img class="logo__img" src="../resources/images/unitravel-logo.png" alt="logo" />
+            <span class="logo__texto">UNITRAVEL</span>
+        </a>
+
+        <h:form class="filtros">
+            <div class="selector-wrapper">
+                <h:selectOneMenu id="ciudad-selector" class="selector" value="#{filtroHotelBean.ciudad}"
+                                 converter="#{ciudadConverter}">
+                    <p:ajax update="@this" process="@this"/>
+                    <f:selectItem itemLabel="Ciudad" itemValue="#{null}" noSelectionOption="true" />
+                    <f:selectItems value="#{signUpBean.ciudadesGrupo}"/>
+                </h:selectOneMenu>
+
+                <span class="arrow">»</span>
+            </div>
+
+            <div class="ui-inputgroup">
+                <p:inputText placeholder="Buscar hotel"/>
+                <p:commandButton icon="pi pi-search" styleClass="ui-button-primary"/>
+            </div>
+        </h:form>
+
+        <h:form>
+            <p:menubar>
+                <p:menuitem value="Mi carrito" action="index" style="min-width: 100% !important;" icon="pi pi-shopping-cart"/>
+
+                <p:submenu label="Usuario" icon="pi pi-fw pi-user">
+                    <p:menuitem value="Perfil" icon="pi pi-fw pi-user-edit"/>
+                    <p:menuitem value="Mis compras" icon="pi pi-fw pi-shopping-cart"/>
+                    <p:menuitem value="Favoritos" icon="pi pi-fw pi-heart"/>
+                    <p:divider />
+                    <p:menuitem value="Cerrar sesión" icon="pi pi-fw pi-external-link"/>
+                </p:submenu>
+            </p:menubar>
+        </h:form>
+    </div>
+</body>
+</html>
