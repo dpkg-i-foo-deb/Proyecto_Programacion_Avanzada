@@ -7,7 +7,7 @@
     --light-green-text: #39713c;
 }
 * {
-    text-decoration: none;
+    text-decoration: none !important;
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
 }
