@@ -15,7 +15,6 @@ public class BusquedaBean {
 
     public String buscarHoteles() {
         String ruta = "index?faces-redirect=true";
-        System.out.println(hotelBuscado);
 
         if (hotelBuscado.isEmpty())
             return ruta;
