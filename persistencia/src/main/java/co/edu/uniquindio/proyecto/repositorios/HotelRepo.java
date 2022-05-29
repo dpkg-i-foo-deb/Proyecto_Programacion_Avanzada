@@ -41,5 +41,8 @@ public interface HotelRepo extends JpaRepository <Hotel, Integer>
 
     //@Query("select distinct h from Hotel h, IN(h.habitaciones) hb left join hb.listaReservas dr on hb = dr.codigoHabitacion where (hb.capacidad >= :capacidad) and (hb.precio between :precioInicio and :precioFin) and (:fecha not between dr.codigoReserva.fechaLlegada and dr.codigoReserva.fechaSalida)")
     @Query("select distinct h from Hotel h, IN(h.habitaciones) hb left join hb.listaReservas dr on hb = dr.codigoHabitacion where (hb.capacidad >= :capacidad) and (hb.precio between :precioInicio and :precioFin) and (:fechaInicio > dr.codigoReserva.fechaSalida or :fechaFin < dr.codigoReserva.fechaLlegada)")
-    List<Hotel> obtenerHotelesConHabitacionesEnRango(Double precioInicio, Double precioFin, Integer capacidad, Date fecha);
+    List<Hotel> obtenerHotelesConHabitacionesEnRango(Double precioInicio, Double precioFin, Integer capacidad, Date fechaInicio, Date fechaFin);
+
+    @Query("select min(hb.precio) from Hotel h, IN(h.habitaciones) hb where h.codigoHotel = :codigo")
+    Double obtenerPrecioHabitacionMasEconomica(Integer codigo);
 }
