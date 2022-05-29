@@ -8,7 +8,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <body>
-    <div class="navbar ui-fluid p-formgrid p-grid">
+    <div class="navbar ui-fluid pb-5">
         <a href="../index.xhtml" class="logo">
             <img class="logo__img" src="../resources/images/unitravel-logo.png" alt="logo" />
             <span class="logo__texto">UNITRAVEL</span>
@@ -27,8 +27,8 @@
             </div>
 
             <div class="ui-inputgroup">
-                <p:inputText placeholder="Buscar hotel"/>
-                <p:commandButton icon="pi pi-search" styleClass="ui-button-primary"/>
+                <p:inputText placeholder="Buscar hotel" value="#{busquedaBean.hotelBuscado}" autocomplete="off"/>
+                <p:commandButton icon="pi pi-search" styleClass="ui-button-primary" action="#{busquedaBean.buscarHoteles()}"/>
             </div>
         </h:form>
 

@@ -170,6 +170,11 @@ public class HotelServicioImpl implements IHotelServicio
         return hotel.getEstadoHotel().equals(EstadoHotel.PAUSADO);
     }
 
+    @Override
+    public Double obtenerPrecioHabitacionMasEconomica(Integer codigoHotel) {
+        return hotelRepo.obtenerPrecioHabitacionMasEconomica(codigoHotel);
+    }
+
     public List<Hotel> obtenerHotelesPorNombre(String nombre) {
         return hotelRepo.obtenerHotelesPorNombrePatron(nombre);
     }

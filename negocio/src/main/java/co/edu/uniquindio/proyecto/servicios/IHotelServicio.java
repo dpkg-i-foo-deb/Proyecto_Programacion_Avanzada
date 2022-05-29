@@ -26,4 +26,8 @@ public interface IHotelServicio
     Hotel reanudarHotel(Persona_Administrador_Hotel administrador_hotel, Integer codigo_hotel) throws HotelException;
 
     boolean estaPausado(Hotel hotel);
+
+    Double obtenerPrecioHabitacionMasEconomica(Integer codigoHotel);
+
+    List<Hotel> obtenerHotelesPorNombre(String hotelBuscado);
 }

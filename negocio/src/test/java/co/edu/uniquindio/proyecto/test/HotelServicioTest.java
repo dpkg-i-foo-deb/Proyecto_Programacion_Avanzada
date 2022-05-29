@@ -139,4 +139,11 @@ public class HotelServicioTest {
         Assertions.assertNotNull(hoteles);
         Assertions.assertEquals(0, hoteles.size());
     }
+
+    @Test
+    public void obtenerPrecioHabitacionMasEconomica() {
+        Double precio = hotelServicio.obtenerPrecioHabitacionMasEconomica(1);
+
+        Assertions.assertEquals(10000.0, precio);
+    }
 }
