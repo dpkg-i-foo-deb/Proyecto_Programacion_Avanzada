@@ -37,8 +37,6 @@ public class InicioBean implements Serializable {
     }
 
     private void cargarHoteles() {
-
-
         if(hotelBuscado != null && !hotelBuscado.isEmpty())
             hoteles = hotelServicio.obtenerHotelesPorNombre(hotelBuscado);
         else
