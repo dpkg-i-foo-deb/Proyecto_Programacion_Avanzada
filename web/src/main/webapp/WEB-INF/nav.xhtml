@@ -27,8 +27,8 @@
             </div>
 
             <div class="ui-inputgroup">
-                <p:inputText placeholder="Buscar hotel"/>
-                <p:commandButton icon="pi pi-search" styleClass="ui-button-primary"/>
+                <p:inputText placeholder="Buscar hotel" value="#{busquedaBean.hotelBuscado}"/>
+                <p:commandButton icon="pi pi-search" styleClass="ui-button-primary" action="#{busquedaBean.buscarHoteles()}"/>
             </div>
         </h:form>
 

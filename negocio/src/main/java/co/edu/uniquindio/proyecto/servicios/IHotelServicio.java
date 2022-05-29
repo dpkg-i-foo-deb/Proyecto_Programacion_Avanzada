@@ -28,4 +28,6 @@ public interface IHotelServicio
     boolean estaPausado(Hotel hotel);
 
     Double obtenerPrecioHabitacionMasEconomica(Integer codigoHotel);
+
+    List<Hotel> obtenerHotelesPorNombre(String hotelBuscado);
 }
