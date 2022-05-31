@@ -178,4 +178,14 @@ public class HotelServicioImpl implements IHotelServicio
     public List<Hotel> obtenerHotelesPorNombre(String nombre) {
         return hotelRepo.obtenerHotelesPorNombrePatron(nombre);
     }
+
+    @Override
+    public List<Hotel> obtenerHotelesPorNombreYCiudad(String hotelBuscado, Integer codigoCiudadBusqueda) {
+        return hotelRepo.obtenerHotelesPorNombreYCiudad(hotelBuscado, codigoCiudadBusqueda);
+    }
+
+    @Override
+    public List<Hotel> obtenerHotelesPorIdCiudad(Integer codigoCiudadBusqueda) {
+        return hotelRepo.obtenerHotelesPorIdCiudad(codigoCiudadBusqueda);
+    }
 }

@@ -45,4 +45,10 @@ public interface HotelRepo extends JpaRepository <Hotel, Integer>
 
     @Query("select min(hb.precio) from Hotel h, IN(h.habitaciones) hb where h.codigoHotel = :codigo")
     Double obtenerPrecioHabitacionMasEconomica(Integer codigo);
+
+    @Query("select h from Hotel h where h.nombre like concat('%', trim(both from :nombre), '%') and h.ciudad.codigoCiudad = :codigoCiudad")
+    List<Hotel> obtenerHotelesPorNombreYCiudad(String nombre, Integer codigoCiudad);
+
+    @Query("select h from Hotel h where h.ciudad.codigoCiudad = :codigoCiudad")
+    List<Hotel> obtenerHotelesPorIdCiudad(Integer codigoCiudad);
 }

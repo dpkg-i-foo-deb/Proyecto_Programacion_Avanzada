@@ -457,4 +457,22 @@ public class HotelTest
         hoteles.forEach(System.out::println);
         Assertions.assertEquals(1, hoteles.size());
     }
+
+    @Test
+    @Sql("classpath:DatosSQL.sql")
+    public void obtenerHotelesPorNombreYCiudad() {
+        List<Hotel> hoteles = hotelRepo.obtenerHotelesPorNombreYCiudad("Cal", 4);
+
+        hoteles.forEach(System.out::println);
+        Assertions.assertEquals(1, hoteles.size());
+    }
+
+    @Test
+    @Sql("classpath:DatosSQL.sql")
+    public void obtenerHotelesPorIdCiudad() {
+        List<Hotel> hoteles = hotelRepo.obtenerHotelesPorIdCiudad(4);
+
+        hoteles.forEach(System.out::println);
+        Assertions.assertEquals(1, hoteles.size());
+    }
 }

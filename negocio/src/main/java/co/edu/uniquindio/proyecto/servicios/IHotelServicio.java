@@ -30,4 +30,8 @@ public interface IHotelServicio
     Double obtenerPrecioHabitacionMasEconomica(Integer codigoHotel);
 
     List<Hotel> obtenerHotelesPorNombre(String hotelBuscado);
+
+    List<Hotel> obtenerHotelesPorNombreYCiudad(String hotelBuscado, Integer codigoCiudadBusqueda);
+
+    List<Hotel> obtenerHotelesPorIdCiudad(Integer codigoCiudadBusqueda);
 }

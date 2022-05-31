@@ -15,16 +15,21 @@
         </a>
 
         <h:form class="filtros">
-            <div class="selector-wrapper">
-                <h:selectOneMenu id="ciudad-selector" class="selector" value="#{filtroHotelBean.ciudad}"
-                                 converter="#{ciudadConverter}">
-                    <p:ajax update="@this" process="@this"/>
-                    <f:selectItem itemLabel="Ciudad" itemValue="#{null}" noSelectionOption="true" />
-                    <f:selectItems value="#{signUpBean.ciudadesGrupo}"/>
-                </h:selectOneMenu>
+            <div class="d-flex">
+                <div class="selector-wrapper">
+                    <h:selectOneMenu id="ciudad-selector" class="selector" value="#{busquedaBean.ciudad}"
+                                     converter="#{ciudadConverter}">
+                        <p:ajax update="@this" process="@this"/>
+                        <f:selectItem itemLabel="Ciudad" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{signUpBean.ciudadesGrupo}"/>
+                    </h:selectOneMenu>
 
-                <span class="arrow">»</span>
+                    <span class="arrow">»</span>
+                </div>
+                <p:commandButton icon="pi pi-filter" action="#{busquedaBean.buscarHotelesCiudad()}" />
             </div>
+
+            <p:divider layout="vertical" />
 
             <div class="ui-inputgroup">
                 <p:inputText placeholder="Buscar hotel" value="#{busquedaBean.hotelBuscado}" autocomplete="off"/>
