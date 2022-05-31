@@ -146,4 +146,20 @@ public class HotelServicioTest {
 
         Assertions.assertEquals(10000.0, precio);
     }
+
+    @Test
+    public void obtenerHotelesPorNombreYCiudad() {
+        List<Hotel> hoteles = hotelServicio.obtenerHotelesPorNombreYCiudad("Cal", 4);
+
+        Assertions.assertNotNull(hoteles);
+        Assertions.assertEquals(1, hoteles.size());
+    }
+
+    @Test
+    public void obtenerHotelesPorIdCiudad() {
+        List<Hotel> hoteles = hotelServicio.obtenerHotelesPorIdCiudad(4);
+
+        Assertions.assertNotNull(hoteles);
+        Assertions.assertEquals(1, hoteles.size());
+    }
 }

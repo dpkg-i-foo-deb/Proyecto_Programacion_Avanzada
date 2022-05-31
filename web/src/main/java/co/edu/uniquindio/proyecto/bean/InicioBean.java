@@ -21,6 +21,9 @@ public class InicioBean implements Serializable {
     @Value("#{param['q']}")
     private String hotelBuscado;
 
+    @Value("#{param['c']}")
+    private Integer codigoCiudadBusqueda;
+
     private final IHotelServicio hotelServicio;
 
     public InicioBean(IHotelServicio hotelServicio) {
@@ -37,8 +40,12 @@ public class InicioBean implements Serializable {
     }
 
     private void cargarHoteles() {
-        if(hotelBuscado != null && !hotelBuscado.isEmpty())
+        if(hotelBuscado != null && !hotelBuscado.isEmpty() && codigoCiudadBusqueda != null)
+            hoteles = hotelServicio.obtenerHotelesPorNombreYCiudad(hotelBuscado, codigoCiudadBusqueda);
+        else if(hotelBuscado != null && !hotelBuscado.isEmpty())
             hoteles = hotelServicio.obtenerHotelesPorNombre(hotelBuscado);
+        else if(codigoCiudadBusqueda != null)
+            hoteles = hotelServicio.obtenerHotelesPorIdCiudad(codigoCiudadBusqueda);
         else
             hoteles = hotelServicio.obtenerHoteles();
     }

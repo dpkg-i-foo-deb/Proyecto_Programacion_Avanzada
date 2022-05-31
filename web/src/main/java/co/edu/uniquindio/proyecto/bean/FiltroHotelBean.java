@@ -1,6 +1,5 @@
 package co.edu.uniquindio.proyecto.bean;
 
-import co.edu.uniquindio.proyecto.entidades.Ciudad;
 import co.edu.uniquindio.proyecto.entidades.Departamento;
 import co.edu.uniquindio.proyecto.servicios.ICiudadServicio;
 import co.edu.uniquindio.proyecto.servicios.IDepartamentoServicio;
@@ -18,9 +17,6 @@ import java.util.List;
 @Component
 @ViewScoped
 public class FiltroHotelBean {
-    @Getter @Setter
-    private Ciudad ciudad;
-
     @Getter @Setter
     private List<SelectItem> ciudadesGrupo;
 
