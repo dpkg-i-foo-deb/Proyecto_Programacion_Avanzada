@@ -39,15 +39,19 @@
 
         <h:form>
             <p:menubar>
-                <p:menuitem value="Mi carrito" action="index" style="min-width: 100% !important;" icon="pi pi-shopping-cart"/>
+                <!-- Opciones para autenticados -->
+                <p:menuitem value="Mi carrito" action="index" style="min-width: 100% !important;" icon="pi pi-shopping-cart" rendered="#{seguridadBean.autenticado}"/>
 
-                <p:submenu label="Usuario" icon="pi pi-fw pi-user">
+                <p:submenu label="Usuario" icon="pi pi-fw pi-user" rendered="#{seguridadBean.autenticado}">
                     <p:menuitem value="Perfil" icon="pi pi-fw pi-user-edit"/>
                     <p:menuitem value="Mis compras" icon="pi pi-fw pi-shopping-cart"/>
                     <p:menuitem value="Favoritos" icon="pi pi-fw pi-heart"/>
                     <p:divider />
-                    <p:menuitem value="Cerrar sesión" icon="pi pi-fw pi-external-link"/>
+                    <p:menuitem value="Cerrar sesión" icon="pi pi-fw pi-external-link" action="#{seguridadBean.cerrarSesion()}"/>
                 </p:submenu>
+
+                <!-- Opciones para NO autenticados -->
+                <p:menuitem value="Iniciar Sesión" style="min-width: 100% !important;" icon="pi pi-sign-in" onclick="PF('login').show()" rendered="#{!seguridadBean.autenticado}" />
             </p:menubar>
         </h:form>
     </div>

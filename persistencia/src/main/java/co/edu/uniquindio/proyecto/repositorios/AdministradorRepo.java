@@ -3,6 +3,7 @@ package co.edu.uniquindio.proyecto.repositorios;
 import co.edu.uniquindio.proyecto.entidades.Persona_Administrador;
 import co.edu.uniquindio.proyecto.entidades.Persona_Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -19,4 +20,7 @@ public interface AdministradorRepo extends JpaRepository <Persona_Administrador,
     Boolean existsByCedulaOrEmail(String cedula, String email);
 
     Boolean existsByCedula(String cedula);
+
+    @Query("select case when count(u) > 0 then true else false end from Persona_Administrador u where u.email = :email")
+    Boolean esAdmin(String email);
 }

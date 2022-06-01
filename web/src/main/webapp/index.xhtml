@@ -7,9 +7,13 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition template="WEB-INF/template.xhtml">
+    <ui:define name="title">Home</ui:define>
+
     <ui:define name="content">
         <div class="card">
             <h:form>
+                <p:growl showDetail="true" />
+
                 <p:dataView var="hotel" value="#{inicioBean.hoteles}" rows="12" paginator="true"
                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                             gridIcon="pi pi-th-large" listIcon="pi pi-bars">
@@ -23,7 +27,7 @@
                             <p:outputPanel styleClass="me-auto">
                                 <h:panelGrid cellpadding="5" styleClass="d-flex flex-column">
                                     <div>
-                                        <div class="fw-bold fs-4">#{hotel.nombre}</div>
+                                        <div class="fw-bold fs-4 d-flex flex-row">#{hotel.nombre}</div>
                                         <div>Contacto: #{hotel.telefono}</div>
                                         <p:rating readonly="true" value="#{hotel.numeroEstrellas}"/>
                                         <i class="pi pi-map-marker"/><span
@@ -33,6 +37,9 @@
                             </p:outputPanel>
 
                             <div class="d-flex flex-column justify-content-around align-items-end">
+                                <p:commandButton action="#{favoritosBean.removerFavorito(hotel)}" styleClass="rounded-button" icon="pi pi-heart-fill" rendered="#{seguridadBean.autenticado and !seguridadBean.admin and favoritosBean.esFavorito(hotel)}" process="@parent" update="@form" />
+                                <p:commandButton action="#{favoritosBean.agregarFavorito(hotel)}" styleClass="rounded-button" icon="pi pi-heart" rendered="#{seguridadBean.autenticado and !seguridadBean.admin and not favoritosBean.esFavorito(hotel)}" process="@parent" update="@form" />
+
                                 <div>
                                     <span class="fs-5 text-secondary">Desde </span>
                                     <h:outputText value="#{inicioBean.obtenerPrecioHabitacionMasEconomica(hotel.codigoHotel)}" styleClass="fw-bold fs-4">
@@ -45,7 +52,7 @@
                                                  iconPos="right"
                                                  icon="pi pi-arrow-right">
                                 </p:commandButton>
-                                <span class="product-badge estado--#{hotel.estadoHotel.toString().toLowerCase()}">#{hotel.estadoHotel}</span>
+                                <h:outputText styleClass="product-badge estado--#{hotel.estadoHotel.toString().toLowerCase()}" rendered="#{seguridadBean.admin}" value="#{hotel.estadoHotel}" />
                             </div>
                         </div>
                     </p:dataViewListItem>
@@ -57,7 +64,7 @@
                                     <i class="pi pi-map-marker product-category-icon"/>
                                     <span class="product-category">#{hotel.ciudad.nombre}</span>
                                 </div>
-                                <span class="product-badge estado--#{hotel.estadoHotel.toString().toLowerCase()}">#{hotel.estadoHotel}</span>
+                                <h:outputText styleClass="product-badge estado--#{hotel.estadoHotel.toString().toLowerCase()}" rendered="#{seguridadBean.admin}" value="#{hotel.estadoHotel}" />
                             </div>
                             <div class="text-center">
                                 <p:graphicImage name="hotel-default.jpg" library="images" width="150px"/>

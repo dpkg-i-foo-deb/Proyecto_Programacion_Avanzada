@@ -45,4 +45,7 @@ public interface UsuarioRepo extends JpaRepository <Persona_Usuario, String>
 
     @Query(value = "select h from Persona_Usuario u, in(u.hotelesFavoritos) h where u.email = :email and lower(h.nombre) like concat('%', lower(:nombreHotel), '%')")
     List<Hotel> obtenerHotelesFavoritosByName(String email, String nombreHotel);
+
+    @Query("select case when count(u) > 0 then true else false end from Persona_Usuario u where u.email = :email")
+    Boolean esUsuario(String email);
 }

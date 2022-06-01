@@ -182,3 +182,13 @@ body {
     padding: 0 3px;
     font-weight: bold;
 }
+
+/* Modal */
+.ui-icon-closethick {
+    color: var(--dark-color) !important;
+}
+
+/* Like */
+.like-btn {
+    background-color: red !important;
+}
