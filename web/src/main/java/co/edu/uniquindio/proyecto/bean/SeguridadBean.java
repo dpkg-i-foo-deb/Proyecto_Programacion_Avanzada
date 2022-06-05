@@ -29,6 +29,9 @@ public class SeguridadBean implements Serializable {
     private boolean admin;
 
     @Getter @Setter
+    private boolean adminHotel;
+
+    @Getter @Setter
     private String email;
 
     @Getter @Setter
@@ -84,7 +87,7 @@ public class SeguridadBean implements Serializable {
 
     private void validarAdminHotel() throws Exception {
         usuario = adminHotelServicio.validarLogin(email, contrasena);
-        admin = true;
+        adminHotel = true;
     }
 
     private void validarUsuario() throws Exception {
@@ -95,6 +98,7 @@ public class SeguridadBean implements Serializable {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         autenticado = false;
         admin = false;
+        adminHotel = false;
 
         Mensaje.mostrarMensaje(FacesMessage.SEVERITY_INFO, "Sesión terminada");
 

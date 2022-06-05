@@ -15,39 +15,39 @@
             <h:form>
                     <div class="ui-inputgroup ui-fluid margin-bot">
                         <div class="ui-inputgroup-addon"><i class="pi pi-user-plus" /></div>
-                        <p:inputText placeholder="Nombre completo *" value="#{signUpBean.usuario.nombreCompleto}"
+                        <p:inputText placeholder="Nombre completo *" value="#{signUpAdminBean.usuario.nombreCompleto}"
                                      required="true" requiredMessage="Debe ingresar un nombre válido"/>
                     </div>
 
                     <div class="ui-inputgroup ui-fluid margin-bot">
                         <div class="ui-inputgroup-addon"><i class="pi pi-id-card" /></div>
-                        <p:inputText placeholder="Número de cédula *" value="#{signUpBean.usuario.cedula}"
+                        <p:inputText placeholder="Número de cédula *" value="#{signUpAdminBean.usuario.cedula}"
                                      required="true" requiredMessage="Debe ingresar una cédula válida"/>
                     </div>
 
                     <div class="ui-inputgroup ui-fluid margin-bot">
                         <div class="ui-inputgroup-addon"><i class="pi pi-map-marker" /></div>
-                        <h:selectOneMenu id="ciudad-selector" class="selector" value="#{signUpBean.usuario.ciudad}"
+                        <h:selectOneMenu id="ciudad-selector" class="selector" value="#{signUpAdminBean.usuario.ciudad}"
                                          style="border: 1px #ced4da solid;"
                                          converter="#{ciudadConverter}" required="true"
                                          requiredMessage="La ciudad es obligatoria" >
-                            <f:selectItems value="#{signUpBean.ciudadesGrupo}" var="ciudad" itemValue="#{ciudad}"/>
+                            <f:selectItems value="#{signUpAdminBean.ciudadesGrupo}" var="ciudad" itemValue="#{ciudad}"/>
                         </h:selectOneMenu>
                     </div>
 
                     <div class="horizontal margin-bot">
                         <div class="ui-inputgroup stretch ui-fluid">
                             <div class="ui-inputgroup-addon"><i class="pi pi-envelope" /></div>
-                            <p:inputText placeholder="Correo electrónico *" value="#{signUpBean.usuario.email}"
+                            <p:inputText placeholder="Correo electrónico *" value="#{signUpAdminBean.usuario.email}"
                                          required="true" requiredMessage="Debe ingresar un correo válido"/>
                         </div>
 
                         <p:password styleClass="fill-width" redisplay="true" placeholder="Contraseña *"
-                                    value="#{signUpBean.usuario.contrasena}" required="true"
+                                    value="#{signUpAdminBean.usuario.contrasena}" required="true"
                                     requiredMessage="Debe ingresar una contraseña válida"/>
                     </div>
 
-                    <p:commandButton styleClass="submit-btn" value="Registrarse" action="#{signUpBean.registrarUsuario}"
+                    <p:commandButton styleClass="submit-btn" value="Registrarse" action="#{signUpAdminBean.registrarUsuario}"
                                      update="@form"/>
                 <p:growl showDetail="true" />
             </h:form>

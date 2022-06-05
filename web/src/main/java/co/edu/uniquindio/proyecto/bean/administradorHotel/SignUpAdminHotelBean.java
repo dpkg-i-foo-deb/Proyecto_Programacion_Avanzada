@@ -1,12 +1,13 @@
-package co.edu.uniquindio.proyecto.bean.usuario;
+package co.edu.uniquindio.proyecto.bean.administradorHotel;
 
 import co.edu.uniquindio.proyecto.entidades.Ciudad;
 import co.edu.uniquindio.proyecto.entidades.Departamento;
-import co.edu.uniquindio.proyecto.entidades.Persona_Usuario;
+import co.edu.uniquindio.proyecto.entidades.Persona_Administrador_Hotel;
+import co.edu.uniquindio.proyecto.servicios.IAdministradorHotelServicio;
 import co.edu.uniquindio.proyecto.servicios.ICiudadServicio;
 import co.edu.uniquindio.proyecto.servicios.IDepartamentoServicio;
-import co.edu.uniquindio.proyecto.servicios.IUsuarioServicio;
-import co.edu.uniquindio.proyecto.servicios.excepciones.UsuarioException;
+import co.edu.uniquindio.proyecto.servicios.excepciones.AdministradorException;
+import co.edu.uniquindio.proyecto.servicios.excepciones.AdministradorHotelException;
 import co.edu.uniquindio.proyecto.utils.Mensaje;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,31 +24,33 @@ import java.util.List;
 
 @Component
 @ViewScoped
-public class SignUpBean implements Serializable {
-    private final IUsuarioServicio usuarioServicio;
+public class SignUpAdminHotelBean  implements Serializable {
+
+    private final IAdministradorHotelServicio administradorHotelServicio;
 
     private final IDepartamentoServicio departamentoServicio;
 
     private final ICiudadServicio ciudadServicio;
 
-    @Getter @Setter
-    private Persona_Usuario usuario;
+    @Getter
+    @Setter
+    private Persona_Administrador_Hotel administradorHotel;
 
     @Getter @Setter
     private Ciudad ciudad;
     @Getter @Setter
     private List<SelectItem> ciudadesGrupo;
 
-    public SignUpBean(IUsuarioServicio usuarioServicio, IDepartamentoServicio departamentoServicio, ICiudadServicio ciudadServicio) {
-        this.usuarioServicio = usuarioServicio;
+    public SignUpAdminHotelBean(IAdministradorHotelServicio administradorHotelServicio, IDepartamentoServicio departamentoServicio, ICiudadServicio ciudadServicio) {
+        this.administradorHotelServicio = administradorHotelServicio;
         this.departamentoServicio = departamentoServicio;
         this.ciudadServicio = ciudadServicio;
     }
 
     @PostConstruct
     public void init() {
-        //Creating a new user.
-        usuario = new Persona_Usuario();
+        //Creating a new admin.
+        administradorHotel = new Persona_Administrador_Hotel();
 
         //Populating selector options.
         ciudadesGrupo = new ArrayList<>();
@@ -67,22 +70,22 @@ public class SignUpBean implements Serializable {
         });
     }
 
-    public void registrarUsuario() {
+    public void registrarAdministrador() {
         try {
-            usuarioServicio.registrarUsuario(usuario);
+            administradorHotelServicio.registrarAdministradorHotel(administradorHotel);
 
             Mensaje.mostrarMensaje(
-                FacesMessage.SEVERITY_INFO,
-                "Registro exitoso",
-                "Bienvenido a unitravel. Ya puedes iniciar sesión"
+                    FacesMessage.SEVERITY_INFO,
+                    "Registro exitoso",
+                    "Bienvenido a unitravel. Ya puedes iniciar sesión"
             );
-        } catch (UsuarioException e) {
+        } catch (AdministradorHotelException e) {
             System.err.println("ERROR: " + e.getMessage());
 
             Mensaje.mostrarMensaje(
-                FacesMessage.SEVERITY_ERROR,
-                "Error en el registro",
-                e.getMessage()
+                    FacesMessage.SEVERITY_ERROR,
+                    "Error en el registro",
+                    e.getMessage()
             );
         }
     }
