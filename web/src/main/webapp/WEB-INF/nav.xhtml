@@ -45,15 +45,14 @@
                 <p:submenu label="Usuario" icon="pi pi-fw pi-user" rendered="#{seguridadBean.autenticado}">
                     <p:menuitem value="Perfil" icon="pi pi-fw pi-user-edit"/>
                     <p:menuitem value="Mis compras" icon="pi pi-fw pi-shopping-cart"/>
-                    <p:menuitem value="Favoritos" icon="pi pi-fw pi-heart">
-                        <a href="../usuario/favoritos.xhtml"> Favoritos </a>
-                    </p:menuitem>
+                    <p:menuitem value="Favoritos" icon="pi pi-fw pi-heart" action="favoritos?faces-redirect=true"/>
                     <p:divider />
                     <p:menuitem value="Cerrar sesión" icon="pi pi-fw pi-external-link" action="#{seguridadBean.cerrarSesion()}"/>
                 </p:submenu>
 
                 <!-- Opciones para NO autenticados -->
                 <p:menuitem value="Iniciar Sesión" style="min-width: 100% !important;" icon="pi pi-sign-in" onclick="PF('login').show()" rendered="#{!seguridadBean.autenticado}" />
+                <p:menuitem value="Registro" style="min-width: 100% !important;" icon="pi pi-user-plus" action="sign_up?faces-redirect=true" rendered="#{!seguridadBean.autenticado}" />
             </p:menubar>
         </h:form>
     </div>

@@ -13,8 +13,11 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.List;
 
 @Component
@@ -41,18 +44,24 @@ public class FavoritosBean {
     public void agregarFavorito(Hotel hotel) {
         try {
             usuarioServicio.agregarHotelFavorito(hotel, usuario.getEmail());
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Hotel Favorito", "Se agregó a favoritos"));
+
+            reload();
         } catch (UsuarioException | HotelException e) {
             Mensaje.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "Error Hotel Favorito", e.getMessage());
+        } catch (IOException e) {
+            System.err.println("Error: " + e.getMessage());
         }
     }
 
     public void removerFavorito(Hotel hotel) {
         try {
             usuarioServicio.eliminarHotelFavorito(hotel, usuario.getEmail());
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Hotel Favorito", "Se removió de favoritos"));
+
+            reload();
         } catch (UsuarioException | HotelException e) {
             Mensaje.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "Error Hotel Favorito", e.getMessage());
+        } catch (IOException e) {
+            System.err.println("Error: " + e.getMessage());
         }
     }
 
@@ -65,5 +74,10 @@ public class FavoritosBean {
             removerFavorito(hotel);
         else
             agregarFavorito(hotel);
+    }
+
+    public void reload() throws IOException {
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
     }
 }
