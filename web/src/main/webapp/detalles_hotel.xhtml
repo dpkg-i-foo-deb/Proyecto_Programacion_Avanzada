@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="WEB-INF/template.xhtml">
+    <ui:define name="title">Detalles</ui:define>
+
+    <ui:define name="content">
+        <div class="container-fluid p-4">
+            <h:form>
+                <h1 class="d-flex justify-content-between">
+                    #{detallesHotelBean.hotel.getNombre()}
+                    <h:outputText styleClass="tag favorito-tag h-75 fs-4" value="Favorito" rendered="#{seguridadBean.autenticado and !seguridadBean.admin and favoritosBean.esFavorito(detallesHotelBean.hotel)}" />
+                </h1>
+
+                <div class="p-d-flex p-ai-center p-flex-wrap" >
+                    <p:repeat value="#{detallesHotelBean.caracteristicas}" var="caracteristica">
+                        <p:chip label="#{caracteristica.descripcion}" styleClass="me-2"/>
+                    </p:repeat>
+                </div>
+                <div class="d-flex w-100 m-auto justify-content-between" >
+                    <div style="text-align: left;" class="w-50" >
+                        <p:graphicImage name="hotel-default.jpg" library="images" styleClass="w-50"/>
+                    </div>
+                    <div>
+                        <span class="fs-5 text-secondary">Precios desde</span>
+                        <br />
+                        <h:outputText value="#{inicioBean.obtenerPrecioHabitacionMasEconomica(detallesHotelBean.hotel.codigoHotel)}" styleClass="fw-bold fs-4">
+                            <f:convertNumber currencySymbol="$" type="currency"/>
+                        </h:outputText>
+
+                        <div>Contacto: #{detallesHotelBean.hotel.telefono}</div>
+                        <p:rating readonly="true" value="#{detallesHotelBean.hotel.numeroEstrellas}"/>
+                        <i class="pi pi-map-marker"/>
+                        <span class="fw-bold">#{detallesHotelBean.hotel.ciudad.nombre}</span>
+                    </div>
+
+                    <div class="d-flex flex-column w-25">
+                        <p:dataScroller value="#{detallesHotelBean.comentarios}" var="comentario" chunkSize="10" mode="inline" styleClass="w-100">
+                            <f:facet name="header">
+                                Comentarios
+                            </f:facet>
+
+                            <div>
+                                <div>
+                                    <div class="d-flex align-items-end w-100">
+                                        <p:avatar label="#{comentario.getCedulaUsuario().getNombreCompleto().charAt(0)}" styleClass="mr-2" size="large" shape="circle" />
+                                        <p class="fw-bold">#{comentario.getCedulaUsuario().getNombreCompleto()}</p>
+                                        <div class="d-flex justify-content-end">
+                                            <p class="d-block" style="font-size: 14px; color: gray">#{detallesHotelBean.formatearFecha(comentario.getFecha())}</p>
+                                        </div>
+                                    </div>
+                                    <h:outputText styleClass="ms-5" value="#{comentario.observacion}" />
+                                    <div class="d-flex justify-content-end">
+                                        <p:rating readonly="true" value="#{comentario.calificacion}" styleClass="align-items-end comentario-start" style=""/>
+                                        <div class="d-flex align-items-center">
+                                            <p style="margin-bottom: 0 !important;">(#{comentario.calificacion})</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p:divider />
+                            </div>
+                        </p:dataScroller>
+                    </div>
+                </div>
+
+                <p:dataScroller value="#{detallesHotelBean.habitaciones}" var="habitacion" rows="5" chunkSize="5">
+                    <f:facet name="header">
+                        Habitaciones
+                    </f:facet>
+
+                    <div>
+                        <div class="d-flex p-3 justify-content-between" >
+                            <div class="d-flex">
+                                <div style="text-align: center;" >
+                                    <p:graphicImage name="habitacion.png" library="images" width="150px"/>
+                                </div>
+
+                                <div class="ps-3">
+                                    <p class="fs-4 fw-bold">Habitación para #{habitacion.capacidad} personas</p>
+                                    <div>Esta habitación cuenta con camas:
+                                        <p:repeat value="#{habitacion.listaCamas}" var="cama">
+                                            <span>#{cama.tipo}, </span>
+                                        </p:repeat>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-column justify-content-around align-items-end">
+                                <h:outputText value="#{habitacion.precio}" styleClass="fw-bold fs-4">
+                                    <f:convertNumber currencySymbol="$" type="currency"/>
+                                </h:outputText>
+                                <p:commandButton value="Reservar" icon="pi pi-shopping-cart"
+                                                 rendered="#{seguridadBean.autenticado and !seguridadBean.admin}"
+                                                 action="404?faces-redirect=true">
+                                </p:commandButton>
+                            </div>
+                        </div>
+                    </div>
+                </p:dataScroller>
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>
+</html>

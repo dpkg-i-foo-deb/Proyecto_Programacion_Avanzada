@@ -1,9 +1,6 @@
 package co.edu.uniquindio.proyecto.servicios.implementacion;
 
-import co.edu.uniquindio.proyecto.entidades.Ciudad;
-import co.edu.uniquindio.proyecto.entidades.EstadoHotel;
-import co.edu.uniquindio.proyecto.entidades.Hotel;
-import co.edu.uniquindio.proyecto.entidades.Persona_Administrador_Hotel;
+import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.repositorios.HotelRepo;
 import co.edu.uniquindio.proyecto.servicios.IHotelServicio;
 import co.edu.uniquindio.proyecto.servicios.excepciones.HotelException;
@@ -187,5 +184,10 @@ public class HotelServicioImpl implements IHotelServicio
     @Override
     public List<Hotel> obtenerHotelesPorIdCiudad(Integer codigoCiudadBusqueda) {
         return hotelRepo.obtenerHotelesPorIdCiudad(codigoCiudadBusqueda);
+    }
+
+    @Override
+    public List<Caracteristica> obtenerCaracteristicasHotel(Integer codigoHotel) {
+        return hotelRepo.obtenerCaracteristicas(codigoHotel);
     }
 }

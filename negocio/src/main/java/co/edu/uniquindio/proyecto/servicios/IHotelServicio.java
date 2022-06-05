@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.servicios;
 
+import co.edu.uniquindio.proyecto.entidades.Caracteristica;
 import co.edu.uniquindio.proyecto.entidades.Ciudad;
 import co.edu.uniquindio.proyecto.entidades.Hotel;
 import co.edu.uniquindio.proyecto.entidades.Persona_Administrador_Hotel;
@@ -34,4 +35,6 @@ public interface IHotelServicio
     List<Hotel> obtenerHotelesPorNombreYCiudad(String hotelBuscado, Integer codigoCiudadBusqueda);
 
     List<Hotel> obtenerHotelesPorIdCiudad(Integer codigoCiudadBusqueda);
+
+    List<Caracteristica> obtenerCaracteristicasHotel(Integer codigoHotel);
 }

@@ -37,7 +37,7 @@ public class  Persona implements Serializable
     @Email
     private String email;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<String> telefonos = new ArrayList<>();
 
     @NotBlank

@@ -70,6 +70,7 @@ public class FavoritosBean {
     }
 
     public void favoritoListener(Hotel hotel) {
+        System.out.println(hotel);
         if(esFavorito(hotel))
             removerFavorito(hotel);
         else
