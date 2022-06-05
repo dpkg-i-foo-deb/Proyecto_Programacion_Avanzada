@@ -170,17 +170,17 @@ body {
 }
 
 /* Hotel */
+.tag {
+    padding: 0 3px !important;
+    font-weight: bold;
+}
 .estado--disponible {
     background-color: var(--light-green-bg);
-    padding: 0 3px;
     color: var(--light-green-text);
-    font-weight: bold;
 }
 .estado--pausado {
     background-color: var(--light-red-bg);
     color: var(--light-red-text);
-    padding: 0 3px;
-    font-weight: bold;
 }
 
 /* Modal */
@@ -189,6 +189,11 @@ body {
 }
 
 /* Like */
-.like-btn {
-    background-color: red !important;
+.favorito-tag {
+    background-color: deeppink;
+    color: white;
+}
+.wrapper-nombre-hotel td{
+    padding-left: 0 !important;
+    padding-right: 10px !important;
 }

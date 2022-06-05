@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.el.MethodExpression;
+import javax.faces.context.ExternalContext;
 import javax.faces.view.ViewScoped;
 import java.io.Serializable;
 import java.util.List;
@@ -48,5 +50,9 @@ public class InicioBean implements Serializable {
             hoteles = hotelServicio.obtenerHotelesPorIdCiudad(codigoCiudadBusqueda);
         else
             hoteles = hotelServicio.obtenerHoteles();
+    }
+
+    public String irFavoritos() {
+        return "/usuario/favoritos?faces-redirect=true";
     }
 }

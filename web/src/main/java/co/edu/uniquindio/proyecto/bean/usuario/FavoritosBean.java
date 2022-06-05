@@ -59,4 +59,11 @@ public class FavoritosBean {
     public boolean esFavorito(Hotel hotel) {
         return hotelesFavoritos.contains(hotel);
     }
+
+    public void favoritoListener(Hotel hotel) {
+        if(esFavorito(hotel))
+            removerFavorito(hotel);
+        else
+            agregarFavorito(hotel);
+    }
 }

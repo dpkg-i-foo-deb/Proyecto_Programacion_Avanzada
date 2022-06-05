@@ -45,7 +45,9 @@
                 <p:submenu label="Usuario" icon="pi pi-fw pi-user" rendered="#{seguridadBean.autenticado}">
                     <p:menuitem value="Perfil" icon="pi pi-fw pi-user-edit"/>
                     <p:menuitem value="Mis compras" icon="pi pi-fw pi-shopping-cart"/>
-                    <p:menuitem value="Favoritos" icon="pi pi-fw pi-heart"/>
+                    <p:menuitem value="Favoritos" icon="pi pi-fw pi-heart">
+                        <a href="../usuario/favoritos.xhtml"> Favoritos </a>
+                    </p:menuitem>
                     <p:divider />
                     <p:menuitem value="Cerrar sesión" icon="pi pi-fw pi-external-link" action="#{seguridadBean.cerrarSesion()}"/>
                 </p:submenu>

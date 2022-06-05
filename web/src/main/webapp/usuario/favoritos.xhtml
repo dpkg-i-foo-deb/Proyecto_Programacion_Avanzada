@@ -7,14 +7,14 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition template="WEB-INF/template.xhtml">
-    <ui:define name="title">Home</ui:define>
+    <ui:define name="title">Favoritos</ui:define>
 
     <ui:define name="content">
         <div class="card">
             <h:form>
                 <p:growl showDetail="true" />
 
-                <p:dataView var="hotel" value="#{inicioBean.hoteles}" rows="12" paginator="true"
+                <p:dataView var="hotel" value="#{favoritosBean.hotelesFavoritos}" rows="12" paginator="true"
                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                             gridIcon="pi pi-th-large" listIcon="pi pi-bars">
 

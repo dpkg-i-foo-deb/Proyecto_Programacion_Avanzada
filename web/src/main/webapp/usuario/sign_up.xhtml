@@ -27,12 +27,12 @@
 
                     <div class="ui-inputgroup ui-fluid margin-bot">
                         <div class="ui-inputgroup-addon"><i class="pi pi-map-marker" /></div>
-                        <p:selectOneMenu id="ciudad-selector" value="#{signUpBean.usuario.ciudad}"
+                        <h:selectOneMenu id="ciudad-selector" class="selector" value="#{signUpBean.usuario.ciudad}"
+                                         style="border: 1px #ced4da solid;"
                                          converter="#{ciudadConverter}" required="true"
-                                         requiredMessage="La ciudad es obligatoria" filter="true"
-                                         filterMatchMode="startsWith">
+                                         requiredMessage="La ciudad es obligatoria" >
                             <f:selectItems value="#{signUpBean.ciudadesGrupo}" var="ciudad" itemValue="#{ciudad}"/>
-                        </p:selectOneMenu>
+                        </h:selectOneMenu>
                     </div>
 
                     <div class="horizontal margin-bot">
@@ -42,7 +42,7 @@
                                          required="true" requiredMessage="Debe ingresar un correo válido"/>
                         </div>
 
-                        <p:password styleClass="fill-width" toggleMask="true" redisplay="true" placeholder="Contraseña *"
+                        <p:password styleClass="fill-width" redisplay="true" placeholder="Contraseña *"
                                     value="#{signUpBean.usuario.contrasena}" required="true"
                                     requiredMessage="Debe ingresar una contraseña válida"/>
                     </div>
