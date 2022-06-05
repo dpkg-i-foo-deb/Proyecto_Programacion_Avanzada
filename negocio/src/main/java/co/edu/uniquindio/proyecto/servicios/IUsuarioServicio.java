@@ -43,4 +43,5 @@ public interface IUsuarioServicio {
 
     Boolean reservarVuelo(List<Reserva> reservas, Integer codigoVuelo, Integer codigoSilla, Integer codigoReserva, Integer codigoReservaSilla)throws Exception;
 
+    Boolean esUsuario(String email);
 }

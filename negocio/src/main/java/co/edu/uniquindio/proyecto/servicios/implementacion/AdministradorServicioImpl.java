@@ -98,5 +98,10 @@ public class AdministradorServicioImpl implements IAdministradorServicio {
     {
 
     }
+
+    @Override
+    public Boolean esAdmin(String email) {
+        return administradorRepo.esAdmin(email);
+    }
 }
 

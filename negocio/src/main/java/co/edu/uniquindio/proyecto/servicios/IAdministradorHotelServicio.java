@@ -24,4 +24,6 @@ public interface IAdministradorHotelServicio {
     Cama registrarCama(Cama cama) throws Exception;
 
     Habitacion registrarHabitacion(Habitacion habitacion) throws Exception;
+
+    Boolean esAdminHotel(String email);
 }

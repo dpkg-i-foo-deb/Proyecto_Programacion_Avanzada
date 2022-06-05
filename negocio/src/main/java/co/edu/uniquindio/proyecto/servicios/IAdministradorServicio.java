@@ -27,4 +27,6 @@ public interface IAdministradorServicio {
     Vuelo crearVuelo(Vuelo vuelo);
 
     void eliminarVuelo();
+
+    Boolean esAdmin(String email);
 }
