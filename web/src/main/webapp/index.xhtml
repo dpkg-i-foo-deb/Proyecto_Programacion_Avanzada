@@ -47,10 +47,10 @@
                                     </h:outputText>
                                 </div>
 
-                                <p:commandButton type="button"
-                                                 value="Ver Más"
+                                <p:commandButton value="Ver Más"
                                                  iconPos="right"
-                                                 icon="pi pi-arrow-right">
+                                                 icon="pi pi-arrow-right"
+                                                 action="#{inicioBean.verDetalles(hotel.codigoHotel)}">
                                 </p:commandButton>
                                 <h:outputText styleClass="tag estado--#{hotel.estadoHotel.toString().toLowerCase()}" rendered="#{seguridadBean.admin}" value="#{hotel.estadoHotel}" />
                             </div>
@@ -84,11 +84,11 @@
                                         <f:convertNumber currencySymbol="$" type="currency"/>
                                     </h:outputText>
                                 </div>
-                                <p:commandButton type="button"
-                                                 value="Ver Más"
+                                <p:commandButton value="Ver Más"
                                                  iconPos="right"
-                                                 icon="pi pi-arrow-right">
-                                </p:commandButton>
+                                                 icon="pi pi-arrow-right"
+                                                 action="#{inicioBean.verDetalles(hotel.codigoHotel)}"
+                                                 />
                             </div>
                         </div>
                     </p:dataViewGridItem>

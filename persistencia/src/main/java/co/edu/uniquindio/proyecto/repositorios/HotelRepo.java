@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.repositorios;
 
+import co.edu.uniquindio.proyecto.entidades.Caracteristica;
 import co.edu.uniquindio.proyecto.entidades.Ciudad;
 import co.edu.uniquindio.proyecto.entidades.Hotel;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -51,4 +52,7 @@ public interface HotelRepo extends JpaRepository <Hotel, Integer>
 
     @Query("select h from Hotel h where h.ciudad.codigoCiudad = :codigoCiudad")
     List<Hotel> obtenerHotelesPorIdCiudad(Integer codigoCiudad);
+
+    @Query("select c from Hotel h, IN(h.listaCaracteristicas) c where h.codigoHotel = :codigoHotel")
+    List<Caracteristica> obtenerCaracteristicas(Integer codigoHotel);
 }
