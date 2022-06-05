@@ -40,11 +40,11 @@
         <h:form>
             <p:menubar>
                 <!-- Opciones para autenticados -->
-                <p:menuitem value="Mi carrito" action="index" style="min-width: 100% !important;" icon="pi pi-shopping-cart" rendered="#{seguridadBean.autenticado}"/>
+                <p:menuitem value="Mi carrito" style="min-width: 100% !important;" icon="pi pi-shopping-cart" rendered="#{seguridadBean.autenticado}" action="404?faces-redirect=true"/>
 
                 <p:submenu label="Usuario" icon="pi pi-fw pi-user" rendered="#{seguridadBean.autenticado}">
-                    <p:menuitem value="Perfil" icon="pi pi-fw pi-user-edit"/>
-                    <p:menuitem value="Mis compras" icon="pi pi-fw pi-shopping-cart"/>
+                    <p:menuitem value="Perfil" icon="pi pi-fw pi-user-edit" action="404?faces-redirect=true"/>
+                    <p:menuitem value="Mis compras" icon="pi pi-fw pi-shopping-cart" action="404?faces-redirect=true"/>
                     <p:menuitem value="Favoritos" icon="pi pi-fw pi-heart" action="favoritos?faces-redirect=true"/>
                     <p:divider />
                     <p:menuitem value="Cerrar sesión" icon="pi pi-fw pi-external-link" action="#{seguridadBean.cerrarSesion()}"/>
