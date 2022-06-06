@@ -39,6 +39,8 @@
 
         <h:form>
             <p:menubar>
+                <p:menuitem value="Registrar Hotel" style="min-width: 100% !important;" icon="pi pi-building" rendered="#{seguridadBean.adminHotel}" action="registro_hotel?faces-redirect=true"/>
+
                 <!-- Opciones para autenticados -->
                 <p:menuitem value="Mi carrito" style="min-width: 100% !important;" icon="pi pi-shopping-cart" rendered="#{seguridadBean.autenticado}" action="404?faces-redirect=true"/>
 
