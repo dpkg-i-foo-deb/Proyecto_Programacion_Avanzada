@@ -53,6 +53,7 @@
                 <!-- Opciones para NO autenticados -->
                 <p:menuitem value="Iniciar Sesión" style="min-width: 100% !important;" icon="pi pi-sign-in" onclick="PF('login').show()" rendered="#{!seguridadBean.autenticado}" />
                 <p:menuitem value="Registro" style="min-width: 100% !important;" icon="pi pi-user-plus" action="sign_up?faces-redirect=true" rendered="#{!seguridadBean.autenticado}" />
+                <p:menuitem value="Recuperar contraseña" style="min-width: 100% !important;" icon="pi pi-envelope" onclick="PF('recuperar').show()" rendered="#{!seguridadBean.autenticado}" />
             </p:menubar>
         </h:form>
     </div>
