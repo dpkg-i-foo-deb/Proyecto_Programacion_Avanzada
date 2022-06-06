@@ -38,16 +38,16 @@
                     <div class="horizontal margin-bot">
                         <div class="ui-inputgroup stretch ui-fluid">
                             <div class="ui-inputgroup-addon"><i class="pi pi-envelope" /></div>
-                            <p:inputText placeholder="Correo electrónico *" value="#{signUpAdminBean.usuario.email}"
+                            <p:inputText placeholder="Correo electrónico *" value="#{signUpBean.usuario.email}"
                                          required="true" requiredMessage="Debe ingresar un correo válido"/>
                         </div>
 
                         <p:password styleClass="fill-width" redisplay="true" placeholder="Contraseña *"
-                                    value="#{signUpAdminBean.usuario.contrasena}" required="true"
+                                    value="#{signUpBean.usuario.contrasena}" required="true"
                                     requiredMessage="Debe ingresar una contraseña válida"/>
                     </div>
 
-                    <p:commandButton styleClass="submit-btn" value="Registrarse" action="#{signUpAdminBean.registrarUsuario}"
+                    <p:commandButton styleClass="submit-btn" value="Registrarse" action="#{signUpBean.registrarUsuario}"
                                      update="@form"/>
                 <p:growl showDetail="true" />
             </h:form>

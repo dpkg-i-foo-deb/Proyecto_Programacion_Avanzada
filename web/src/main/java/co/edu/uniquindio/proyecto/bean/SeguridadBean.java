@@ -4,6 +4,7 @@ import co.edu.uniquindio.proyecto.entidades.Persona;
 import co.edu.uniquindio.proyecto.servicios.IAdministradorHotelServicio;
 import co.edu.uniquindio.proyecto.servicios.IAdministradorServicio;
 import co.edu.uniquindio.proyecto.servicios.IUsuarioServicio;
+import co.edu.uniquindio.proyecto.servicios.email.EmailServicio;
 import co.edu.uniquindio.proyecto.servicios.excepciones.UsuarioException;
 import co.edu.uniquindio.proyecto.utils.Mensaje;
 import lombok.Getter;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.mail.MessagingException;
 import java.io.Serializable;
 
 @Component
@@ -40,11 +42,13 @@ public class SeguridadBean implements Serializable {
     private final IUsuarioServicio usuarioServicio;
     private final IAdministradorServicio administradorServicio;
     private final IAdministradorHotelServicio adminHotelServicio;
+    private final EmailServicio emailServicio;
 
-    public SeguridadBean(IUsuarioServicio usuarioServicio, IAdministradorServicio administradorServicio, IAdministradorHotelServicio adminHotelServicio) {
+    public SeguridadBean(IUsuarioServicio usuarioServicio, IAdministradorServicio administradorServicio, IAdministradorHotelServicio adminHotelServicio, EmailServicio emailServicio) {
         this.usuarioServicio = usuarioServicio;
         this.administradorServicio = administradorServicio;
         this.adminHotelServicio = adminHotelServicio;
+        this.emailServicio = emailServicio;
     }
 
     @PostConstruct
@@ -103,5 +107,30 @@ public class SeguridadBean implements Serializable {
         Mensaje.mostrarMensaje(FacesMessage.SEVERITY_INFO, "Sesión terminada");
 
         return "index?faces-redirect=true";
+    }
+
+    public String recuperarContrasena() {
+        try {
+            emailServicio.recuperarContrasena(email);
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(
+                            FacesMessage.SEVERITY_INFO,
+                            "Recuperación",
+                            "Se ha enviado un correo con la contraseña de usuario"
+                    )
+            );
+
+            return "index";
+        } catch (MessagingException | UsuarioException e) {
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                            "Recuperación",
+                            "Error: " + e.getMessage()
+                    )
+            );
+        }
+        return "";
     }
 }

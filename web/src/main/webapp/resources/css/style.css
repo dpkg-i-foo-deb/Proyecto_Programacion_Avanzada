@@ -197,3 +197,7 @@ body {
     padding-left: 0 !important;
     padding-right: 10px !important;
 }
+
+.ui-growl {
+    z-index: 2 !important;
+}
