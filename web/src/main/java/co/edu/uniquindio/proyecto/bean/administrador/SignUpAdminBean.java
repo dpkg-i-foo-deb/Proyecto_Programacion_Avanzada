@@ -33,8 +33,7 @@ public class SignUpAdminBean implements Serializable {
 
     private final ICiudadServicio ciudadServicio;
 
-    @Getter
-    @Setter
+    @Getter @Setter
     private Persona_Administrador administrador;
 
     @Getter @Setter
