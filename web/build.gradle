@@ -1,0 +1,12 @@
+plugins {
+    id "org.joinfaces" version "4.6.7"
+}
+
+dependencies {
+    implementation project(':negocio')
+    implementation project(':persistencia')
+    implementation 'org.joinfaces:jsf-spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation group: 'org.primefaces', name: 'primefaces', version: '11.0.0'
+    implementation('javax.mail:javax.mail-api:1.6.2')
+}

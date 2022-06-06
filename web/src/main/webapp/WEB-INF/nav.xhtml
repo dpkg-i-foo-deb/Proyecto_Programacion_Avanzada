@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<body>
+    <div class="navbar ui-fluid pb-5">
+        <a href="../index.xhtml" class="logo">
+            <img class="logo__img" src="../resources/images/unitravel-logo.png" alt="logo" />
+            <span class="logo__texto">UNITRAVEL</span>
+        </a>
+
+        <h:form class="filtros">
+            <div class="d-flex">
+                <div class="selector-wrapper">
+                    <h:selectOneMenu id="ciudad-selector" class="selector" value="#{busquedaBean.ciudad}"
+                                     converter="#{ciudadConverter}">
+                        <p:ajax update="@this" process="@this"/>
+                        <f:selectItem itemLabel="Ciudad" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{signUpAdminBean.ciudadesGrupo}"/>
+                    </h:selectOneMenu>
+
+                    <span class="arrow">»</span>
+                </div>
+                <p:commandButton icon="pi pi-filter" action="#{busquedaBean.buscarHotelesCiudad()}" />
+            </div>
+
+            <p:divider layout="vertical" />
+
+            <div class="ui-inputgroup">
+                <p:inputText placeholder="Buscar hotel" value="#{busquedaBean.hotelBuscado}" autocomplete="off"/>
+                <p:commandButton icon="pi pi-search" styleClass="ui-button-primary" action="#{busquedaBean.buscarHoteles()}"/>
+            </div>
+        </h:form>
+
+        <h:form>
+            <p:menubar>
+                <p:menuitem value="Registrar Hotel" style="min-width: 100% !important;" icon="pi pi-building" rendered="#{seguridadBean.adminHotel}" action="registro_hotel?faces-redirect=true"/>
+
+                <!-- Opciones para autenticados -->
+                <p:menuitem value="Mi carrito" style="min-width: 100% !important;" icon="pi pi-shopping-cart" rendered="#{seguridadBean.autenticado and !seguridadBean.admin and !seguridadBean.adminHotel}" action="404?faces-redirect=true"/>
+                <p:menuitem value="Mis Reservas" icon="pi pi-fw pi-book" action="404?faces-redirect=true" rendered="#{seguridadBean.autenticado and !seguridadBean.admin and !seguridadBean.adminHotel}"/>
+                <p:menuitem value="Mis Hoteles" icon="pi pi-fw pi-list" action="404?faces-redirect=true" rendered="#{seguridadBean.adminHotel}"/>
+                <p:menuitem value="Registrar Admin Hotel" icon="pi pi-fw pi-user-plus" action="sign_up_admin_hotel?faces-redirect=true" rendered="#{seguridadBean.admin}"/>
+                <p:submenu label="Usuario" icon="pi pi-fw pi-user" rendered="#{seguridadBean.autenticado}">
+                    <p:menuitem value="Perfil" icon="pi pi-fw pi-user-edit" action="404?faces-redirect=true" rendered="#{seguridadBean.autenticado and !seguridadBean.admin and !seguridadBean.adminHotel}"/>
+                    <p:menuitem value="Favoritos" icon="pi pi-fw pi-heart" action="favoritos?faces-redirect=true" rendered="#{seguridadBean.autenticado and !seguridadBean.admin and !seguridadBean.adminHotel}"/>
+                    <p:divider />
+                    <p:menuitem value="Cerrar sesión" icon="pi pi-fw pi-external-link" action="#{seguridadBean.cerrarSesion()}"/>
+                </p:submenu>
+
+                <!-- Opciones para NO autenticados -->
+                <p:menuitem value="Iniciar Sesión" style="min-width: 100% !important;" icon="pi pi-sign-in" onclick="PF('login').show()" rendered="#{!seguridadBean.autenticado}" />
+                <p:menuitem value="Registro" style="min-width: 100% !important;" icon="pi pi-user-plus" action="sign_up?faces-redirect=true" rendered="#{!seguridadBean.autenticado}" />
+                <p:menuitem value="Recuperar contraseña" style="min-width: 100% !important;" icon="pi pi-envelope" onclick="PF('recuperar').show()" rendered="#{!seguridadBean.autenticado}" />
+            </p:menubar>
+        </h:form>
+    </div>
+</body>
+</html>

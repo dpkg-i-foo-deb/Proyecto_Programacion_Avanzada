@@ -1,6 +1,7 @@
 package co.edu.uniquindio.proyecto.servicios.implementacion;
 
 import co.edu.uniquindio.proyecto.entidades.Ciudad;
+import co.edu.uniquindio.proyecto.entidades.Departamento;
 import co.edu.uniquindio.proyecto.repositorios.CiudadRepo;
 import co.edu.uniquindio.proyecto.servicios.ICiudadServicio;
 import co.edu.uniquindio.proyecto.servicios.excepciones.CiudadException;
@@ -33,7 +34,13 @@ public class CiudadServicioImpl implements ICiudadServicio
     @Override
     public void eliminarCiudad(Ciudad ciudad)
     {
-        ciudadRepo.delete(ciudad);
+
+        try{
+            ciudadRepo.delete(ciudad);
+        }catch (Exception e)
+        {
+            System.out.print("No ha sido posible eliminar la ciudad");
+        }
     }
 
     @Override
@@ -51,5 +58,10 @@ public class CiudadServicioImpl implements ICiudadServicio
     public List<Ciudad> obtenerCiudades()
     {
         return ciudadRepo.findAll();
+    }
+
+    @Override
+    public List<Ciudad> obtenerCiudadesDepartamento(Departamento departamento) {
+        return ciudadRepo.findAllByDepartamento(departamento);
     }
 }

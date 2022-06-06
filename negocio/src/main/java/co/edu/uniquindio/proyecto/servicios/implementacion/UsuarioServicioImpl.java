@@ -67,7 +67,12 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
             throw new UsuarioException("No hay registro que coincida con la cédula especificada");
         }
 
-        usuarioRepo.deleteById(cedula);
+        try{
+            usuarioRepo.deleteById(cedula);
+        }catch (Exception e)
+        {
+            throw new UsuarioException("Algo ha salido mal");
+        }
     }
 
     /**
@@ -149,10 +154,16 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
                 .orElseThrow(() -> new UsuarioException("El usuario no está registrado"));
     }
     public Persona_Usuario validarLogin(String correo, String password) throws Exception {
+        if(correo.isEmpty() || password.isEmpty()) {
+            throw new UsuarioException("Debe ingresar todos los campos");
+        }
+
         Optional<Persona_Usuario> usuario = usuarioRepo.findByEmailAndContrasena(correo, password);
+
         if(usuario.isEmpty()){
             throw new UsuarioException("Los datos de autenticación son incorrectos");
         }
+
         return usuario.get();
     }
 
@@ -220,4 +231,8 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
         return reservas.add(reserva);
     }
 
+    @Override
+    public Boolean esUsuario(String email) {
+        return usuarioRepo.esUsuario(email);
+    }
 }

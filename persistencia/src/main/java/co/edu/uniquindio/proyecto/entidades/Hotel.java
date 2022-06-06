@@ -67,7 +67,8 @@ public class Hotel
     @ToString.Exclude
     private List<Habitacion> habitaciones;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.LAZY)
+    @ToString.Exclude
     private List<String> listaFotos;
 
     public Hotel(String nombre, short numeroEstrellas, String direccion, Ciudad ciudad, Persona_Administrador_Hotel administrador, EstadoHotel estadoHotel) {

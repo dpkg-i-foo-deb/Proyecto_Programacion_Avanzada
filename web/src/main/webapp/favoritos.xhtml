@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="WEB-INF/template.xhtml">
+    <ui:define name="title">Favoritos</ui:define>
+
+    <ui:define name="content">
+        <div class="card">
+            <h:form>
+                <p:growl showDetail="true" />
+
+                <p:dataView var="hotel" value="#{favoritosBean.hotelesFavoritos}" rows="12" paginator="true"
+                            paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                            gridIcon="pi pi-th-large" listIcon="pi pi-bars">
+
+                    <p:dataViewListItem>
+                        <div class="d-flex p-3">
+                            <div class="col-lg-2 col-md-1" style="text-align: center;" >
+                                <p:graphicImage name="hotel-default.jpg" library="images" width="150px"/>
+                            </div>
+
+                            <p:outputPanel styleClass="me-auto">
+                                <h:panelGrid cellpadding="5" columns="1">
+                                    <h:panelGrid id="wrapper-nombre-hotel" cellpadding="5" columns="2" styleClass="wrapper-nombre-hotel">
+                                        <div class="fw-bold fs-4 col">#{hotel.nombre}</div>
+                                        <h:outputText id="favorito-tag" styleClass="tag favorito-tag col" value="Favorito" rendered="#{seguridadBean.autenticado and !seguridadBean.admin and favoritosBean.esFavorito(hotel)}" />
+                                    </h:panelGrid>
+                                    <div>Contacto: #{hotel.telefono}</div>
+                                    <p:rating readonly="true" value="#{hotel.numeroEstrellas}"/>
+                                    <i class="pi pi-map-marker"/><span
+                                        class="fw-bold">#{hotel.ciudad.nombre}</span>
+                                </h:panelGrid>
+                            </p:outputPanel>
+
+                            <div class="d-flex flex-column justify-content-around align-items-end">
+                                <p:commandButton action="#{favoritosBean.favoritoListener(hotel)}" styleClass="rounded-button" icon="pi pi-heart-fill" rendered="#{seguridadBean.autenticado and !seguridadBean.admin}" update="@form" />
+
+                                <div>
+                                    <span class="fs-5 text-secondary">Desde </span>
+                                    <h:outputText value="#{inicioBean.obtenerPrecioHabitacionMasEconomica(hotel.codigoHotel)}" styleClass="fw-bold fs-4">
+                                        <f:convertNumber currencySymbol="$" type="currency"/>
+                                    </h:outputText>
+                                </div>
+
+                                <p:commandButton type="button"
+                                                 value="Ver Más"
+                                                 iconPos="right"
+                                                 icon="pi pi-arrow-right">
+                                </p:commandButton>
+                                <h:outputText styleClass="tag estado--#{hotel.estadoHotel.toString().toLowerCase()}" rendered="#{seguridadBean.admin}" value="#{hotel.estadoHotel}" />
+                            </div>
+                        </div>
+                    </p:dataViewListItem>
+
+                    <p:dataViewGridItem>
+                        <div class="card shadow p-4 border-1">
+                            <div class="card-title d-flex justify-content-between">
+                                <div class="fw-bold">
+                                    <i class="pi pi-map-marker product-category-icon"/>
+                                    <span class="product-category">#{hotel.ciudad.nombre}</span>
+                                </div>
+
+                                <p:commandButton action="#{favoritosBean.favoritoListener(hotel)}" styleClass="rounded-button" icon="pi pi-heart-fill" rendered="#{seguridadBean.autenticado and !seguridadBean.admin}" update="@form" />
+
+                                <h:outputText styleClass="tag favorito-tag col" value="Favorito" rendered="#{seguridadBean.autenticado and !seguridadBean.admin and favoritosBean.esFavorito(hotel)}" />
+
+                                <h:outputText styleClass="tag estado--#{hotel.estadoHotel.toString().toLowerCase()}" rendered="#{seguridadBean.admin}" value="#{hotel.estadoHotel}" />
+                            </div>
+                            <div class="text-center">
+                                <p:graphicImage name="hotel-default.jpg" library="images" width="150px"/>
+                                <div class="fw-bold fs-5">#{hotel.nombre}</div>
+                                <div>Contacto: #{hotel.telefono}</div>
+                                <p:rating readonly="true" value="#{hotel.numeroEstrellas}"/>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <div class=" align-items-center">
+                                    <span class="fs-5 text-secondary">Desde </span>
+                                    <h:outputText value="#{inicioBean.obtenerPrecioHabitacionMasEconomica(hotel.codigoHotel)}" styleClass="fw-bold fs-4">
+                                        <f:convertNumber currencySymbol="$" type="currency"/>
+                                    </h:outputText>
+                                </div>
+                                <p:commandButton type="button"
+                                                 value="Ver Más"
+                                                 iconPos="right"
+                                                 icon="pi pi-arrow-right">
+                                </p:commandButton>
+                            </div>
+                        </div>
+                    </p:dataViewGridItem>
+                </p:dataView>
+
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>

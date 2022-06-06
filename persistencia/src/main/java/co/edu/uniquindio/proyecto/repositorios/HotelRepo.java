@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.repositorios;
 
+import co.edu.uniquindio.proyecto.entidades.Caracteristica;
 import co.edu.uniquindio.proyecto.entidades.Ciudad;
 import co.edu.uniquindio.proyecto.entidades.Hotel;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -39,7 +40,19 @@ public interface HotelRepo extends JpaRepository <Hotel, Integer>
     @Query("select h from Hotel h where h.ciudad.nombre = :nombreCiudad order by h.nombre asc")
     List<Hotel> obtenerHotelesCiudad(String nombreCiudad);
 
-    //@Query("select distinct h from Hotel h, IN(h.habitaciones) hb left join hb.listaReservas dr on hb = dr.codigoHabitacion where (hb.capacidad >= :capacidad) and (hb.precio between :precioInicio and :precioFin) and (:fechaInicio > dr.codigoReserva.fechaSalida or :fechaFin < dr.codigoReserva.fechaLlegada)")
-    @Query("select distinct h from Hotel h, IN(h.habitaciones) hb left join hb.listaReservas dr on hb = dr.codigoHabitacion where (hb.capacidad >= :capacidad) and (hb.precio between :precioInicio and :precioFin) and (:fecha not between dr.codigoReserva.fechaLlegada and dr.codigoReserva.fechaSalida)")
-    List<Hotel> obtenerHotelesConHabitacionesEnRango(Double precioInicio, Double precioFin, Integer capacidad, Date fecha);
+    //@Query("select distinct h from Hotel h, IN(h.habitaciones) hb left join hb.listaReservas dr on hb = dr.codigoHabitacion where (hb.capacidad >= :capacidad) and (hb.precio between :precioInicio and :precioFin) and (:fecha not between dr.codigoReserva.fechaLlegada and dr.codigoReserva.fechaSalida)")
+    @Query("select distinct h from Hotel h, IN(h.habitaciones) hb left join hb.listaReservas dr on hb = dr.codigoHabitacion where (hb.capacidad >= :capacidad) and (hb.precio between :precioInicio and :precioFin) and (:fechaInicio > dr.codigoReserva.fechaSalida or :fechaFin < dr.codigoReserva.fechaLlegada)")
+    List<Hotel> obtenerHotelesConHabitacionesEnRango(Double precioInicio, Double precioFin, Integer capacidad, Date fechaInicio, Date fechaFin);
+
+    @Query("select min(hb.precio) from Hotel h, IN(h.habitaciones) hb where h.codigoHotel = :codigo")
+    Double obtenerPrecioHabitacionMasEconomica(Integer codigo);
+
+    @Query("select h from Hotel h where h.nombre like concat('%', trim(both from :nombre), '%') and h.ciudad.codigoCiudad = :codigoCiudad")
+    List<Hotel> obtenerHotelesPorNombreYCiudad(String nombre, Integer codigoCiudad);
+
+    @Query("select h from Hotel h where h.ciudad.codigoCiudad = :codigoCiudad")
+    List<Hotel> obtenerHotelesPorIdCiudad(Integer codigoCiudad);
+
+    @Query("select c from Hotel h, IN(h.listaCaracteristicas) c where h.codigoHotel = :codigoHotel")
+    List<Caracteristica> obtenerCaracteristicas(Integer codigoHotel);
 }

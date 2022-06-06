@@ -447,12 +447,30 @@ public class HotelTest
     @Test
     @Sql("classpath:DatosSQL.sql")
     public void obtenerHotelesConHabitacionesEnRango() {
-        List<Hotel> hoteles = hotelRepo.obtenerHotelesConHabitacionesEnRango(10_000.0, 15_000.0, 1, Date.valueOf(LocalDate.of(2022, 7, 15)));
+        List<Hotel> hoteles = hotelRepo.obtenerHotelesConHabitacionesEnRango(10_000.0, 15_000.0, 1, Date.valueOf(LocalDate.of(2022, 7, 15)), Date.valueOf(LocalDate.of(2022, 7, 17)));
 
         hoteles.forEach(System.out::println);
         Assertions.assertEquals(0, hoteles.size());
 
-        hoteles = hotelRepo.obtenerHotelesConHabitacionesEnRango(10_000.0, 15_000.0, 1, Date.valueOf(LocalDate.of(2022, 6, 7)));
+        hoteles = hotelRepo.obtenerHotelesConHabitacionesEnRango(10_000.0, 15_000.0, 1, Date.valueOf(LocalDate.of(2022, 6, 7)), Date.valueOf(LocalDate.of(2022, 6, 12)));
+
+        hoteles.forEach(System.out::println);
+        Assertions.assertEquals(1, hoteles.size());
+    }
+
+    @Test
+    @Sql("classpath:DatosSQL.sql")
+    public void obtenerHotelesPorNombreYCiudad() {
+        List<Hotel> hoteles = hotelRepo.obtenerHotelesPorNombreYCiudad("Cal", 4);
+
+        hoteles.forEach(System.out::println);
+        Assertions.assertEquals(1, hoteles.size());
+    }
+
+    @Test
+    @Sql("classpath:DatosSQL.sql")
+    public void obtenerHotelesPorIdCiudad() {
+        List<Hotel> hoteles = hotelRepo.obtenerHotelesPorIdCiudad(4);
 
         hoteles.forEach(System.out::println);
         Assertions.assertEquals(1, hoteles.size());

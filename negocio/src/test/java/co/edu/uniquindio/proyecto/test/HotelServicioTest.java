@@ -139,4 +139,27 @@ public class HotelServicioTest {
         Assertions.assertNotNull(hoteles);
         Assertions.assertEquals(0, hoteles.size());
     }
+
+    @Test
+    public void obtenerPrecioHabitacionMasEconomica() {
+        Double precio = hotelServicio.obtenerPrecioHabitacionMasEconomica(1);
+
+        Assertions.assertEquals(10000.0, precio);
+    }
+
+    @Test
+    public void obtenerHotelesPorNombreYCiudad() {
+        List<Hotel> hoteles = hotelServicio.obtenerHotelesPorNombreYCiudad("Cal", 4);
+
+        Assertions.assertNotNull(hoteles);
+        Assertions.assertEquals(1, hoteles.size());
+    }
+
+    @Test
+    public void obtenerHotelesPorIdCiudad() {
+        List<Hotel> hoteles = hotelServicio.obtenerHotelesPorIdCiudad(4);
+
+        Assertions.assertNotNull(hoteles);
+        Assertions.assertEquals(1, hoteles.size());
+    }
 }

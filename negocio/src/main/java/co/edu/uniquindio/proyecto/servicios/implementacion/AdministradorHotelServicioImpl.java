@@ -104,4 +104,8 @@ public class AdministradorHotelServicioImpl implements IAdministradorHotelServic
         return habitacionRepo.save(habitacion);
     }
 
+    @Override
+    public Boolean esAdminHotel(String email) {
+        return administradorHotelRepo.esAdminHotel(email);
+    }
 }

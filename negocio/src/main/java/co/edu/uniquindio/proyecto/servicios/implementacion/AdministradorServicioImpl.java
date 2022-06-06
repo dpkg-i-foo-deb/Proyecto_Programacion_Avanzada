@@ -94,8 +94,14 @@ public class AdministradorServicioImpl implements IAdministradorServicio {
     }
 
     @Override
-    public void eliminarVuelo() {
+    public void eliminarVuelo()
+    {
 
+    }
+
+    @Override
+    public Boolean esAdmin(String email) {
+        return administradorRepo.esAdmin(email);
     }
 }
 

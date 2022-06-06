@@ -1,5 +1,5 @@
 dependencies {
-    implementation(project(':persistencia'))
+    implementation project(':persistencia')
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation('junit:junit:4.13.2')
     implementation("org.springframework.boot:spring-boot-starter-mail")

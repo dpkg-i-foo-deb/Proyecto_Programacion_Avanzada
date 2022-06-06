@@ -3,12 +3,13 @@ package co.edu.uniquindio.proyecto.test;
 import co.edu.uniquindio.proyecto.NegocioApplication;
 import co.edu.uniquindio.proyecto.servicios.excepciones.HotelException;
 import co.edu.uniquindio.proyecto.servicios.excepciones.UsuarioException;
-import co.edu.uniquindio.proyecto.servicios.implementacion.CiudadServicioImpl;
+import co.edu.uniquindio.proyecto.servicios.implementacion.CiudadServicioImplmpl;
 import co.edu.uniquindio.proyecto.servicios.implementacion.DepartamentoServicioImpl;
 import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.entidades.intermediate.Detalle_Reserva_Silla;
 import co.edu.uniquindio.proyecto.repositorios.*;
 import co.edu.uniquindio.proyecto.servicios.excepciones.ComentarioException;
+import co.edu.uniquindio.proyecto.servicios.implementacion.UsuarioServicioImpl;
 import co.edu.uniquindio.proyecto.servicios.implementacion.UsuarioServicioImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -290,6 +291,7 @@ public class UsuarioServicioTest {
 
     @Test
     public void validarLogin() {
+        /*
         Ciudad ciudad = ciudadRepo.getById(1);
         Persona_Usuario usuario1 = new Persona_Usuario(
                 "09876",
@@ -306,6 +308,15 @@ public class UsuarioServicioTest {
             Persona_Usuario usuarioEncontrado = usuarioServicio.validarLogin(correo, password);
             Assertions.assertNotNull(usuarioEncontrado);
         } catch(Exception e) {
+            Assertions.fail(e.getMessage());
+        }
+         */
+
+        try {
+            Persona_Usuario usuarioEncontrado = usuarioServicio.validarLogin("herreras.stiven@gmail.com", "stiven123");
+            System.out.println(usuarioEncontrado);
+            Assertions.assertNotNull(usuarioEncontrado);
+        } catch (Exception e) {
             Assertions.fail(e.getMessage());
         }
     }

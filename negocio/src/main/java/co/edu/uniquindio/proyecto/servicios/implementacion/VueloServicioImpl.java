@@ -50,7 +50,14 @@ public class VueloServicioImpl implements IVueloServicio
 
     @Override
     public boolean eliminarVuelo(Vuelo vuelo) {
-        vueloRepo.delete(vuelo);
+
+        try{
+            vueloRepo.delete(vuelo);
+        }catch(Exception e)
+        {
+            return false;
+        }
+
         return true;
     }
 }

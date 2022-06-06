@@ -1,9 +1,6 @@
 package co.edu.uniquindio.proyecto.servicios.implementacion;
 
-import co.edu.uniquindio.proyecto.entidades.Ciudad;
-import co.edu.uniquindio.proyecto.entidades.EstadoHotel;
-import co.edu.uniquindio.proyecto.entidades.Hotel;
-import co.edu.uniquindio.proyecto.entidades.Persona_Administrador_Hotel;
+import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.repositorios.HotelRepo;
 import co.edu.uniquindio.proyecto.servicios.IHotelServicio;
 import co.edu.uniquindio.proyecto.servicios.excepciones.HotelException;
@@ -89,7 +86,12 @@ public class HotelServicioImpl implements IHotelServicio
 
         existeHotel(hotelBuscado);
 
-        hotelRepo.delete(hotel);
+        try{
+            hotelRepo.delete(hotel);
+        } catch(Exception e)
+        {
+            return false;
+        }
 
         return true;
     }
@@ -165,7 +167,27 @@ public class HotelServicioImpl implements IHotelServicio
         return hotel.getEstadoHotel().equals(EstadoHotel.PAUSADO);
     }
 
+    @Override
+    public Double obtenerPrecioHabitacionMasEconomica(Integer codigoHotel) {
+        return hotelRepo.obtenerPrecioHabitacionMasEconomica(codigoHotel);
+    }
+
     public List<Hotel> obtenerHotelesPorNombre(String nombre) {
         return hotelRepo.obtenerHotelesPorNombrePatron(nombre);
+    }
+
+    @Override
+    public List<Hotel> obtenerHotelesPorNombreYCiudad(String hotelBuscado, Integer codigoCiudadBusqueda) {
+        return hotelRepo.obtenerHotelesPorNombreYCiudad(hotelBuscado, codigoCiudadBusqueda);
+    }
+
+    @Override
+    public List<Hotel> obtenerHotelesPorIdCiudad(Integer codigoCiudadBusqueda) {
+        return hotelRepo.obtenerHotelesPorIdCiudad(codigoCiudadBusqueda);
+    }
+
+    @Override
+    public List<Caracteristica> obtenerCaracteristicasHotel(Integer codigoHotel) {
+        return hotelRepo.obtenerCaracteristicas(codigoHotel);
     }
 }

@@ -112,3 +112,13 @@ INSERT INTO persona_hoteles_favoritos VALUES("44444", 1);
 INSERT INTO persona_hoteles_favoritos VALUES("44444", 2);
 INSERT INTO persona_hoteles_favoritos VALUES("55555", 2);
 INSERT INTO persona_hoteles_favoritos VALUES("55555", 3);
+
+-- Características
+INSERT INTO caracteristica VALUES(0, 'Piscina');
+INSERT INTO caracteristica VALUES(0, 'Helipuerto');
+INSERT INTO caracteristica VALUES(0, 'Fuente de agua');
+
+-- Características hotel
+INSERT INTO hotel_lista_caracteristicas VALUES(1, 1);
+INSERT INTO hotel_lista_caracteristicas VALUES(1, 2);
+INSERT INTO hotel_lista_caracteristicas VALUES(2, 1);

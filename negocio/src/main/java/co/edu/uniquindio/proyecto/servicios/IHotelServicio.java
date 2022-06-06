@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.servicios;
 
+import co.edu.uniquindio.proyecto.entidades.Caracteristica;
 import co.edu.uniquindio.proyecto.entidades.Ciudad;
 import co.edu.uniquindio.proyecto.entidades.Hotel;
 import co.edu.uniquindio.proyecto.entidades.Persona_Administrador_Hotel;
@@ -26,4 +27,14 @@ public interface IHotelServicio
     Hotel reanudarHotel(Persona_Administrador_Hotel administrador_hotel, Integer codigo_hotel) throws HotelException;
 
     boolean estaPausado(Hotel hotel);
+
+    Double obtenerPrecioHabitacionMasEconomica(Integer codigoHotel);
+
+    List<Hotel> obtenerHotelesPorNombre(String hotelBuscado);
+
+    List<Hotel> obtenerHotelesPorNombreYCiudad(String hotelBuscado, Integer codigoCiudadBusqueda);
+
+    List<Hotel> obtenerHotelesPorIdCiudad(Integer codigoCiudadBusqueda);
+
+    List<Caracteristica> obtenerCaracteristicasHotel(Integer codigoHotel);
 }
