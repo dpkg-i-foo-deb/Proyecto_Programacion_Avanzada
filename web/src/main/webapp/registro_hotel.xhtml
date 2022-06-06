@@ -13,41 +13,54 @@
     <ui:define name="content">
         <p:panel styleClass="panel" header="Registro Hotel">
             <h:form>
-                    <div class="ui-inputgroup ui-fluid margin-bot">
-                        <div class="ui-inputgroup-addon"><i class="pi pi-user-plus" /></div>
-                        <p:inputText placeholder="Nombre completo *" value="#{signUpAdminBean.administrador.nombreCompleto}"
-                                     required="true" requiredMessage="Debe ingresar un nombre válido"/>
-                    </div>
-
-                    <div class="ui-inputgroup ui-fluid margin-bot">
-                        <div class="ui-inputgroup-addon"><i class="pi pi-id-card" /></div>
-                        <p:inputText placeholder="Número de cédula *" value="#{signUpAdminBean.administrador.cedula}"
-                                     required="true" requiredMessage="Debe ingresar una cédula válida"/>
+                    <div class="horizontal">
+                        <div class="ui-inputgroup ui-fluid margin-bot">
+                            <div class="ui-inputgroup-addon"><i class="pi pi-home" /></div>
+                            <p:inputText placeholder="Nombre *" value="#{registroHotelBean.hotel.nombre}"
+                                         required="true" requiredMessage="Debe ingresar un nombre válido"/>
+                        </div>
+                        <div class="ui-inputgroup ui-fluid margin-bot">
+                            <div class="ui-inputgroup-addon"><i class="pi pi-map" /></div>
+                            <p:inputText placeholder="Dirección completa *" value="#{registroHotelBean.hotel.direccion}"
+                                         required="true" requiredMessage="Debe ingresar una dirección válida"/>
+                        </div>
                     </div>
 
                     <div class="ui-inputgroup ui-fluid margin-bot">
                         <div class="ui-inputgroup-addon"><i class="pi pi-map-marker" /></div>
-                        <h:selectOneMenu id="ciudad-selector" class="selector" value="#{signUpAdminBean.administrador.ciudad}"
+                        <h:selectOneMenu id="ciudad-selector" class="selector" value="#{registroHotelBean.hotel.ciudad}"
                                          style="border: 1px #ced4da solid;"
                                          converter="#{ciudadConverter}" required="true"
                                          requiredMessage="La ciudad es obligatoria" >
-                            <f:selectItems value="#{signUpAdminBean.ciudadesGrupo}" var="ciudad" itemValue="#{ciudad}"/>
+                            <f:selectItems value="#{registroHotelBean.ciudadesGrupo}" var="ciudad" itemValue="#{ciudad}"/>
                         </h:selectOneMenu>
                     </div>
 
-                    <div class="horizontal margin-bot">
-                        <div class="ui-inputgroup stretch ui-fluid">
-                            <div class="ui-inputgroup-addon"><i class="pi pi-envelope" /></div>
-                            <p:inputText placeholder="Correo electrónico *" value="#{signUpBean.usuario.email}"
-                                         required="true" requiredMessage="Debe ingresar un correo válido"/>
+                    <div class="horizontal">
+                        <div class="ui-inputgroup ui-fluid margin-bot">
+                            <div class="ui-inputgroup-addon"><i class="pi pi-star" /></div>
+                            <p:inputText placeholder="Número de estrellas *" value="#{registroHotelBean.hotel.numeroEstrellas}"
+                                         required="true" requiredMessage="Debe ingresar un número válido"/>
                         </div>
-
-                        <p:password styleClass="fill-width" redisplay="true" placeholder="Contraseña *"
-                                    value="#{signUpBean.usuario.contrasena}" required="true"
-                                    requiredMessage="Debe ingresar una contraseña válida"/>
+                        <div class="ui-inputgroup ui-fluid margin-bot">
+                            <div class="ui-inputgroup-addon"><i class="pi pi-phone" /></div>
+                            <p:inputText placeholder="Teléfono *" value="#{registroHotelBean.hotel.telefono}"
+                                         required="true" requiredMessage="Debe ingresar un teléfono válido"/>
+                        </div>
                     </div>
 
-                    <p:commandButton styleClass="submit-btn" value="Registrarse" action="#{signUpBean.registrarUsuario}"
+                    <div class="ui-inputgroup ui-fluid margin-bot">
+                        <div class="ui-inputgroup-addon"><i class="pi pi-user" /></div>
+                        <h:selectOneMenu id="admin-selector" class="selector"
+                                         converter="#{administradorHotelConverter}"
+                                         value="#{registroHotelBean.hotel.administrador}"
+                                         style="border: 1px #ced4da solid;" required="true"
+                                         requiredMessage="El administrador es obligatorio" >
+                            <f:selectItems value="#{registroHotelBean.administradoresHotelLista}" var="administradorHotel" itemLabel="#{administradorHotel.email}"/>
+                        </h:selectOneMenu>
+                    </div>
+
+                    <p:commandButton styleClass="submit-btn" value="Registrarse" action="#{registroHotelBean.registrarHotel}"
                                      update="@form"/>
                 <p:growl showDetail="true" />
             </h:form>
