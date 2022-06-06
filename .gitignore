@@ -145,3 +145,5 @@ build/
 
 # End of https://www.toptal.com/developers/gitignore/api/gradle
 
+/persistencia/src/test/
+/negocio/src/test/
