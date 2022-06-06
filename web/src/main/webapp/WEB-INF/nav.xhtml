@@ -40,12 +40,14 @@
         <h:form>
             <p:menubar>
                 <!-- Opciones para autenticados -->
-                <p:menuitem value="Mi carrito" style="min-width: 100% !important;" icon="pi pi-shopping-cart" rendered="#{seguridadBean.autenticado}" action="404?faces-redirect=true"/>
-
+                <p:menuitem value="Mi carrito" style="min-width: 100% !important;" icon="pi pi-shopping-cart" rendered="#{seguridadBean.autenticado and !seguridadBean.admin and !seguridadBean.adminHotel}" action="404?faces-redirect=true"/>
+                <p:menuitem value="Mis Reservas" icon="pi pi-fw pi-book" action="404?faces-redirect=true" rendered="#{seguridadBean.autenticado and !seguridadBean.admin and !seguridadBean.adminHotel}"/>
+                <p:menuitem value="Mis Hoteles" icon="pi pi-fw pi-list" action="404?faces-redirect=true" rendered="#{seguridadBean.adminHotel}"/>
+                <p:menuitem value="Registrar Hotel" icon="pi pi-fw pi-building" action="404?faces-redirect=true" rendered="#{seguridadBean.adminHotel}"/>
+                <p:menuitem value="Registrar Admin Hotel" icon="pi pi-fw pi-user-plus" action="sign_up_admin_hotel?faces-redirect=true" rendered="#{seguridadBean.admin}"/>
                 <p:submenu label="Usuario" icon="pi pi-fw pi-user" rendered="#{seguridadBean.autenticado}">
-                    <p:menuitem value="Perfil" icon="pi pi-fw pi-user-edit" action="404?faces-redirect=true"/>
-                    <p:menuitem value="Mis compras" icon="pi pi-fw pi-shopping-cart" action="404?faces-redirect=true"/>
-                    <p:menuitem value="Favoritos" icon="pi pi-fw pi-heart" action="favoritos?faces-redirect=true"/>
+                    <p:menuitem value="Perfil" icon="pi pi-fw pi-user-edit" action="404?faces-redirect=true" rendered="#{seguridadBean.autenticado and !seguridadBean.admin and !seguridadBean.adminHotel}"/>
+                    <p:menuitem value="Favoritos" icon="pi pi-fw pi-heart" action="favoritos?faces-redirect=true" rendered="#{seguridadBean.autenticado and !seguridadBean.admin and !seguridadBean.adminHotel}"/>
                     <p:divider />
                     <p:menuitem value="Cerrar sesión" icon="pi pi-fw pi-external-link" action="#{seguridadBean.cerrarSesion()}"/>
                 </p:submenu>

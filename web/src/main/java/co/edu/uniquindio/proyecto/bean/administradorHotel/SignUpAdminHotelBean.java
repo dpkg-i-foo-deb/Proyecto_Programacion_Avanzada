@@ -6,7 +6,6 @@ import co.edu.uniquindio.proyecto.entidades.Persona_Administrador_Hotel;
 import co.edu.uniquindio.proyecto.servicios.IAdministradorHotelServicio;
 import co.edu.uniquindio.proyecto.servicios.ICiudadServicio;
 import co.edu.uniquindio.proyecto.servicios.IDepartamentoServicio;
-import co.edu.uniquindio.proyecto.servicios.excepciones.AdministradorException;
 import co.edu.uniquindio.proyecto.servicios.excepciones.AdministradorHotelException;
 import co.edu.uniquindio.proyecto.utils.Mensaje;
 import lombok.Getter;
@@ -49,7 +48,7 @@ public class SignUpAdminHotelBean  implements Serializable {
 
     @PostConstruct
     public void init() {
-        //Creating a new admin.
+        //Creating a new adminHotel.
         administradorHotel = new Persona_Administrador_Hotel();
 
         //Populating selector options.
@@ -70,7 +69,7 @@ public class SignUpAdminHotelBean  implements Serializable {
         });
     }
 
-    public void registrarAdministrador() {
+    public void registrarAdministradorHotel() {
         try {
             administradorHotelServicio.registrarAdministradorHotel(administradorHotel);
 
