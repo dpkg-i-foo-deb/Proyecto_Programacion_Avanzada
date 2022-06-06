@@ -69,7 +69,7 @@ public class SignUpAdminHotelBean  implements Serializable {
         });
     }
 
-    public void registrarAdministradorHotel() {
+    public String registrarAdministradorHotel() {
         try {
             administradorHotelServicio.registrarAdministradorHotel(administradorHotel);
 
@@ -78,6 +78,7 @@ public class SignUpAdminHotelBean  implements Serializable {
                     "Registro exitoso",
                     "Bienvenido a unitravel. Ya puedes iniciar sesión"
             );
+            return "index?faces-redirect=true";
         } catch (AdministradorHotelException e) {
             System.err.println("ERROR: " + e.getMessage());
 
@@ -87,6 +88,7 @@ public class SignUpAdminHotelBean  implements Serializable {
                     e.getMessage()
             );
         }
+        return "";
     }
 
 }
